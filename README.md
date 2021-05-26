@@ -1,4 +1,4 @@
-
+!["logo_utn"]("Logo UTN.png")
 <h1 align="center">Universidad Tecnologica Nacional</h1>
 
 <h1 align="center">
@@ -11,13 +11,12 @@
 * Diaz, Daniela
 * Butti, Julian
 
-Integrantes del Grupo
+## Integrantes del Grupo
 
 | **Alumnos** |  **Legajos** | **Emails** |
-  | --- | --- | --- |
-  | Ulla, David | 42111 | davoulla@gmail.com |
-  | Mateucci, Nicolas | 42868 | nico.mateucci@gmail.com |
-  | Pinacca, Franco | 43133 | fpinacca@gmail.com |
-  | Diez, Juan Pablo | 44158  | jpdok98@gmail.com |
-  | Castillo, Gonzalo | 43098 | gonzalo07.xc@gmail.com |
-
+| --- | --- | --- |
+| Ulla, David | 42111 | davoulla@gmail.com |
+| Mateucci, Nicolas | 42868 | nico.mateucci@gmail.com |
+| Pinacca, Franco | 43133 | fpinacca@gmail.com |
+| Diez, Juan Pablo | 44158  | jpdok98@gmail.com |
+| Castillo, Gonzalo | 43098 | gonzalo07.xc@gmail.com |
