@@ -1,6 +1,6 @@
 <h1 align="center">Universidad Tecnologica Nacional</h1>
 
-![Logo UTN](https://www.frlp.utn.edu.ar/sites/default/files/inline-images/simbolo0.png)
+![Logo UTN](/relative/path/to/Logo UTN.jpg)
 
 <h1 align="center">
   <img src="Logo UTN.png" alt="logo_utn">
