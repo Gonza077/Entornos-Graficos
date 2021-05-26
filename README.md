@@ -15,17 +15,17 @@
 Integrantes del Grupo
 
 <table text-align:"center">
-  <tr text-align:"center">
+  <tr>
     <td >Alumnos</td>
     <td >Legajos</td>
     <td >Emails</td>
   </tr>
-  <tr text-align:"center">
+  <tr>
     <td> Ulla, David </td>
     <td> 42111 </td> 
     <td> davoulla@gmail.com </td>
-  </tr text-align:"center">
-  <tr text-align:"center">
+  </tr>
+  <tr>
     <td> Mateucci, Nicolas </td>
     <td> 42868 </td> 
     <td> nico.mateucci@gmail.com </td>
