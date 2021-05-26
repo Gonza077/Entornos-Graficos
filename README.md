@@ -46,4 +46,6 @@ Integrantes del Grupo
     <td> gonzalo07.xc@gmail.com </td>
   </tr>
 </table>
+||
+|---|
 </body>
