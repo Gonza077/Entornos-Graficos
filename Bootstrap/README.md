@@ -26,22 +26,8 @@ Crear un archivo CSS que se llame estilo.css, y llamarlo desde el archivo donde 
 Utilizar la grilla de Bootstrap para crear un div de clase container, que contenga dos filas.
 Para todas las resoluciones, excepto para sm, la primera fila deberá haber una columna que ocupe el 100% del ancho, y en la segunda deberá haber 2 columnas que ocupen el 50% del ancho cada una. Para sm y resoluciones más pequeñas, deberán haber 3 filas con 1 columna que ocupe el 100% del ancho en cada una.
 
-<html>
-<head> 
-
-    <!-- <link rel="stylesheet" href="estilo.css" TYPE="text/css"> -->
-
-    <link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-        crossorigin="anonymous">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-</head>
-
-<body>
-    <div class="container">
-        <div class="row">
+<div class="container">
+     <div class="row">
             <div class="col-xl-12 col-lg-12 col-md-12 col-12" style="background-color:rgb(218, 23, 23)">
                 <h1>Ocupa 100%</h1>
             </div>
@@ -81,5 +67,4 @@ Para todas las resoluciones, excepto para sm, la primera fila deberá haber una 
             </div>
         </div> 
     </div>
-</body>
-</html>
+
