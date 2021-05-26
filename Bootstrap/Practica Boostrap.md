@@ -6,7 +6,7 @@
 
 <h2 align="center">Trabajo Boostrap</h2>
 
-<h3>Trabajo Boostrap</h3>Profesores
+<h3>Profesores</h3>
 * Diaz, Daniela
 * Butti, Julian
 
