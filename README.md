@@ -1,4 +1,4 @@
-!["logo_utn"]("Logo UTN.png")
+![Alt text](relative/path/to/img.jpg?raw=true "Title")
 <h1 align="center">Universidad Tecnologica Nacional</h1>
 
 <h1 align="center">
