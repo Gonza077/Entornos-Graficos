@@ -20,10 +20,6 @@ Integrantes del Grupo
 | Diez, Juan Pablo | 44158  | jpdok98@gmail.com |
 | Castillo, Gonzalo | 43098 | gonzalo07.xc@gmail.com |
 
-| Comando | Descripción |
-| --- | --- |
-| `git status` | Enumera todos los archivos *nuevos o modificados* |
-| `git diff` | Muestra las diferencias de archivo que **no han sido** preparadas |
 
 Fecha de Entrega: 31 de mayo de 2021
 
