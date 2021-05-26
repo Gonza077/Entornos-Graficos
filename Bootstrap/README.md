@@ -4,22 +4,7 @@ Importar Bootstrap en el proyecto actual, ya sea descargando Bootstrap localment
 Crear un div de clase container, con una fila que contenga 1 columna.
 Crear un archivo CSS que se llame estilo.css, y llamarlo desde el archivo donde estemos trabajando. Crear una clase que se llame contenedor, con un color de fondo cualquiera, y añadirle esa clase al div con clase container que creamos en el ejercicio anterior.
 
-<html>
-<head>
-<title>Prueba de Bootstrap 4</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-</head>
-<body>
-	<div class="container">
-    		<div class="col" style="background-color:#ccc">
-        		<h1>Columna 1</h1>
-        		<p>Esto es una prueba de bootstrap.</p>
-    		</div>
- 	</div>   
-</body>
-</html>
+
 
 
 
