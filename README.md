@@ -43,14 +43,6 @@
       <td>Castillo, Gonzalo</td>
       <td>43098</td>
       <td>gonzalo07.xc@gmail.com</td>  
-    </tr>
-  
+    </tr>  
   </table>
 </div>
-| **Alumnos** |  **Legajos** | **Emails** |
-| --- | --- | --- |
-| Ulla, David | 42111 | davoulla@gmail.com |
-| Mateucci, Nicolas | 42868 | nico.mateucci@gmail.com |
-| Pinacca, Franco | 43133 | fpinacca@gmail.com |
-| Diez, Juan Pablo | 44158  | jpdok98@gmail.com |
-| Castillo, Gonzalo | 43098 | gonzalo07.xc@gmail.com |
