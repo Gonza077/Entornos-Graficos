@@ -1,12 +1,13 @@
 
-# Universidad Tecnologica Nacional
+<h1 aling="center">Universidad Tecnologica Nacional</h1>
+
 <h1 align="center">
   <img src="Utilidades/Logo UTN.png" alt="logo_utn">
 </h1>
 
-# Trabajo Boostrap
+<h1 align="center">Trabajo Boostrap</h1>
 
-# Profesores</h3>
+# Profesores
 * Diaz, Daniela
 * Butti, Julian
 
