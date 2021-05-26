@@ -17,17 +17,12 @@ Para todas las resoluciones, excepto para sm, la primera fila deberá haber una 
 
 <html>
 <head> 
-
     <!-- <link rel="stylesheet" href="estilo.css" TYPE="text/css"> -->
-
     <link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
+   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-
 <body>
     <div class="container">
         <div class="row">
@@ -47,10 +42,8 @@ Para todas las resoluciones, excepto para sm, la primera fila deberá haber una 
             </div>
         </div>
     </div>
-
     <br>
     <hr>
-
     <div class="container">
         <div class="row">
             <div class="col-sm-12 col-12" style="background-color:rgb(218, 23, 23)">
