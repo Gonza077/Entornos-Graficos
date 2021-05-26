@@ -1,6 +1,6 @@
 <h1 align="center">Universidad Tecnologica Nacional</h1>
 
-![Logo UTN](Logo UTN.png "Title")
+![Logo UTN](https://www.google.com/search?q=logo+utn&sxsrf=ALeKk00e9wHdiHEyTNroylivCNTWEQ3hug:1622062114209&tbm=isch&source=iu&ictx=1&fir=k7vZ7y30886VbM%252CYvPI1Q-sF8uzQM%252C_&vet=1&usg=AI4_-kQZsYRy9Gd7KrIsY14Ub3wKSy9QUA&sa=X&ved=2ahUKEwjrkvugnOjwAhVvIbkGHQe3CwEQ9QF6BAgPEAE#imgrc=k7vZ7y30886VbM "Title")
 
 <h1 align="center">
   <img src="Logo UTN.png" alt="logo_utn">
