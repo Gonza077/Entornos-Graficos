@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="assets/UTN.png" alt="logo_utn">
+  <img src="Utilidades/Logo UTN.png" alt="logo_utn">
 </h1>
 <h5 align="center">Universidad Tecnologica Nacional</h5>
 
