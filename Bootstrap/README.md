@@ -44,10 +44,8 @@ Para todas las resoluciones, excepto para sm, la primera fila deberá haber una 
             </div>
         </div>
     </div>
-
     <br>
     <hr>
-
     <div class="container">
         <div class="row">
             <div class="col-sm-12 col-12" style="background-color:rgb(218, 23, 23)">
