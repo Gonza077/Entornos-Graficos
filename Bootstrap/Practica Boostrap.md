@@ -1,9 +1,10 @@
+
+<h1 align="center">Universidad Tecnologica Nacional</h5>
 <h1 align="center">
   <img src="Utilidades/Logo UTN.png" alt="logo_utn">
 </h1>
-<h5 align="center">Universidad Tecnologica Nacional</h5>
 
-<h5 align="center">Trabajo Boostrap</h5>
+<h2 align="center">Trabajo Boostrap</h2>
 
 Profesores
 * Diaz, Daniela
