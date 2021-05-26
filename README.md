@@ -14,12 +14,14 @@ Integrantes del Grupo
 
 <table text-align: center;">
   <tr>
-    <td >Primera columna</td>
-    <td >Segunda columna</td>
-    <td >Tercera columna</td>
+    <td >Alumnos</td>
+    <td >Legajos</td>
+    <td >Emails</td>
   </tr>
   <tr>
-    <td colspan="3" style="width: 100%; padding-top: 50px;">Más contenido</td>
+    <td>Ulla, David</td>
+    <td>Ulla, David</td> 
+    <td>Ulla, David</td>
   </tr>
   <tr>
     <td  colspan="3" style="width: 100%; padding-top: 50px;">Pie de página</td>
