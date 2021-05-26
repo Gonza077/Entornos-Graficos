@@ -1,5 +1,4 @@
 
-<body>
 <h1 align="center">Universidad Tecnologica Nacional</h1>
 
 <h1 align="center">
@@ -14,36 +13,11 @@
 
 Integrantes del Grupo
 
-<table text-align:"center">
-  <tr>
-    <td >Alumnos</td>
-    <td >Legajos</td>
-    <td >Emails</td>
-  </tr>
-  <tr>
-    <td> Ulla, David </td>
-    <td> 42111 </td> 
-    <td> davoulla@gmail.com </td>
-  </tr>
-  <tr>
-    <td> Mateucci, Nicolas </td>
-    <td> 42868 </td> 
-    <td> nico.mateucci@gmail.com </td>
-  </tr>
-  <tr>
-    <td> Pinacca, Franco </td>
-    <td> 43133 </td> 
-    <td> fpinacca@gmail.com </td>
-  </tr>
-  <tr>
-    <td> Diez, Juan Pablo </td>
-    <td> 44158 </td> 
-    <td> jpdok98@gmail.com </td>
-  </tr>
-  <tr>
-    <td> Castillo, Gonzalo </td>
-    <td> 43098 </td> 
-    <td> gonzalo07.xc@gmail.com </td>
-  </tr>
-</table>
-</body>
+| **Alumnos** |  **Legajos** | **Emails** |
+  | --- | --- | --- |
+  | Ulla, David | 42111 | davoulla@gmail.com |
+  | Mateucci, Nicolas | 42868 | nico.mateucci@gmail.com |
+  | Pinacca, Franco | 43133 | fpinacca@gmail.com |
+  | Diez, Juan Pablo | 44158  | jpdok98@gmail.com |
+  | Castillo, Gonzalo | 43098 | gonzalo07.xc@gmail.com |
+
