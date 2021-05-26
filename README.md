@@ -9,14 +9,14 @@
 # Profesores
 * Diaz, Daniela
 * Butti, Julian
-* 
-<h1 align="center">Integrantes del Grupo</h1>
 
-<div align="center">| **Alumnos** |  **Legajos** | **Emails** |
+Integrantes del Grupo
+
+| **Alumnos** |  **Legajos** | **Emails** |
 | --- | --- | --- |
 | Ulla, David | 42111 | davoulla@gmail.com |
 | Mateucci, Nicolas | 42868 | nico.mateucci@gmail.com |
 | Pinacca, Franco | 43133 | fpinacca@gmail.com |
 | Diez, Juan Pablo | 44158  | jpdok98@gmail.com |
-| Castillo, Gonzalo | 43098 | gonzalo07.xc@gmail.com |</div>
+| Castillo, Gonzalo | 43098 | gonzalo07.xc@gmail.com |
 
