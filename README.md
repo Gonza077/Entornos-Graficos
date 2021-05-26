@@ -7,7 +7,7 @@
 
 <h1 align="center">Entornos Graficos</h1>
 
-<h2 >Profesores
+## Profesores 
 * Diaz, Daniela
 * Butti, Julian
 
