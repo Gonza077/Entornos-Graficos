@@ -7,8 +7,8 @@
 <h2 align="center">Trabajo Boostrap</h2>
 
 <h3>Trabajo Boostrap</h3>Profesores
-*Diaz, Daniela
-*Butti, Julian
+* Diaz, Daniela
+* Butti, Julian
 
 Integrantes del Grupo
 
