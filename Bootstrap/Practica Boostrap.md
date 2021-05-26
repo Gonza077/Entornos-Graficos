@@ -10,7 +10,7 @@ Profesores
 * Diaz, Daniela
 * Butti, Julian
 
-Integrantes del Grupo
+#Integrantes del Grupo
 
 | Alumnos |  Legajos | Emails |
 | Ulla, David | 42111 | davoulla@gmail.com |
