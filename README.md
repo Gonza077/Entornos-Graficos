@@ -4,11 +4,11 @@
   <img src="Logo UTN.png" alt="logo_utn">
 </h1>
 
-<h1 align="center">Entornos Graficos</h1>
+<h1 align="center">Catedra: Entornos Graficos</h1>
 
 <h2 align="center">Profesores</h2>
-<p align="center"> Diaz, Daniela </p> 
-<p align="center"> Butti, Julian </p> 
+<p align="center">Diaz, Daniela </p> 
+<p align="center">Butti, Julian </p> 
 
 <h2 align="center">Integrantes del Grupo</h2>
 
