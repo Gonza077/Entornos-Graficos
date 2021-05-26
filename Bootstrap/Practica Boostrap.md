@@ -10,9 +10,10 @@ Profesores
 * Diaz, Daniela
 * Butti, Julian
 
-#Integrantes del Grupo
+Integrantes del Grupo
 
-| Alumnos |  Legajos | Emails |
+| **Alumnos** |  **Legajos** | **Emails** |
+| --- | --- |
 | Ulla, David | 42111 | davoulla@gmail.com |
 | Mateucci, Nicolas | 42868 | nico.mateucci@gmail.com |
 | Pinacca, Franco | 43133 | fpinacca@gmail.com |
