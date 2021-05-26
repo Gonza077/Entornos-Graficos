@@ -3,8 +3,7 @@
 </h1>
 <h5 align="center">Universidad Tecnologica Nacional</h5>
 
-
-# Trabajo Boostrap
+<h5 align="center">Trabajo Boostrap</h5>
 
 Profesores
 * Diaz, Daniela
