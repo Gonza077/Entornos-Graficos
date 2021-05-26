@@ -11,7 +11,7 @@
 
 # Práctica 2: sistema de grilla o rejillas
 
-Utilizar la grilla de Bootstrap para crear un div de clase container, que contenga dos filas.
+1. Utilizar la grilla de Bootstrap para crear un div de clase container, que contenga dos filas.
 Para todas las resoluciones, excepto para sm, la primera fila deberá haber una columna que ocupe el 100% del ancho, y en la segunda deberá haber 2 columnas que ocupen el 50% del ancho cada una. Para sm y resoluciones más pequeñas, deberán haber 3 filas con 1 columna que ocupe el 100% del ancho en cada una.
 
 
