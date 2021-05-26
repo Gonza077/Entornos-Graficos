@@ -1,5 +1,6 @@
-![Alt text](relative/path/to/img.jpg?raw=true "Title")
 <h1 align="center">Universidad Tecnologica Nacional</h1>
+
+![Logo UTN](Logo UTN.png "Title")
 
 <h1 align="center">
   <img src="Logo UTN.png" alt="logo_utn">
