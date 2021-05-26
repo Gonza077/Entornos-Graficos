@@ -12,6 +12,20 @@
 
 Integrantes del Grupo
 
+<table text-align: center;">
+  <tr>
+    <td >Primera columna</td>
+    <td >Segunda columna</td>
+    <td >Tercera columna</td>
+  </tr>
+  <tr>
+    <td colspan="3" style="width: 100%; padding-top: 50px;">Más contenido</td>
+  </tr>
+  <tr>
+    <td  colspan="3" style="width: 100%; padding-top: 50px;">Pie de página</td>
+  </tr>
+</table>
+
 | **Alumnos** |  **Legajos** | **Emails** |
 | --- | --- | --- |
 | Ulla, David | 42111 | davoulla@gmail.com |
@@ -20,6 +34,3 @@ Integrantes del Grupo
 | Diez, Juan Pablo | 44158  | jpdok98@gmail.com |
 | Castillo, Gonzalo | 43098 | gonzalo07.xc@gmail.com |
 
-<table align="center">
-  <td></td>
-</table>
