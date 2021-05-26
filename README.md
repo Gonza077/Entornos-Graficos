@@ -1,6 +1,6 @@
 <h1 align="center">Universidad Tecnologica Nacional</h1>
 
-![Logo UTN](Logo UTN.png?)
+![Logo UTN](Logo UTN.png)
 
 <h1 align="center">
   <img src="Logo UTN.png" alt="logo_utn">
