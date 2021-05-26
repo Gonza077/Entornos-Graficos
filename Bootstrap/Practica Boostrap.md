@@ -13,7 +13,7 @@ Profesores
 Integrantes del Grupo
 
 | **Alumnos** |  **Legajos** | **Emails** |
-| --- | --- |
+| --- | --- | --- |
 | Ulla, David | 42111 | davoulla@gmail.com |
 | Mateucci, Nicolas | 42868 | nico.mateucci@gmail.com |
 | Pinacca, Franco | 43133 | fpinacca@gmail.com |
