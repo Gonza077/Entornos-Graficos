@@ -8,7 +8,7 @@
 
 <h1 align="center">Entornos Graficos</h1>
 
-# Profesores
+<h2 >Profesores
 * Diaz, Daniela
 * Butti, Julian
 
@@ -47,6 +47,3 @@ Integrantes del Grupo
   </tr>
 </table>
 </body>
-
-||
-|---|
