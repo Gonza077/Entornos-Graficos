@@ -18,7 +18,7 @@
             <div class="form-group">
               <label for="apellido">Ingrese su apellido:</label>
               <label for="apellido" class="sr-only">Ingrese su apellido</label>
-              <input type="email" class="form-control" id="email" aria-describedby="ayudaEmail" placeholder="">
+              <input type="text" class="form-control" id="apellido" aria-describedby="ayudaApellido" placeholder="">
             </div>
             
             <hr>
