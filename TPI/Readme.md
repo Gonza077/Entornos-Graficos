@@ -2,6 +2,16 @@
 
 ## Módulo: Aviso de Consultas
 
+### Interfaces de Usuario
+
+#### Formulario de Registro
+
+** Tamaño de un teléfono**
+![Formulario de registro tamaño celular](img/ExtraSmallRegistro.png)
+
+** Tamaño de una PC**
+![Formulario de registro tamaño PC](img/ExtraLargeRegistro.png)
+
 ### Objetivos del sitio
 - Gestionar las solicitudes de consulta de los alumnos de la facultad.
 - Gestionar los pedidos de consulta que reciben los profesores.
