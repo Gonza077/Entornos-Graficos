@@ -6,10 +6,12 @@
 
 #### Formulario de Registro
 
-** Tamaño de un teléfono**
+#####  Tamaño de un teléfono
+
 ![Formulario de registro tamaño celular](img/ExtraSmallRegistro.png)
 
-** Tamaño de una PC**
+#####  Tamaño de una PC
+
 ![Formulario de registro tamaño PC](img/ExtraLargeRegistro.png)
 
 ### Objetivos del sitio
