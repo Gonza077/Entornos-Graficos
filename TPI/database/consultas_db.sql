@@ -32,126 +32,6 @@ CREATE TABLE IF NOT EXISTS `consultas_db`.`catedra` (
 
 
 -- -----------------------------------------------------
--- Table `consultas_db`.`consulta`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `consultas_db`.`consulta` ;
-
-CREATE TABLE IF NOT EXISTS `consultas_db`.`consulta` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `docente_id` INT NOT NULL,
-  `create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `update_time` TIMESTAMP NULL,
-  `materia_id` INT NOT NULL,
-  `fecha` DATETIME NOT NULL,
-  `descripcion_baja` VARCHAR(255) NOT NULL,
-  `fecha_baja` TIMESTAMP NULL,
-  `consulta_reemplazo_id` INT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_materia` (`materia_id` ASC) INVISIBLE,
-  INDEX `fk_docente` (`docente_id` ASC) INVISIBLE,
-  INDEX `fk_consulta_reemplazo_idx` (`consulta_reemplazo_id` ASC) VISIBLE,
-  CONSTRAINT `fk_consulta_materia`
-    FOREIGN KEY (`materia_id`)
-    REFERENCES `consultas_db`.`materia` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_consulta_docente`
-    FOREIGN KEY (`docente_id`)
-    REFERENCES `consultas_db`.`persona` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_consulta_reemplazo`
-    FOREIGN KEY (`consulta_reemplazo_id`)
-    REFERENCES `consultas_db`.`consulta` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
-
-
--- -----------------------------------------------------
--- Table `consultas_db`.`estado_consulta`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `consultas_db`.`estado_consulta` ;
-
-CREATE TABLE IF NOT EXISTS `consultas_db`.`estado_consulta` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `codigo` VARCHAR(45) NOT NULL,
-  `descripcion` VARCHAR(255) NULL,
-  PRIMARY KEY (`id`));
-
-
--- -----------------------------------------------------
--- Table `consultas_db`.`estado_consulta_estado`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `consultas_db`.`estado_consulta_estado` ;
-
-CREATE TABLE IF NOT EXISTS `consultas_db`.`estado_consulta_estado` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `estado_consulta_id` INT NOT NULL,
-  `consulta_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_consulta` (`consulta_id` ASC) INVISIBLE,
-  INDEX `fk_estado_consulta` (`estado_consulta_id` ASC) VISIBLE,
-  CONSTRAINT `fk_estado_consulta`
-    FOREIGN KEY (`estado_consulta_id`)
-    REFERENCES `consultas_db`.`estado_consulta` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_estado_consulta_consulta`
-    FOREIGN KEY (`consulta_id`)
-    REFERENCES `consultas_db`.`consulta` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
-
-
--- -----------------------------------------------------
--- Table `consultas_db`.`materia`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `consultas_db`.`materia` ;
-
-CREATE TABLE IF NOT EXISTS `consultas_db`.`materia` (
-  `create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `delete_time` TIMESTAMP NULL,
-  `id` INT NOT NULL,
-  `nombre` VARCHAR(32) NOT NULL,
-  `descripcion` VARCHAR(255) NULL,
-  `catedra_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_catedra` (`catedra_id` ASC) INVISIBLE,
-  CONSTRAINT `fk_materia_catedra`
-    FOREIGN KEY (`catedra_id`)
-    REFERENCES `consultas_db`.`catedra` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
-
-
--- -----------------------------------------------------
--- Table `consultas_db`.`materia_docente`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `consultas_db`.`materia_docente` ;
-
-CREATE TABLE IF NOT EXISTS `consultas_db`.`materia_docente` (
-  `create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `delete_time` TIMESTAMP NULL,
-  `id` INT NOT NULL,
-  `materia_id` INT NOT NULL,
-  `docente_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_docente` (`docente_id` ASC) INVISIBLE,
-  INDEX `fk_materia` (`materia_id` ASC) INVISIBLE,
-  CONSTRAINT `fk_materia_docente_docente`
-    FOREIGN KEY (`docente_id`)
-    REFERENCES `consultas_db`.`persona` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_materia_docente_materia`
-    FOREIGN KEY (`materia_id`)
-    REFERENCES `consultas_db`.`materia` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
-
-
--- -----------------------------------------------------
 -- Table `consultas_db`.`persona`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `consultas_db`.`persona` ;
@@ -170,6 +50,124 @@ CREATE TABLE IF NOT EXISTS `consultas_db`.`persona` (
 
 
 -- -----------------------------------------------------
+-- Table `consultas_db`.`estado_consulta`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `consultas_db`.`estado_consulta` ;
+
+CREATE TABLE IF NOT EXISTS `consultas_db`.`estado_consulta` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `codigo` VARCHAR(45) NOT NULL,
+  `descripcion` VARCHAR(255) NULL,
+  PRIMARY KEY (`id`));
+
+
+-- -----------------------------------------------------
+-- Table `consultas_db`.`materia`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `consultas_db`.`materia` ;
+
+CREATE TABLE IF NOT EXISTS `consultas_db`.`materia` (
+  `create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `delete_time` TIMESTAMP NULL,
+  `id` INT NOT NULL,
+  `nombre` VARCHAR(32) NOT NULL,
+  `descripcion` VARCHAR(255) NULL,
+  `catedra_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_catedra` (`catedra_id` ASC) ,
+  CONSTRAINT `fk_materia_catedra`
+    FOREIGN KEY (`catedra_id`)
+    REFERENCES `consultas_db`.`catedra` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+-- -----------------------------------------------------
+-- Table `consultas_db`.`consulta`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `consultas_db`.`consulta` ;
+
+CREATE TABLE IF NOT EXISTS `consultas_db`.`consulta` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `docente_id` INT NOT NULL,
+  `create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_time` TIMESTAMP NULL,
+  `materia_id` INT NOT NULL,
+  `fecha` DATETIME NOT NULL,
+  `descripcion_baja` VARCHAR(255) NOT NULL,
+  `fecha_baja` TIMESTAMP NULL,
+  `consulta_reemplazo_id` INT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_materia` (`materia_id` ASC) ,
+  INDEX `fk_docente` (`docente_id` ASC) ,
+  INDEX `fk_consulta_reemplazo_idx` (`consulta_reemplazo_id` ASC) ,
+  CONSTRAINT `fk_consulta_materia`
+    FOREIGN KEY (`materia_id`)
+    REFERENCES `consultas_db`.`materia` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_consulta_docente`
+    FOREIGN KEY (`docente_id`)
+    REFERENCES `consultas_db`.`persona` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_consulta_reemplazo`
+    FOREIGN KEY (`consulta_reemplazo_id`)
+    REFERENCES `consultas_db`.`consulta` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+-- -----------------------------------------------------
+-- Table `consultas_db`.`estado_consulta_estado`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `consultas_db`.`estado_consulta_estado` ;
+
+CREATE TABLE IF NOT EXISTS `consultas_db`.`estado_consulta_estado` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `estado_consulta_id` INT NOT NULL,
+  `consulta_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_consulta` (`consulta_id` ASC) ,
+  INDEX `fk_estado_consulta` (`estado_consulta_id` ASC) ,
+  CONSTRAINT `fk_estado_consulta`
+    FOREIGN KEY (`estado_consulta_id`)
+    REFERENCES `consultas_db`.`estado_consulta` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_estado_consulta_consulta`
+    FOREIGN KEY (`consulta_id`)
+    REFERENCES `consultas_db`.`consulta` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+
+
+-- -----------------------------------------------------
+-- Table `consultas_db`.`materia_docente`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `consultas_db`.`materia_docente` ;
+
+CREATE TABLE IF NOT EXISTS `consultas_db`.`materia_docente` (
+  `create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `delete_time` TIMESTAMP NULL,
+  `id` INT NOT NULL,
+  `materia_id` INT NOT NULL,
+  `docente_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_docente` (`docente_id` ASC) ,
+  INDEX `fk_materia` (`materia_id` ASC) ,
+  CONSTRAINT `fk_materia_docente_docente`
+    FOREIGN KEY (`docente_id`)
+    REFERENCES `consultas_db`.`persona` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_materia_docente_materia`
+    FOREIGN KEY (`materia_id`)
+    REFERENCES `consultas_db`.`materia` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+-- -----------------------------------------------------
 -- Table `consultas_db`.`solicitud`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `consultas_db`.`solicitud` ;
@@ -181,8 +179,8 @@ CREATE TABLE IF NOT EXISTS `consultas_db`.`solicitud` (
   `persona_id` INT NOT NULL,
   `consulta_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_persona` (`persona_id` ASC) INVISIBLE,
-  INDEX `fk_consula` (`consulta_id` ASC) INVISIBLE,
+  INDEX `fk_persona` (`persona_id` ASC) ,
+  INDEX `fk_consula` (`consulta_id` ASC) ,
   CONSTRAINT `fk_solicitud_consulta`
     FOREIGN KEY (`consulta_id`)
     REFERENCES `consultas_db`.`consulta` (`id`)
