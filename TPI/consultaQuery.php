@@ -8,7 +8,7 @@ $materiaSelected  = $_GET['materiaSelected'] != NULL ? $_GET['materiaSelected'] 
 $horarioSelected  = $_GET['horarioSelected'] != NULL ? $_GET['horarioSelected'] : "NULL";
 
 $sqlQuery=<<<EOD
-CALL new_procedure($materiaSelected,$profesorSelected,$estadoSelected)
+CALL queryConsulta($materiaSelected,$profesorSelected,$estadoSelected)
 EOD;
 //echo json_encode($sql)
 $stmt = $conn->query($sqlQuery);
