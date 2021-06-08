@@ -1,10 +1,12 @@
-<?php require('navbar.php'); ?>
-    <head>
- 
-        
- 
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
+    <title>Pagina Principal</title>
+    <style>
         .container
         {
             background-color:#e3ece8; 
@@ -16,8 +18,8 @@
             padding: 10px;
         }
         </style>
-    </head>
- 
+</head>
+<body>
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -25,7 +27,6 @@
                     <form class="form-horizontal" action="Contacto.php" method="post">
                         <fieldset>
                             <legend class="text-center header">Contacto</legend>
-    
                             <div class="form-group">
                                 <span class="col-md-1 col-md-offset-2 text-center"></span>
                                 <div class="col-md-8">
@@ -40,7 +41,6 @@
                                     <input id="email" name="email" type="text" placeholder="Ej: juanperez@hotmail.com" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Escribir en minisculas" required>
                                 </div>
                             </div>
-    
                             <div class="form-group">
                                 <span class="col-md-1 col-md-offset-2 text-center"></span>
                                 <div class="col-md-8">
@@ -62,7 +62,6 @@
                                     <textarea class="form-control" id="mensaje" name="mensaje" placeholder="Escriba su mensaje aquí." rows="7" required></textarea>
                                 </div>
                             </div>
-    
                             <div class="form-group">
                                 <div class="col-md-12 text-center">
                                     <button type="submit" class="btn btn-primary btn-lg">Enviar</button>
@@ -73,6 +72,8 @@
                 </div>
             </div>
         </div>
+    <?php require('footer.php'); ?>
+</html>
 
 <?php
 
@@ -122,5 +123,3 @@
         
 ?>
 
-<?php require('footer.php'); ?>
-</html>

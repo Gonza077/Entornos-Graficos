@@ -4,7 +4,6 @@ $username = "root";
 $password = "";
 $dataBase= "consultas_db";
 
-
 /*
 $conn = new PDO("mysql:host=$servername;dbname=consultas_db", $username, $password);
 // set the PDO error mode to exception
