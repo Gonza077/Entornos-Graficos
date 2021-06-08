@@ -8,43 +8,18 @@
     <label for="estadoFilter">Estado</label>
         <select class="custom-select" id="estadoFilter">
           <option selected></option>
-          <option value="1">PENDIENTE</option>
-          <option value="2">CONFIRMADA</option>
-          <option value="3">BLOQUEADA</option>
-          <option value="4">FINALIZADA</option>
         </select>
     </div>
     <div class="col-3">
       <label for="profesorFilter">Profesor</label>
       <select class="custom-select" id="profesorFilter">
         <option selected></option>
-        <option value="a">A</option>
-        <option value="b">B</option>
-        <option value="c">C</option>
       </select>
     </div>
     <div class="col-3">
       <label for="materiaFilter">Materia</label>
       <select class="custom-select" id="materiaFilter">
         <option selected></option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
       </select>
     </div>
     <div class="col-3">
@@ -72,7 +47,7 @@
       </div>
     </div>
   </div>
-  <table class="table table-hover">
+  <table class="table table-hover" id="consultasTable"> 
     <thead>
       <tr>
         <th scope="col">Estado</th>
@@ -84,30 +59,6 @@
       </tr>
     </thead>
     <tbody>
-      <tr class="table-primary">
-        <th>PENDIENTE</th>
-        <td>Entornos</td>
-        <td>Profesor A</td>
-        <td>16:00</td>
-        <td>0/3</td>
-        <td></td>
-      </tr>
-      <tr>
-        <th>PENDIENTE</th>
-        <td>Entornos</td>
-        <td>Profesor A</td>
-        <td>16:00</td>
-        <td>0/3</td>
-        <td></td>
-      </tr>
-      <tr>
-        <th>PENDIENTE</th>
-        <td>Entornos</td>
-        <td>Profesor A</td>
-        <td>16:00</td>
-        <td>0/3</td>
-        <td></td>
-      </tr>
     </tbody>
   </table>
 </div>
@@ -127,13 +78,57 @@
       $("select#horarioFilter").change(function(){
         horarioSelected = $(this).children("option:selected").val();
       });
+      
       $( "#clear" ).click(function() {
         estadoSelected = profesorSelected = materiaSelected = horarioSelected = null;
         $("select#estadoFilter")[0].selectedIndex = 0;
         $("select#profesorFilter")[0].selectedIndex = 0;
         $("select#materiaFilter")[0].selectedIndex = 0;
         $("select#horarioFilter")[0].selectedIndex = 0;
+        buscar();
       });
+
+      $.ajax({
+          url:"estadoQuery.php",    //the page containing php script
+          type: "get",    //request type,
+          dataType: 'json',
+          success:function(response){
+              var optionHTML = '';
+              $.each(response, function (i, item) {
+                  optionHTML += '<option value="'+ item.id +'">'+item.codigo+'</option>';
+              });
+              $("#estadoFilter").append(optionHTML);
+          }
+      });
+
+      $.ajax({
+          url:"profesorQuery.php",    //the page containing php script
+          type: "get",    //request type,
+          dataType: 'json',
+          success:function(response){
+              var optionHTML = '';
+              $.each(response, function (i, item) {
+                  optionHTML += '<option value="'+ item.id +'">' + item.apellido + ", " + item.nombre + '</option>';
+              });
+              $("#profesorFilter").append(optionHTML);
+          }
+      });
+
+      $.ajax({
+          url:"materiaQuery.php",    //the page containing php script
+          type: "get",    //request type,
+          dataType: 'json',
+          success:function(response){
+              var optionHTML = '';
+              $.each(response, function (i, item) {
+                  optionHTML += '<option value="'+ item.id +'">' + item.nombre + '</option>';
+              });
+              console.log(optionHTML)
+              $("#materiaFilter").append(optionHTML);
+          }
+      });
+
+
   });
   function buscar () {
       $.ajax({
@@ -141,8 +136,14 @@
           type: "get",    //request type,
           dataType: 'json',
           data: {estadoSelected: estadoSelected, profesorSelected: profesorSelected, materiaSelected: materiaSelected,horarioSelected: horarioSelected},
-          success:function(result){
-              console.log(result);
+          success:function(response){
+              var trHTML = '';
+              $.each(response, function (i, item) {
+                  trHTML += '<tr><td>' + item.estado + '</td><td>' + item.materia + '</td><td>' + item.docente + '</td>' + '</td><td>' + item.horario + '</td></tr>';
+                  console.log(item)
+              });
+              $("table#consultasTable tbody").html("");
+              $("table#consultasTable tbody").html(trHTML);
           }
       });
   }
