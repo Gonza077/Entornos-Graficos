@@ -1,10 +1,10 @@
 <?php require('database.php'); ?>
 
 <?php
-$sql="SELECT id,nombre FROM consultas_db.materia";
+$sql="SELECT id,nombre FROM materia";
 //echo json_encode($sql)
 $stmt = $conn->query($sql);
-$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$results = $stmt->fetch_assoc();
 echo json_encode($results);
 
 ?>

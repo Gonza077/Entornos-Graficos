@@ -33,9 +33,7 @@
       </div>
     </div>
   </div>
-
   <br>
-
   <div class="row justify-content-end">
     <div class="col-4">
     </div>
@@ -121,6 +119,7 @@
           success:function(response){
               var optionHTML = '';
               $.each(response, function (i, item) {
+                  console.log(item)
                   optionHTML += '<option value="'+ item.id +'">' + item.nombre + '</option>';
               });
               console.log(optionHTML)

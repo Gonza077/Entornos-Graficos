@@ -7,12 +7,12 @@ $materiaSelected  = $_GET['materiaSelected'] != NULL ? $_GET['materiaSelected'] 
 $horarioSelected  = $_GET['horarioSelected'] != NULL ? $_GET['horarioSelected'] : "NULL";
 
 
-$sql=<<<EOD
+$sqlQuery=<<<EOD
 CALL new_procedure($materiaSelected,$profesorSelected,$estadoSelected)
 EOD;
-// echo json_encode($sql)
-$stmt = $conn->query($sql);
-$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//echo json_encode($sql)
+$stmt = $conn->query($sqlQuery);
+$results = $stmt->fetch_assoc();
 echo json_encode($results);
 
 ?>
