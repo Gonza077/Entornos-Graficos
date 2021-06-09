@@ -71,10 +71,125 @@
     </table>
   </div>
 </body>
+
+
+
+
+
+
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-success" data-toggle="modal" data-target="#inscripcionConsultaModal">
+  Inscripcion a consulta
+</button>
+
+<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#cancelarConsultaModal">
+  Cancelar consulta
+</button>
+
+<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#bloquearConsultaModal">
+  Bloquear consulta
+</button>
+
+<!-- Inscripcion Consulta Modal -->
+<div class="modal fade" id="inscripcionConsultaModal" tabindex="-1" aria-labelledby="inscripcionConsultaModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="inscripcionConsultaModalLabel">Inscripcion a consulta</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Esta seguro que desea inscribirse a la consulta de <b id="datosInscribirConsulta"></b>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Volver">Volver</button>
+        <button type="button" class="btn btn-success" aria-label="Inscribir" id="inscribirConsulta">Inscribir</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Cancelar Consulta Modal -->
+<div class="modal fade" id="cancelarConsultaModal" tabindex="-1" aria-labelledby="cancelarConsultaModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="cancelarConsultaModalLabel">Cancelar Consulta</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Esta seguro que desea cancelar la inscripcion a <b id="datosCancelarConsulta"></b>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Volver">Volver</button>
+        <button type="button" class="btn btn-danger" aria-label="Cancelar" id="cancelarConsulta">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Bloquear Consulta Modal -->
+<div class="modal fade" id="bloquearConsultaModal" tabindex="-1" aria-labelledby="bloquearConsultaModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    <form>
+      <div class="modal-header">
+        <h5 class="modal-title" id="cbloquearConsultaModalLabel">Bloquear Consulta</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Esta seguro que desea bloquear la consulta <b id="datosBloquearConsulta"></b>
+        <br>
+        <span><b>Indique motivo</b></span>
+        <textarea name="motivoBloqueo" id="motivoBloqueo" cols="60" rows="5" style="resize: none;" required></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Volver">Volver</button>
+        <button type="submit" class="btn btn-danger" aria-label="Bloquear" id="bloquearConsulta">Bloquear</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div role="alert" aria-live="assertive" aria-atomic="true" class="toast">
+  <div style="position: absolute; top: 0; right: 0;">
+    <div class="toast-header">
+      <img src=".\assets\info-circle-fill.svg" aria-hidden="true">
+      <strong class="mr-auto"> Informacion</strong>
+      <hr>
+      <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="toast-body">
+      
+    </div>
+  </div>
+</div>
+
 </html>
 
 <script>
   var estadoSelected = profesorSelected = materiaSelected = horarioSelected = null;
+
+  function openToast(msg){
+    $(".toast").toast({ delay: 3000 });
+    $('.toast').toast('show');
+    $('.toast-body').html(msg);
+  }
+
+
   $(document).ready(function(){
       $("select#estadoFilter").change(function(){
         estadoSelected = $(this).children("option:selected").val();
@@ -95,8 +210,28 @@
         $("select#profesorFilter")[0].selectedIndex = 0;
         $("select#materiaFilter")[0].selectedIndex = 0;
         $("select#horarioFilter")[0].selectedIndex = 0;
+        $('.toast').toast('show')
         buscar();
       });
+
+
+      $( "#bloquearConsulta" ).click(function() {
+        $('#bloquearConsultaModal').modal('toggle');
+        openToast("bloqueada");
+      });
+
+      $( "#cancelarConsulta" ).click(function() {
+        $('#cancelarConsultaModal').modal('toggle');
+        openToast("cancelada");
+      });
+
+      $( "#inscribirConsulta" ).click(function() {
+        $('#inscribirConsultaModal').modal('toggle');
+        openToast("inscripto");
+      });
+
+
+
 
       $.ajax({
           url:"estadoQuery.php",    //the page containing php script
