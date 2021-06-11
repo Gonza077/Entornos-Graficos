@@ -8,11 +8,8 @@ $materiaSelected  = $_GET['materiaSelected'] != NULL ? $_GET['materiaSelected'] 
 $horarioSelected  = $_GET['horarioSelected'] != NULL ? $_GET['horarioSelected'] : "NULL";
 
 $db = new DB();
-$sqlQuery=<<<EOD
-CALL queryConsulta($materiaSelected,$profesorSelected,$estadoSelected)
-EOD;
-$conn = $db->connect();
-$registros = $conn ->query($sqlQuery);
+$sqlQuery="CALL queryConsulta($materiaSelected,$profesorSelected,$estadoSelected)";
+$registros = $db-> connect() ->query($sqlQuery);
 #Mostramos los resultados obtenidos dentro de una tabla
 while( $row = $registros -> fetch_assoc() ) {
    echo "<tr>";
@@ -23,5 +20,5 @@ while( $row = $registros -> fetch_assoc() ) {
    echo "<td>".$row["cupo"]."</td>";
    echo "<tr>";
 };
-$conn -> close();
+$db -> disconnect();
 ?>

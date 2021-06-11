@@ -1,13 +1,12 @@
 <?php
 
 include ('./includes/db.php');
-$sql="SELECT id,nombre FROM materia ORDER BY anio ASC, nombre ASC ";
-//echo json_encode($sql)
-
+$sqlQuery = "SELECT id,nombre FROM materia ORDER BY anio ASC, nombre ASC ";
 $db = new DB();
-$stmt = $db->connect()->query($sql);
-$results = $stmt->fetch_all(MYSQLI_ASSOC);
-echo json_encode($results);
-
+$registros = $db-> connect() -> query($sqlQuery);
+while( $row = $registros -> fetch_assoc()) {
+   echo '<option value="'.$row["id"] .'">' . $row["nombre"] . '</option>';
+};
+$db -> disconnect();
 ?>
   

@@ -12,7 +12,7 @@ class User extends DB{
     public function userExists($email_check, $pass_check){
         $md5pass_check = md5($pass_check);
 
-        $query = "SELECT email,password  FROM `persona` WHERE email = '$email_check' AND password = '$md5pass_check'";
+        $query = "SELECT email,password  FROM `persona` WHERE email = '$email_check' AND password = '$pass_check'";
 
         $stmt = $this->connect()->query($query);
 
@@ -40,6 +40,8 @@ class User extends DB{
 
     }
 
+    /*
+    PHP no acepta sobrecarga
     public function userExists($email_check){
         $query = "SELECT email  FROM `persona` WHERE email = '$email_check'";
 
@@ -51,7 +53,7 @@ class User extends DB{
             return true;
         }
         return false;  
-    }
+    }*/
 
     public function getNombre(){
         return $this->nombre;

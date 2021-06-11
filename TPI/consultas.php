@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,7 +8,7 @@
     <title>Pagina Principal</title>
 </head>
 <body>
-<?php include('navbar.php'); require('footer.php') ?>
+<?php include('navbar.php'); include('footer.php');?>
   <div class="container-fluid">
   <br>
     <div class="row">
@@ -71,13 +71,6 @@
     </table>
   </div>
 </body>
-
-
-
-
-
-
-
 
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#inscripcionConsultaModal">
@@ -172,121 +165,10 @@
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-    <div class="toast-body">
-      
+    <div class="toast-body">    
     </div>
   </div>
 </div>
 
 </html>
 
-<script>
-  var estadoSelected = profesorSelected = materiaSelected = horarioSelected = null;
-
-  function openToast(msg){
-    $(".toast").toast({ delay: 3000 });
-    $('.toast').toast('show');
-    $('.toast-body').html(msg);
-  }
-
-
-  $(document).ready(function(){
-
-      $("select#estadoFilter").change(function(){
-        estadoSelected = $(this).children("option:selected").val();
-        });
-      $("select#profesorFilter").change(function(){
-        profesorSelected = $(this).children("option:selected").val();
-      });
-      $("select#materiaFilter").change(function(){
-        materiaSelected = $(this).children("option:selected").val();
-      });
-      $("select#horarioFilter").change(function(){
-        horarioSelected = $(this).children("option:selected").val();
-      });
-      
-      $( "#clear" ).click(function() {
-        estadoSelected = profesorSelected = materiaSelected = horarioSelected = null;
-        $("select#estadoFilter")[0].selectedIndex = 0;
-        $("select#profesorFilter")[0].selectedIndex = 0;
-        $("select#materiaFilter")[0].selectedIndex = 0;
-        $("select#horarioFilter")[0].selectedIndex = 0;
-        $('.toast').toast('show')
-        buscar();
-      });
-
-
-      $( "#bloquearConsulta" ).click(function() {
-        $('#bloquearConsultaModal').modal('toggle');
-        openToast("bloqueada");
-      });
-
-      $( "#cancelarConsulta" ).click(function() {
-        $('#cancelarConsultaModal').modal('toggle');
-        openToast("cancelada");
-      });
-
-      $( "#inscribirConsulta" ).click(function() {
-        $('#inscribirConsultaModal').modal('toggle');
-        openToast("inscripto");
-      });
-
-
-      buscar();
-
-
-      $.ajax({
-          url:"estadoQuery.php",    //the page containing php script
-          type: "get",    //request type,
-          dataType: 'json',
-          success:function(response){
-              var optionHTML = '';
-              $.each(response, function (i, item) {
-                  optionHTML += '<option value="'+ item.id +'">'+item.codigo+'</option>';
-              });
-              $("#estadoFilter").append(optionHTML);
-          }
-      });
-
-      $.ajax({
-          url:"profesorQuery.php",    //the page containing php script
-          type: "get",    //request type,
-          dataType: 'json',
-          success:function(response){
-              var optionHTML = '';
-              $.each(response, function (i, item) {
-                  optionHTML += '<option value="'+ item.id +'">' + item.apellido + ", " + item.nombre + '</option>';
-              });
-              $("#profesorFilter").append(optionHTML);
-          }
-      });
-
-      $.ajax({
-          url:"materiaQuery.php",    //the page containing php script
-          type: "get",    //request type,
-          dataType: 'json',
-          success:function(response){
-              var optionHTML = '';
-              $.each(response, function (i, item) {
-                  console.log(item)
-                  optionHTML += '<option value="'+ item.id +'">' + item.nombre + '</option>';
-              });
-              console.log(optionHTML)
-              $("#materiaFilter").append(optionHTML);
-          }
-      });
-
-
-  });
-  function buscar () {
-      $.ajax({
-          url:"consultaQuery.php",    //the page containing php script
-          type: "get",    //request type,
-          dataType: 'html',
-          data: {estadoSelected: estadoSelected, profesorSelected: profesorSelected, materiaSelected: materiaSelected,horarioSelected: horarioSelected},
-          success:function(response){
-              $("table#consultasTable tbody").html(response);
-          }
-      });
-  }
-</script>
