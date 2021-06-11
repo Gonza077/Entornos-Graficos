@@ -19,7 +19,6 @@ class User extends DB{
         $fila = $stmt->fetch_row();
 
         if (!is_null($fila)){
-            echo "dsaads";
             return true;
         }
         return false;  
@@ -41,15 +40,17 @@ class User extends DB{
 
     }
 
-    public function getUser($email){
-        $query = $this->connect()->prepare('SELECT * FROM persona WHERE email = :user');
-        $query->execute(['user' => $email]);
+    public function userExists($email_check){
+        $query = "SELECT email  FROM `persona` WHERE email = '$email_check'";
 
-        if($query->rowCount()){
+        $stmt = $this->connect()->query($query);
+
+        $fila = $stmt->fetch_row();
+
+        if (!is_null($fila)){
             return true;
-        }else{
-            return false;
         }
+        return false;  
     }
 
     public function getNombre(){

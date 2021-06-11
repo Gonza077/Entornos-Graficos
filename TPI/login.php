@@ -1,7 +1,7 @@
 <?php
   include_once 'includes/user.php';
   include_once 'includes/user_session.php';
-
+  $errorLogin = "";
   $userSession = new UserSession();
   $user = new User();
   if(isset($_SESSION['user'])){
@@ -20,12 +20,9 @@
           $userSession->setCurrentUser($user);
           header("Location: http://localhost/home.php");
       }else{
-          //echo "No existe el usuario";
           $errorLogin = "Nombre de usuario y/o password incorrecto";
-          header("Location: http://localhost/login.php");
       }
   }
-
 ?>
 
 <!DOCTYPE html>
@@ -58,6 +55,7 @@
           <a href="./home.php" class="d-flex justify-content-center">¿Olvidaste tu contraseña?</a>
           <hr>
           <a href="./registro.php" class="btn btn-primary btn-lg btn-block">Registrarme</a>
+          <?php echo $errorLogin; ?>
         </form>   
       </div>
     </div>

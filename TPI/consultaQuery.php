@@ -8,14 +8,20 @@ $materiaSelected  = $_GET['materiaSelected'] != NULL ? $_GET['materiaSelected'] 
 $horarioSelected  = $_GET['horarioSelected'] != NULL ? $_GET['horarioSelected'] : "NULL";
 
 $db = new DB();
-
 $sqlQuery=<<<EOD
 CALL queryConsulta($materiaSelected,$profesorSelected,$estadoSelected)
 EOD;
-//echo json_encode($sql)
-$stmt = $db->connect()->query($sqlQuery);
-$results = $stmt->fetch_all(MYSQLI_ASSOC);
-echo json_encode($results);
-
+$conn = $db->connect();
+$registros = $conn ->query($sqlQuery);
+#Mostramos los resultados obtenidos dentro de una tabla
+while( $row = $registros -> fetch_assoc() ) {
+   echo "<tr>";
+   echo "<td>".$row["estado"]."</td>";
+   echo "<td>".$row["materia"]."</td>";
+   echo "<td>".$row["docente"]."</td>";
+   echo "<td>".$row["horario"]."</td>";
+   echo "<td>".$row["cupo"]."</td>";
+   echo "<tr>";
+};
+$conn -> close();
 ?>
-  

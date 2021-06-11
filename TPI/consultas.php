@@ -21,7 +21,7 @@
           </select>
       </div>
       <div class="col-3">
-        <label for="profesorFilter">Profesor</label>
+        <label for="profesorFilter">Docente</label>
         <select class="custom-select" id="profesorFilter">
           <option selected></option>
         </select>
@@ -60,7 +60,7 @@
         <tr>
           <th scope="col">Estado</th>
           <th scope="col">Materia</th>
-          <th scope="col">Profesor</th>
+          <th scope="col">Docente</th>
           <th scope="col">Horario</th>
           <th scope="col">Cupo</th>
           <th scope="col">Operaciones</th>
@@ -191,6 +191,7 @@
 
 
   $(document).ready(function(){
+
       $("select#estadoFilter").change(function(){
         estadoSelected = $(this).children("option:selected").val();
         });
@@ -231,6 +232,7 @@
       });
 
 
+      buscar();
 
 
       $.ajax({
@@ -280,16 +282,10 @@
       $.ajax({
           url:"consultaQuery.php",    //the page containing php script
           type: "get",    //request type,
-          dataType: 'json',
+          dataType: 'html',
           data: {estadoSelected: estadoSelected, profesorSelected: profesorSelected, materiaSelected: materiaSelected,horarioSelected: horarioSelected},
           success:function(response){
-              var trHTML = '';
-              $.each(response, function (i, item) {
-                  trHTML += '<tr><td>' + item.estado + '</td><td>' + item.materia + '</td><td>' + item.docente + '</td>' + '</td><td>' + item.horario + '</td></tr>';
-                  console.log(item)
-              });
-              $("table#consultasTable tbody").html("");
-              $("table#consultasTable tbody").html(trHTML);
+              $("table#consultasTable tbody").html(response);
           }
       });
   }
