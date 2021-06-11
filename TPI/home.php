@@ -1,4 +1,12 @@
 <!DOCTYPE html>
+
+<?php include_once('includes/user_session.php');
+      include_once('includes/user.php');
+
+$user_session = new UserSession();
+$user = $user_session->getCurrentUser();
+
+?>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -13,14 +21,12 @@
         <h1>SI PIBE SE LOGEO ESTO</h1>
         <H1>CON ESTE MAIL -> 
             <?php 
-            session_start(); 
-            echo $_SESSION['email'] ;?>
+            printf("%s",$user->getNombre());?> 
         </H1>
     </div>
 </body>
 <?php require('footer.php'); ?>
 </html>
-
 
 
 

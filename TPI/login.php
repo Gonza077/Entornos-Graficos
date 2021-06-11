@@ -1,3 +1,33 @@
+<?php
+  include_once 'includes/user.php';
+  include_once 'includes/user_session.php';
+
+  $userSession = new UserSession();
+  $user = new User();
+  if(isset($_SESSION['user'])){
+    $user->setUser($userSession->getCurrentUser());
+    header("Location: http://localhost/home.php");
+    die();
+  } elseif (isset($_POST['email']) && isset($_POST['password'])){
+      
+      $userForm = $_POST['email'];
+      $passForm = $_POST['password'];
+
+      if($user->userExists($userForm, $passForm)){
+          //echo "Existe el usuario";
+          echo "existe";
+          $user->setUser($userForm);
+          $userSession->setCurrentUser($user);
+          header("Location: http://localhost/home.php");
+      }else{
+          //echo "No existe el usuario";
+          $errorLogin = "Nombre de usuario y/o password incorrecto";
+          header("Location: http://localhost/login.php");
+      }
+  }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -10,13 +40,13 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-6 col-sm-6">
-        <form class="form-signin" action="validar.php" method="post">
+        <form class="form-signin" action="login.php" method="POST">
           <div class="form-group">
             <h1 class="d-flex justify-content-center">Iniciar sesion</h1>
             <label for="inputEmail" class="sr-only">Direccion de email</label>
             <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Direccion de email" required autofocus>
             <label for="inputPassword" class="sr-only">Contraseña</label>
-            <input type="password" id="inputPassword" name="contraseña" class="form-control" placeholder="Contraseña" required>
+            <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Contraseña" required>
               <div class="checkbox mb-3">
                 <label>
                   <input type="checkbox" value="remember-me"> Recordarme
@@ -34,4 +64,6 @@
   </div>
 </body>
 <?php require('footer.php'); ?>
+
+
 </html>
