@@ -8,7 +8,7 @@
     <title>Pagina Principal</title>
 </head>
 <body>
-<?php include('navbar.php'); include('footer.php');?>
+<?php include('navbar.php'); ?>
   <div class="container-fluid">
   <br>
     <div class="row">
@@ -70,20 +70,8 @@
       </tbody>
     </table>
   </div>
+  <?php include('footer.php');?>
 </body>
-
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-success" data-toggle="modal" data-target="#inscripcionConsultaModal">
-  Inscripcion a consulta
-</button>
-
-<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#cancelarConsultaModal">
-  Cancelar consulta
-</button>
-
-<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#bloquearConsultaModal">
-  Bloquear consulta
-</button>
 
 <!-- Inscripcion Consulta Modal -->
 <div class="modal fade" id="inscripcionConsultaModal" tabindex="-1" aria-labelledby="inscripcionConsultaModalLabel" aria-hidden="true">
@@ -155,8 +143,8 @@
 </div>
 
 <!-- Toast -->
-<div role="alert" aria-live="assertive" aria-atomic="true" class="toast">
-  <div style="position: absolute; top: 0; right: 0;">
+<div role="alert" aria-live="assertive" aria-atomic="true" class="toast hide">
+  <div style="position: absolute; top: 0; right: 0; z-index:1;">
     <div class="toast-header">
       <img src=".\assets\info-circle-fill.svg" aria-hidden="true">
       <strong class="mr-auto"> Informacion</strong>

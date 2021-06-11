@@ -3,7 +3,7 @@
 include_once 'db.php';
 
 class User extends DB{
-
+    private $id;
     private $nombre;
     private $apellido;
     private $email;
@@ -12,7 +12,7 @@ class User extends DB{
     public function userExists($email_check, $pass_check){
         $md5pass_check = md5($pass_check);
 
-        $query = "SELECT email,password  FROM `persona` WHERE email = '$email_check' AND password = '$pass_check'";
+        $query = "SELECT email,password  FROM `persona` WHERE email = '$email_check' AND password = '$md5pass_check'";
 
         $stmt = $this->connect()->query($query);
 
@@ -25,24 +25,31 @@ class User extends DB{
     }
 
     public function setUser($email){
-        $query = "SELECT nombre,apellido,email,docente  FROM `persona` WHERE email = '$email'";
+        $query = "SELECT id,nombre,apellido,email,docente  FROM `persona` WHERE email = '$email'";
 
         $stmt = $this->connect()->query($query);
 
         $fila = $stmt->fetch_row();
 
         if (!is_null($fila)){
-            $this->nombre = $fila[0];
-            $this->apellido = $fila[1];
-            $this->email = $fila[2];
-            $this->docente = $fila[3];
+            $this->id = $fila[0];
+            $this->nombre = $fila[1];
+            $this->apellido = $fila[2];
+            $this->email = $fila[3];
+            $this->docente = $fila[4];
         }
 
     }
 
-    /*
-    PHP no acepta sobrecarga
-    public function userExists($email_check){
+    public function registerUser($email,$pass,$nombre,$apellido,$isDocente){
+
+        $passMD5=md5($pass);
+        $query="INSERT INTO persona (nombre,apellido,email,password,docente) VALUES ('$nombre','$apellido','$email','$passMD5',$isDocente)";
+
+        $stmt = $this->connect()->query($query);
+    }
+
+    public function checkIfUserExists($email_check){
         $query = "SELECT email  FROM `persona` WHERE email = '$email_check'";
 
         $stmt = $this->connect()->query($query);
@@ -53,10 +60,14 @@ class User extends DB{
             return true;
         }
         return false;  
-    }*/
+    }
 
     public function getNombre(){
         return $this->nombre;
+    }
+
+    public function getId(){
+        return $this->id;
     }
 }
 

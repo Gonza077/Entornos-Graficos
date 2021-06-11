@@ -17,13 +17,6 @@ $user = $user_session->getCurrentUser();
 </head>
 <body>
 <?php require('navbar.php'); ?>
-    <div class="container">
-        <h1>SI PIBE SE LOGEO ESTO</h1>
-        <H1>CON ESTE MAIL -> 
-            <?php 
-            printf("%s",$user->getNombre());?> 
-        </H1>
-    </div>
 </body>
 <?php require('footer.php'); ?>
 </html>

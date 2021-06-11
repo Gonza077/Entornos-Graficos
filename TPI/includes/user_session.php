@@ -11,7 +11,7 @@ class UserSession{
     }
 
     public function getCurrentUser(){
-        return $_SESSION['user'];
+        return isset($_SESSION['user']) ? $_SESSION['user'] : NULL ;
     }
 
     public function closeSession(){
