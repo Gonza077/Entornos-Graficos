@@ -12,6 +12,7 @@ function openBloquearConsultaModal(consultaId){
   getConsulta(consultaId).done( response => {
     consuta = "";
     consulta = response;
+    $('#idBloquearConsulta').val(consulta.id);
     $('#datosBloquearConsulta').html(consulta.horario + " - " + consulta.materia_nombre + " - " + consulta.docente_nombre + " - " + consulta.docente_apellido);
     $('#bloquearConsultaModal').modal('show');
   }
@@ -50,8 +51,19 @@ $(document).ready(function(){
 
     $( "#bloquearConsulta" ).click(function() {
       $('#bloquearConsultaModal').modal('toggle');
-      bloquearConsulta();
+      var consultaId =  $('#idBloquearConsulta').val();
+      var motivo =  $('#motivoBloqueo').val();
+      console.log(consultaId,motivo);
+      bloquearConsulta(consultaId,motivo);
     });
+
+    $('#motivoBloqueo').keyup(function() {
+      if($(this).val() != '') {
+         $('#bloquearConsulta').prop('disabled', false);
+      } else {
+        $('#bloquearConsulta').prop('disabled', true);
+      }
+   });
 
     $( "#cancelarConsulta" ).click(function() {
       $('#cancelarConsultaModal').modal('toggle');
@@ -139,12 +151,12 @@ function buscar () {
     });
 }
 
-function bloquearConsulta() {
+function bloquearConsulta(consultaId,motivo) {
   $.ajax({
       url:"./ajax/bloquearConsulta.php",
       type: "post",
       dataType: 'json',
-      data: {consultaId: consulta.id, descripcionBaja: 'descripcionBaja', consulta_reemplazo_id: '1'},
+      data: {consultaId: consultaId, descripcionBaja: motivo},
       success:function(response){
         openToast(response,"Bloquear Consulta",'success');
       },

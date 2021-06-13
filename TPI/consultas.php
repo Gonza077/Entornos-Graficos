@@ -124,6 +124,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
     <form>
+    <input type="text" name="idBloquearConsulta" id="idBloquearConsulta" hidden aria-hidden="true">
       <div class="modal-header">
         <h5 class="modal-title" id="bloquearConsultaModalLabel">Bloquear Consulta</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
@@ -140,7 +141,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Volver">Volver</button>
-        <button type="button" class="btn btn-danger" aria-label="Bloquear" id="bloquearConsulta">Bloquear</button>
+        <button type="button" class="btn btn-danger" aria-label="Bloquear" id="bloquearConsulta" disabled>Bloquear</button>
       </div>
       </form>
     </div>
