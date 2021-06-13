@@ -45,6 +45,7 @@
     </div>
     <br>
     <button type="button" class="btn btn-success" id="" onclick="openCrearConsultaModal()">Crear Consulta</button>
+    <button type="button" class="btn btn-success" id="" onclick="getConsulta(5)">buscar Consulta</button>
     <div class="row justify-content-end">
       <div class="col-4">
       </div>
@@ -130,7 +131,9 @@
         </button>
       </div>
       <div class="modal-body">
-        Esta seguro que desea bloquear la consulta <b id="datosBloquearConsulta"></b>
+        Esta seguro que desea bloquear la consulta 
+        <br>
+        <b id="datosBloquearConsulta"></b>
         <br>
         <span><b>Indique motivo</b></span>
         <textarea name="motivoBloqueo" id="motivoBloqueo" cols="60" rows="5" style="resize: none;" required></textarea>

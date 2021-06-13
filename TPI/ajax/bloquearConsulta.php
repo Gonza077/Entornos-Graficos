@@ -25,7 +25,10 @@ $db = new DB();
         if ($db->getError() != NULL) {
             $errorMessage = $db->getError();
         }
+        echo json_encode("Consulta bloqueada exitosamente",200);
         $db->disconnect();
+    }else{
+        echo json_encode("Id de consulta inexistente",204);
     }
-    echo json_encode($query);
+    
 ?>

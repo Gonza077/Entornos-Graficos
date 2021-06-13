@@ -1,4 +1,4 @@
-var estadoSelected = profesorSelected = materiaSelected = horarioSelected = null;
+var estadoSelected = profesorSelected = materiaSelected = horarioSelected = consulta = null;
 
 function openInscripcionConsultaModal(e){
   $('#inscripcionConsultaModal').modal('show');
@@ -8,8 +8,15 @@ function openCancelarConsultaModal(e){
   $('#cancelarConsultaModal').modal('show');
 }
 
-function openBloquearConsultaModal(e){
-  $('#bloquearConsultaModal').modal('show');
+function openBloquearConsultaModal(consultaId){
+  getConsulta(consultaId).done( response => {
+    consuta = "";
+    consulta = response;
+    $('#datosBloquearConsulta').html(consulta.horario + " - " + consulta.materia_nombre + " - " + consulta.docente_nombre + " - " + consulta.docente_apellido);
+    $('#bloquearConsultaModal').modal('show');
+  }
+  );
+
 }
 
 function openCrearConsultaModal(){
@@ -93,7 +100,6 @@ $(document).ready(function(){
 
 
 function materiaQueryCreateConsulta(a){
-  console.log(a);
   response = '';
   $.ajax({
     url:"materiaQuery.php",    //the page containing php script
@@ -138,7 +144,7 @@ function bloquearConsulta() {
       url:"./ajax/bloquearConsulta.php",
       type: "post",
       dataType: 'json',
-      data: {consultaId: consultaId, descripcionBaja: descripcionBaja, consulta_reemplazo_id: consulta_reemplazo_id},
+      data: {consultaId: consulta.id, descripcionBaja: 'descripcionBaja', consulta_reemplazo_id: '1'},
       success:function(response){
         openToast(response,"Bloquear Consulta",'success');
       },
@@ -146,4 +152,20 @@ function bloquearConsulta() {
         openToast(response,"Bloquear Consulta",'error');
       }
   });
+}
+
+function getConsulta(consultaId){
+    return $.ajax({
+      url:"./ajax/getConsulta.php",
+      type: "get",
+      dataType: 'json',
+      data: {consultaId: consultaId},
+      done:function(response){
+        return response;
+      },
+      fail:function(response){
+        openToast(response,"No Encontrada",'error');
+      }
+  });
+
 }
