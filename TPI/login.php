@@ -5,7 +5,6 @@
   $userSession = new UserSession();
   $user = new User();
   if(isset($_SESSION['user'])){
-    $user->setUser($userSession->getCurrentUser());
     header("Location: http://localhost/home.php");
     die();
   } elseif (isset($_POST['email']) && isset($_POST['password'])){

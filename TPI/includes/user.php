@@ -24,9 +24,9 @@ class User extends DB{
         return false;  
     }
 
-    public function setUser($user){
+    public function setUser($email){
         
-        $query = "SELECT id,nombre,apellido,email,docente  FROM `persona` WHERE email = '$user->email'";
+        $query = "SELECT id,nombre,apellido,email,docente  FROM `persona` WHERE email = '$email'";
 
         $stmt = $this->connect()->query($query);
 
@@ -69,6 +69,10 @@ class User extends DB{
 
     public function getId(){
         return $this->id;
+    }
+
+    public function getEmail(){
+        return $this->email;
     }
 
     public function isDocente(){
