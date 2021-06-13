@@ -1,9 +1,19 @@
 var estadoSelected = profesorSelected = materiaSelected = horarioSelected = null;
 
-function openToast(msg){
-  $(".toast").toast({ delay: 3000 });
-  $('.toast').toast('show');
-  $('.toast-body').html(msg);
+function openInscripcionConsultaModal(e){
+  $('#inscripcionConsultaModal').modal('show');
+}
+
+function openCancelarConsultaModal(e){
+  $('#cancelarConsultaModal').modal('show');
+}
+
+function openBloquearConsultaModal(e){
+  $('#bloquearConsultaModal').modal('show');
+}
+
+function openCrearConsultaModal(){
+  $('#crearConsultaModal').modal('show');
 }
 
 $(document).ready(function(){
@@ -27,24 +37,25 @@ $(document).ready(function(){
       $("select#profesorFilter")[0].selectedIndex = 0;
       $("select#materiaFilter")[0].selectedIndex = 0;
       $("select#horarioFilter")[0].selectedIndex = 0;
-      $('.toast').toast('show')
       buscar();
     });
 
 
     $( "#bloquearConsulta" ).click(function() {
       $('#bloquearConsultaModal').modal('toggle');
-      openToast("bloqueada");
+      bloquearConsulta();
     });
 
     $( "#cancelarConsulta" ).click(function() {
       $('#cancelarConsultaModal').modal('toggle');
-      openToast("cancelada");
     });
 
     $( "#inscribirConsulta" ).click(function() {
       $('#inscribirConsultaModal').modal('toggle');
-      openToast("inscripto");
+    });
+
+    $( "#crearConsulta" ).click(function() {
+      $('#crearConsultaModal').modal('toggle');
     });
 
 
@@ -77,7 +88,38 @@ $(document).ready(function(){
             $("#materiaFilter").append(response);
         }
     });
+    docenteQueryCreateConsulta(1)
 });
+
+
+function materiaQueryCreateConsulta(a){
+  console.log(a);
+  response = '';
+  $.ajax({
+    url:"materiaQuery.php",    //the page containing php script
+    type: "get",    //request type,
+    dataType: 'html',
+    data:{docente:docente},
+    success:function(response){
+      $("#materiaCreateFilter").append(response);
+    }
+  });
+  $('#materiaCreateFilter').removeAttr('hidden');
+}
+
+function docenteQueryCreateConsulta(docente){
+  response = '';
+  $.ajax({
+    url:"profesorQuery.php",    //the page containing php script
+    type: "get",    //request type,
+    dataType: 'html',
+    data:{docente:docente},
+    success:function(response){
+      $("#profesorCreateFilter").append(response);
+    }
+  });
+   
+}
 
 function buscar () {
     $.ajax({
@@ -89,4 +131,19 @@ function buscar () {
             $("table#consultasTable tbody").html(response);
         }
     });
+}
+
+function bloquearConsulta() {
+  $.ajax({
+      url:"./ajax/bloquearConsulta.php",
+      type: "post",
+      dataType: 'json',
+      data: {consultaId: consultaId, descripcionBaja: descripcionBaja, consulta_reemplazo_id: consulta_reemplazo_id},
+      success:function(response){
+        openToast(response,"Bloquear Consulta",'success');
+      },
+      error:function(response){
+        openToast(response,"Bloquear Consulta",'error');
+      }
+  });
 }

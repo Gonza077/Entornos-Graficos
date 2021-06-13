@@ -44,6 +44,7 @@
       </div>
     </div>
     <br>
+    <button type="button" class="btn btn-success" id="" onclick="openCrearConsultaModal()">Crear Consulta</button>
     <div class="row justify-content-end">
       <div class="col-4">
       </div>
@@ -71,6 +72,7 @@
     </table>
   </div>
   <?php include('footer.php');?>
+  <?php include('components/toast.php');?>
 </body>
 
 <!-- Inscripcion Consulta Modal -->
@@ -122,7 +124,7 @@
     <div class="modal-content">
     <form>
       <div class="modal-header">
-        <h5 class="modal-title" id="cbloquearConsultaModalLabel">Bloquear Consulta</h5>
+        <h5 class="modal-title" id="bloquearConsultaModalLabel">Bloquear Consulta</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -135,25 +137,50 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Volver">Volver</button>
-        <button type="submit" class="btn btn-danger" aria-label="Bloquear" id="bloquearConsulta">Bloquear</button>
+        <button type="button" class="btn btn-danger" aria-label="Bloquear" id="bloquearConsulta">Bloquear</button>
       </div>
       </form>
     </div>
   </div>
 </div>
 
-<!-- Toast -->
-<div role="alert" aria-live="assertive" aria-atomic="true" class="toast hide">
-  <div style="position: absolute; top: 0; right: 0; z-index:1;">
-    <div class="toast-header">
-      <img src=".\assets\info-circle-fill.svg" aria-hidden="true">
-      <strong class="mr-auto"> Informacion</strong>
-      <hr>
-      <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="toast-body">    
+<!-- Crear Consulta Modal -->
+<div class="modal fade" id="crearConsultaModal" tabindex="-1" aria-labelledby="crearConsultaModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    <form>
+      <div class="modal-header">
+        <h5 class="modal-title" id="crearConsultaModalLabel">Crear Consulta</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form role="form">  
+          <div class="row">
+            <div class="col-6">
+              <div class="form-group">
+                <label for="profesorCreateFilter">Docente</label>
+                <select class="custom-select" id="profesorCreateFilter" onchange="materiaQueryCreateConsulta(this)" required>
+                  <option selected></option>
+                </select>
+              </div>
+            </div>
+            <div class="col-6" id="materiaCreateFilterCol" hidden>
+              <label for="materiaCreateFilter">Materia</label>
+              <select class="custom-select" id="materiaCreateFilter" required>
+                <option selected></option>
+              </select>
+            </div>
+          </div>
+          <br>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Volver">Volver</button>
+        <button type="submit" class="btn btn-success" aria-label="Crear" id="crearConsulta">Crear</button>
+      </div>
+      </form>
     </div>
   </div>
 </div>

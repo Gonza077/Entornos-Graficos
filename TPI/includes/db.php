@@ -42,6 +42,11 @@ class DB{
     function disconnect(){
         $this -> conn -> close();
     }
+
+    function getError(){
+        $this -> conn -> error;
+    }
+
 }
 
 
