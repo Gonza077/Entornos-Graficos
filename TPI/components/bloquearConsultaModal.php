@@ -11,7 +11,7 @@
         </button>
       </div>
       <div class="modal-body">
-        Esta seguro que desea bloquear la consulta 
+        Esta seguro que desea bloquear la consulta :
         <br>
         <b id="datosBloquearConsulta"></b>
         <br>
