@@ -47,6 +47,7 @@ CREATE TABLE IF NOT EXISTS `consultas_db`.`consulta` (
   `descripcion_baja` VARCHAR(255) NULL,
   `fecha_baja` TIMESTAMP NULL,
   `consulta_reemplazo_id` INT NULL,
+  `cupo` INT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_materia` (`materia_id` ASC) INVISIBLE,
   INDEX `fk_docente` (`docente_id` ASC) INVISIBLE,
