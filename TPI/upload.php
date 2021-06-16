@@ -9,7 +9,7 @@
     <title>Document</title>
 </head>
 <body>
-<?php require('navbar.php'); require('footer.php');?>
+<?php require('navbar.php'); ?>
     <form action="upload.php" method="post" enctype="multipart/form-data">
         <div class="input-group">
             <div class="custom-file">
@@ -21,16 +21,28 @@
             </div>
         </div>
     </form>
+    <div id="response" class="<?php if(!empty($type)) { echo $type . " display-block"; } ?>"><?php if(!empty($message)) { echo $message; } ?></div>
 </body>
+<?php require('footer.php')?>
 </html>
-<?php
-$target_dir = "uploads/";
-$uploadOk = 1;
+
+<?php  
+require('includes/db.php');
+//require_once('compoer/vendor/php-excel-reader/excel_reader2.php');
+require_once('includes/user.php');
+require_once('includes/user_session.php');
+$USER_SESSION = new UserSession();
+$USER = new User();
+$USER = $USER_SESSION->getCurrentUser();
+//ACA HABIA QUE VERIFICAR QUE SEA EL ADMIN O PROFESOR EN FORMATO PDF QUE SBUA SUS HORARIOS?
 if(isset($_POST["submit"])) {
 
+    
+    $target_dir = "uploads/"; 
+    $uploadOk = 1;
     $filename = $_FILES["fileToUpload"]["name"];
     $ext = substr($filename,-4);    
-    $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+    $target_file = $target_dir . $filename;
     // Chequeo de existencia de archivo
     if (file_exists($target_file) && $uploadOk != 0 ) {
         echo "El archivo ya fue cargado.";
@@ -56,9 +68,6 @@ if(isset($_POST["submit"])) {
     }
 }
 ?>
-
-    <?php require('footer.php'); ?>
-
     <script type="text/javascript">
         $(document).ready(function () {
         bsCustomFileInput.init()
@@ -67,15 +76,6 @@ if(isset($_POST["submit"])) {
 
     <script type="text/javascript">
         $(document).ready(function() {
-            //     $.ajax({
-            //         type: "GET",
-            //         url: 'files.php',
-            //         data: data,
-            //         success: function(response)
-            //         {
-            //             console.log("jeje")
-            //    })
-            //  }
             $.ajax({
                 type: "GET",
             url: 'files.php'
