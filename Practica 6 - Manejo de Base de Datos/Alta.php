@@ -10,7 +10,7 @@ include("conexion.inc");
 $nombre = $_POST['Nombre'];
 $pais = $_POST['Pais'];
 $super = $_POST['Superficie'];
-$tieneMetro = $_POST['tieneMetro'];
+$tieneMetro = isset($_POST["tieneMetro"])? 1:0;
 
 //Arma la instrucción SQL y luego la ejecuta
 

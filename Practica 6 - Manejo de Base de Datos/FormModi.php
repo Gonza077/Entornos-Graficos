@@ -38,7 +38,7 @@ else{
 <tr>
  <td width="103"> tieneMetro: </td>
  <td width="243"> <input type="checkbox" name="tieneMetro" size="20" maxlength="40"
- checked="<?php $fila['tieneMetro'] ? 1:0 ; ?>">
+ value="<?php $fila['tieneMetro']?>">
  </td>
  </tr>
  <tr>
