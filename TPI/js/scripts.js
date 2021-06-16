@@ -1,29 +1,5 @@
 var estadoSelected = profesorSelected = materiaSelected = horarioSelected = consulta = null;
 
-function openInscripcionConsultaModal(e){
-  $('#inscripcionConsultaModal').modal('show');
-}
-
-function openCancelarConsultaModal(e){
-  $('#cancelarConsultaModal').modal('show');
-}
-
-function openBloquearConsultaModal(consultaId){
-  getConsulta(consultaId).done( response => {
-    consuta = "";
-    consulta = response;
-    $('#idBloquearConsulta').val(consulta.id);
-    $('#datosBloquearConsulta').html(consulta.horario + " - " + consulta.materia_nombre + " - " + consulta.docente_nombre + " - " + consulta.docente_apellido);
-    $('#bloquearConsultaModal').modal('show');
-  }
-  );
-
-}
-
-function openCrearConsultaModal(){
-  $('#crearConsultaModal').modal('show');
-}
-
 $(document).ready(function(){
 
     $("select#estadoFilter").change(function(){
@@ -47,36 +23,6 @@ $(document).ready(function(){
       $("select#horarioFilter")[0].selectedIndex = 0;
       buscar();
     });
-
-
-    $( "#bloquearConsulta" ).click(function() {
-      $('#bloquearConsultaModal').modal('toggle');
-      var consultaId =  $('#idBloquearConsulta').val();
-      var motivo =  $('#motivoBloqueo').val();
-      console.log(consultaId,motivo);
-      bloquearConsulta(consultaId,motivo);
-    });
-
-    $('#motivoBloqueo').keyup(function() {
-      if($(this).val() != '') {
-         $('#bloquearConsulta').prop('disabled', false);
-      } else {
-        $('#bloquearConsulta').prop('disabled', true);
-      }
-   });
-
-    $( "#cancelarConsulta" ).click(function() {
-      $('#cancelarConsultaModal').modal('toggle');
-    });
-
-    $( "#inscribirConsulta" ).click(function() {
-      $('#inscribirConsultaModal').modal('toggle');
-    });
-
-    $( "#crearConsulta" ).click(function() {
-      $('#crearConsultaModal').modal('toggle');
-    });
-
 
     buscar();
 
@@ -151,20 +97,6 @@ function buscar () {
     });
 }
 
-function bloquearConsulta(consultaId,motivo) {
-  $.ajax({
-      url:"./ajax/bloquearConsulta.php",
-      type: "post",
-      dataType: 'json',
-      data: {consultaId: consultaId, descripcionBaja: motivo},
-      success:function(response){
-        openToast(response,"Bloquear Consulta",'success');
-      },
-      error:function(response){
-        openToast(response,"Bloquear Consulta",'error');
-      }
-  });
-}
 
 function getConsulta(consultaId){
     return $.ajax({

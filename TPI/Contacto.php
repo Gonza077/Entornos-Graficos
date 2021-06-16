@@ -1,125 +1,173 @@
+<?php require('navbar.php'); ?> 
+
+
+
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
-    <title>Pagina Principal</title>
-    <style>
-        .container
-        {
-            background-color:#e3ece8; 
-        
-        }
-        .header {
-            color: #36A0FF;
-            font-size: 27px;
-            padding: 10px;
-        }
-        </style>
-</head>
-<body>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="well well-sm">
-                    <form class="form-horizontal" action="Contacto.php" method="post">
-                        <fieldset>
-                            <legend class="text-center header">Contacto</legend>
-                            <div class="form-group">
-                                <span class="col-md-1 col-md-offset-2 text-center"></span>
-                                <div class="col-md-8">
-                                    <label for="nombre">Nombre</label>
-                                    <input id="nombre" name="nombre" type="text" placeholder="Ej: Juan Perez" class="form-control" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]{3,30}+[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]{3,30}" title="Escriba nombre y apellido separado de espacios. Ej: Juan Perez" required>
-                                </div>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
+    </head>
+    <body>
+    
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-sm-6">
+                    <form class="form-contact" action="contacto.php" method="post">
+                        <img class="mb-4 d-block mx-auto" src="img/LogoUTN.png" alt="Logo de la Universidad Tecnológica Nacional" width="100" height="100">
+                        <h1 class="d-flex justify-content-center">Contacto</h1>
+                        <hr>
+                        <div class="user-info">
+                            <div class="col-md-12">
+                                <label for="nombre">Nombre y Apellido</label>
+                                <input id="nombre" name="nombre" type="text" placeholder="Ej: Juan Perez" class="form-control" pattern="([a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]{2,25})+([\s]{1})+([a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]{2,25})" title="Escriba nombre y apellido separado de espacios. Ej: Juan Perez" required>
                             </div>
-                            <div class="form-group">
-                                <span class="col-md-1 col-md-offset-2 text-center"></span>
-                                <div class="col-md-8">
-                                    <label for="nombre">Correo Electrónico</label>
-                                    <input id="email" name="email" type="text" placeholder="Ej: juanperez@hotmail.com" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Escribir en minisculas" required>
-                                </div>
+                            <br>
+                            <div class="col-md-12">
+                                <label for="email">Correo Electrónico</label>
+                                <input id="email" name="email" type="text" placeholder="Ej: juanperez@hotmail.com" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Escribir en minisculas" required>
                             </div>
-                            <div class="form-group">
-                                <span class="col-md-1 col-md-offset-2 text-center"></span>
-                                <div class="col-md-8">
-                                    <label for="nombre">Teléfono</label>
-                                    <input id="telefono" name="telefono" type="tel" placeholder="Ej: 3411112223" class="form-control" pattern="[0-9]{10}" title="Debe tener 10 digitos" required>
-                                </div>
+                            <br>
+                            <div class="col-md-12">
+                                <label for="telefono">Teléfono</label>
+                                <input id="telefono" name="telefono" type="tel" placeholder="Ej: 3411112223" class="form-control" pattern="[0-9]{10}" title="Debe tener 10 digitos" required>
                             </div>
-                            <div class="form-group">
-                                <span class="col-md-1 col-md-offset-2 text-center"></span>
-                                <div class="col-md-8">
-                                    <label for="nombre">Asunto</label>
-                                    <input id="asunto" name="asunto" type="text" placeholder="Ej: Consulta AyED" class="form-control" pattern="[A-Za-z0-​9]{3,20}" title="Escriba un asunto con mas de 3 letras" required>
+                        </div>
+                        <hr>
+
+                        <div class="mensaje-info">
+                            <div class="col-md-12">
+                                <label for="asunto">Asunto</label>
+                                <input id="asunto" name="asunto" type="text" placeholder="Ej: Consulta AyED" class="form-control" pattern="[A-Za-z0-​9]{3,20}" title="Escriba un asunto con mas de 3 letras" required>
                                 </div>
+                                <br>
+                            <div class="col-md-12">
+                                <label for="mensaje">Mensaje</label>
+                                <textarea class="form-control" style="min-height: 90px; max-height: 150px;" id="mensaje" name="mensaje" placeholder="Escriba su mensaje aquí." rows="7" required></textarea>
                             </div>
-                            <div class="form-group">
-                                <span class="col-md-1 col-md-offset-2 text-center"></span>
-                                <div class="col-md-8">
-                                    <label for="nombre">Mensaje</label>
-                                    <textarea class="form-control" id="mensaje" name="mensaje" placeholder="Escriba su mensaje aquí." rows="7" required></textarea>
-                                </div>
+                            <br>
+                            <div class="col-md-12 text-right">
+                                <button type="submit" class="btn btn-primary bt-lg">Enviar</button>
                             </div>
-                            <div class="form-group">
-                                <div class="col-md-12 text-center">
-                                    <button type="submit" class="btn btn-primary btn-lg">Enviar</button>
-                                </div>
-                            </div>
-                        </fieldset>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
-    <?php require('footer.php'); ?>
-</html>
 
-<?php
 
-        if($_POST) 
+        <?php   
+ 
+            //require("class.phpmailer.php");
+            //require("class.smtp.php");
+    
+            if($_POST) 
             {
                 $u_nombre = "";
                 $u_email = "";
                 $u_telefono = "";
                 $u_asunto ="";
                 $u_mensaje = "";
-     
+
                 if(isset($_POST['nombre'])) {
                 $u_nombre = filter_var($_POST['nombre'], FILTER_SANITIZE_STRING);
                 }
-     
+
                 if(isset($_POST['email'])) {
                 $u_email = str_replace(array("\r", "\n", "%0a", "%0d"), '', $_POST['email']);
                 $u_email = filter_var($u_email, FILTER_VALIDATE_EMAIL);
                 }
-     
+
                 if(isset($_POST['asunto'])) {
                 $u_asunto = filter_var($_POST['asunto'], FILTER_SANITIZE_STRING);
                 }
-     
+
                 if(isset($_POST['telefono'])) {
                 $u_telefono = filter_var($_POST['telefono'], FILTER_SANITIZE_NUMBER_INT);
                 }
-     
+
                 if(isset($_POST['mensaje'])) {
                 $u_mensaje = htmlspecialchars($_POST['mensaje']);
                 }
+                // Datos de la cuenta de correo utilizada para enviar vía SMTP
+                $smtpHost = "mail.cepancashcosta.com";  // Dominio alternativo brindado en el email de alta 
+                $smtpUsuario = "correo@cepancashcosta.com";  // Mi cuenta de correo
+                $smtpClave = "clavedeejemplo";  // Mi contraseña
 
 
-                $headers  = 'From: ' . $u_email . "\r\n";
 
-                $receptor = ' ';
 
-                if(mail($receptor, $u_asunto, $u_mensaje, $headers)) {
-                    echo "<p>Gracias por contactarnos, $u_nombre. Responderemos lo mas rápido posible.</p>";
-                } else {
-                    echo '<p>Lo sentimos, el correo no fue recibido.</p>';
-                }     
-            } 
-        else 
-        {
-        }
+                //$mail = new PHPMailer();
+                $mail->IsSMTP();
+                $mail->SMTPAuth = true;
+                $mail->Port = 587; 
+                $mail->IsHTML(true); 
+                $mail->CharSet = "utf-8";
+
+                // VALORES A MODIFICAR //
+                $mail->Host = $smtpHost; 
+                $mail->Username = $smtpUsuario; 
+                $mail->Password = $smtpClave;
         
-?>
+                $receptor = "jpdok98@gmail.com";
+        
+                $mail->From = $u_email; // Email desde donde envío el correo.
+                $mail->FromName = $u_nombre;
+                $mail->AddAddress($receptor); // Esta es la dirección a donde enviamos los datos del formulario
 
+                $mail->Subject = "Formulario desde el Sitio Web"; // Este es el titulo del email.
+                $mensajeHtml = nl2br($u_mensaje);
+                $mail->Body = "
+                <html> 
+
+                <body> 
+
+                <h1>Recibiste un nuevo mensaje desde el formulario de contacto</h1>
+
+                <p>Informacion enviada por el usuario de la web:</p>
+
+                <p>nombre: {$u_nombre}</p>
+
+                <p>email: {$u_email}</p>
+
+                <p>telefono: {$u_telefono}</p>
+
+                <p>asunto: {$u_asunto}</p>
+
+                <p>mensaje: {$u_mensaje}</p>
+
+                </body> 
+
+                </html>
+
+                <br />"; // Texto del email en formato HTML
+        
+                $mail->SMTPOptions = array(
+                'ssl' => array(
+                'verify_peer' => false,
+                'verify_peer_name' => false,
+                'allow_self_signed' => true
+                )
+                );
+    
+                $estadoEnvio = $mail->Send(); 
+                if($estadoEnvio){
+                echo "El correo fue enviado correctamente.";
+                } else {
+                echo "Ocurrió un error inesperado.";
+                }
+
+            } 
+            else 
+            {
+            }
+
+        ?>
+
+
+        <?php require('footer.php'); ?>
+
+    </body>
+</html>
