@@ -40,7 +40,7 @@
                         <div class="mensaje-info">
                             <div class="col-md-12">
                                 <label for="asunto">Asunto</label>
-                                <input id="asunto" name="asunto" type="text" placeholder="Ej: Consulta AyED" class="form-control" pattern="[A-Za-z0-​9]{3,20}" title="Escriba un asunto con mas de 3 letras" required>
+                                <input id="asunto" name="asunto" type="text" placeholder="Ej: Consulta AyED" class="form-control" pattern="[A-Za-z0-​9-\s]{3,35}" title="Escriba un asunto con mas de 3 letras" required>
                                 </div>
                                 <br>
                             <div class="col-md-12">
@@ -60,8 +60,13 @@
 
         <?php   
  
-            //require("class.phpmailer.php");
-            //require("class.smtp.php");
+                use PHPMailer\PHPMailer\PHPMailer;
+                use PHPMailer\PHPMailer\SMTP;
+                use PHPMailer\PHPMailer\Exception;
+
+                require 'phpmailer/Exception.php';
+                require 'phpmailer/PHPMailer.php';
+                require 'phpmailer/SMTP.php';
     
             if($_POST) 
             {
@@ -91,82 +96,67 @@
                 if(isset($_POST['mensaje'])) {
                 $u_mensaje = htmlspecialchars($_POST['mensaje']);
                 }
-                // Datos de la cuenta de correo utilizada para enviar vía SMTP
-                $smtpHost = "mail.cepancashcosta.com";  // Dominio alternativo brindado en el email de alta 
-                $smtpUsuario = "correo@cepancashcosta.com";  // Mi cuenta de correo
-                $smtpClave = "clavedeejemplo";  // Mi contraseña
+                
+                //Instantiation and passing `true` enables exceptions
+                $mail = new PHPMailer(true);
 
+                try {
+                    //Config del server
+                    $mail->SMTPDebug = 0;                      //Enable verbose debug output
+                    $mail->isSMTP();                                            //Send using SMTP
+                    $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+                    $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+                    $mail->Username   = 'jpdok98@gmail.com';                     //SMTP username
+                    $mail->Password   = 'flawless90210';                               //SMTP password
+                    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         //Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
+                    $mail->Port       = 587;                                    //TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
 
+                    //Emisor y Receptor
+                    $mail->setFrom('jpdok98@gmail.com', 'Juan Pablo'); //Emisor
+                    $mail->addAddress($u_email);     //Receptor
 
+                    //Archivos adjuntos
+                    // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+                    // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
 
-                //$mail = new PHPMailer();
-                $mail->IsSMTP();
-                $mail->SMTPAuth = true;
-                $mail->Port = 587; 
-                $mail->IsHTML(true); 
-                $mail->CharSet = "utf-8";
+                    //Contenido del mail
+                    $mail->isHTML(true);                                  //Set email format to HTML
+                    $mail->Subject = $u_asunto;
+                    $mail->Body    = '<html> 
 
-                // VALORES A MODIFICAR //
-                $mail->Host = $smtpHost; 
-                $mail->Username = $smtpUsuario; 
-                $mail->Password = $smtpClave;
-        
-                $receptor = "jpdok98@gmail.com";
-        
-                $mail->From = $u_email; // Email desde donde envío el correo.
-                $mail->FromName = $u_nombre;
-                $mail->AddAddress($receptor); // Esta es la dirección a donde enviamos los datos del formulario
-
-                $mail->Subject = "Formulario desde el Sitio Web"; // Este es el titulo del email.
-                $mensajeHtml = nl2br($u_mensaje);
-                $mail->Body = "
-                <html> 
-
-                <body> 
-
-                <h1>Recibiste un nuevo mensaje desde el formulario de contacto</h1>
-
-                <p>Informacion enviada por el usuario de la web:</p>
-
-                <p>nombre: {$u_nombre}</p>
-
-                <p>email: {$u_email}</p>
-
-                <p>telefono: {$u_telefono}</p>
-
-                <p>asunto: {$u_asunto}</p>
-
-                <p>mensaje: {$u_mensaje}</p>
-
-                </body> 
-
-                </html>
-
-                <br />"; // Texto del email en formato HTML
-        
-                $mail->SMTPOptions = array(
-                'ssl' => array(
-                'verify_peer' => false,
-                'verify_peer_name' => false,
-                'allow_self_signed' => true
-                )
-                );
+                    <body> 
     
-                $estadoEnvio = $mail->Send(); 
-                if($estadoEnvio){
-                echo "El correo fue enviado correctamente.";
-                } else {
-                echo "Ocurrió un error inesperado.";
-                }
+                    <h1>Correo enviado desde el formulario de Contacto</h1>
+    
+                    <h2>Información enviada por el usuario de la web:</h2>
+    
+                    <p>Nombre: '.$u_nombre.'</p>
+    
+                    <p>Email: '.$u_email.'</p>
+    
+                    <p>Telefono: '.$u_telefono.'</p>
 
+                    <p>Mensaje: '.$u_mensaje.'</p>
+                    
+                    </body>
+    
+                    </html>
+    
+                    <br />';
+                    $mail->AltBody = 'Este texto es para clientes que no soportan Html';
+
+                    $mail->send();
+                    echo 'El mensaje ha sido enviado exitosamente';
+                    } catch (Exception $e) {
+                    echo 'El mensaje no pudo ser enviado', $mail->ErrorInfo;
+                    }
             } 
             else 
             {
             }
 
         ?>
-
-
+        
         <?php require('footer.php'); ?>
 
     </body>
