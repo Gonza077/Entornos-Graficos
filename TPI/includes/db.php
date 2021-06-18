@@ -29,15 +29,15 @@ class DB{
     }
 
     function conectarDB(){    
+
         $this -> conn = new mysqli($this->host,$this->user,$this->password,$this->db);
         $this -> conn ->set_charset($this->charset);
-
         if ($this -> conn ->connect_error) {
             die('Error de Conexión (' . $this -> conn->connect_errno . ') '
                     . $this -> conn -> connect_error);
         }
     }
-    
+
     function connect(){
         return $this -> conn;
     }
