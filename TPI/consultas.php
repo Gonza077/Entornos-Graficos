@@ -73,9 +73,10 @@
     </table>
   </div>
   <?php include('footer.php');?>
-  <?php include('components/toast.php');?>
+  <script src="js/scripts.js"> </script>
 </body>
 
+<?php include('components/toast.php');?>
 <?php include('components/inscripcionConsultaModal.php'); ?>
 <?php include('components/bloquearConsultaModal.php'); ?>
 <?php include('components/cancelarConsultaModal.php'); ?>
