@@ -14,17 +14,17 @@
         <li class="nav-item">
           <a class="nav-link" href="contacto.php">Contacto</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="login.php">Iniciar Sesión</a>
-        </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
         <?php if (isset($user)){
                 $nombre = $user->getNombre();
+                echo '<a class="btn btn-info" href="./includes/logout.php" role="button">Desconectarse</a>';
+              }
+              else{
+                echo '<a class="btn btn-info" href="login.php" role="button">Iniciar Sesion</a>';
               }
           ?>
         <input class="form-control mr-sm-2" type="search" disabled value="<?php isset($nombre)? printf("%s",$nombre) : '';?> " placeholder="Search" aria-label="Search">
-        <a class="btn btn-info" href="./includes/logout.php" role="button">Desconectarse</a>
       </form>
     </div>
 </nav>

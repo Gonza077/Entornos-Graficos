@@ -1,3 +1,10 @@
+<?php include_once('includes/user_session.php');
+      include_once('includes/user.php');
+
+$user_session = new UserSession();
+$user = $user_session->getCurrentUser();
+?> 
+
 <?php require('navbar.php'); ?> 
 
 
@@ -61,7 +68,7 @@
         <?php   
  
                 use PHPMailer\PHPMailer\PHPMailer;
-                use PHPMailer\PHPMailer\SMTP;
+                // use PHPMailer\PHPMailer\SMTP;
                 use PHPMailer\PHPMailer\Exception;
 
                 require 'phpmailer/Exception.php';
@@ -102,7 +109,7 @@
 
                 try {
                     //Config del server
-                    $mail->SMTPDebug = 0;                      //Enable verbose debug output
+                    $mail->SMTPDebug = 0;                      //muestra el mensaje de error del server
                     $mail->isSMTP();                                            //Send using SMTP
                     $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
                     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
