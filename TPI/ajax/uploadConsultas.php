@@ -1,34 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
-    <title>Document</title>
-</head>
-<body>
-<?php require('navbar.php'); ?>
-    <form action="upload.php" method="post" enctype="multipart/form-data">
-        <div class="input-group">
-            <div class="custom-file">
-                <input type="file" class="custom-file-input" name="fileToUpload" id="fileToUpload" aria-describedby="fileToUpload" required>
-                <label class="custom-file-label" for="fileToUpload">  Seleccione el archivo a cargar.</label>
-            </div>
-            <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="submit" name="submit" id="fileToUpload">Cargar</button>
-            </div>
-        </div>
-    </form>
-    <div id="response" class="<?php if(!empty($type)) { echo $type . " display-block"; } ?>"><?php if(!empty($message)) { echo $message; } ?></div>
-</body>
-<?php require('footer.php')?>
-</html>
 
 <?php  
-require('includes/db.php');
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
+require('includes/db.php');
 require_once('includes/user.php');
 require_once('includes/user_session.php');
 $USER_SESSION = new UserSession();
@@ -39,35 +12,27 @@ if(isset($_POST["submit"])) {
     $allowedFileType = ['application/vnd.ms-excel','text/xls','text/xlsx','application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'];
     if (isset($_POST["import"]))
 {
-       
   $allowedFileType = ['application/vnd.ms-excel','text/xls','text/xlsx','application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'];
-  
   if(in_array($_FILES["fileToUpload"]["type"],$allowedFileType)){
-
         $targetPath = 'uploads/'.$_FILES['file']['name'];
         move_uploaded_file($_FILES["fileToUpload"]["name"], $targetPath);
-        
-        $Reader = new SpreadsheetReader($targetPath);
-        
+        $Reader = PhpOffice\PhpSpreadsheet\IOFactory::createReader("Xlsx");;
         $sheetCount = count($Reader->sheets());
         
         for($i=0;$i<$sheetCount;$i++)
         {
-            $Reader->ChangeSheet($i);
-            
+            $Reader->ChangeSheet($i);     
             foreach ($Reader as $Row)
-            {
-          
+            {       
                 $name = "";
+                $description="";
                 if(isset($Row[0])) {
-                    $name = db -> connect() -> ($conn,$Row[0]);
-                }
-                
-                $description = "";
+                    $name = $db -> connect() -> real_escape_string($Row[0]);
+                }            
+              
                 if(isset($Row[1])) {
-                    $description = mysqli_real_escape_string($conn,$Row[1]);
-                }
-                
+                    $description = $db -> connect() -> real_escape_string($Row[1]);
+                }               
                 if (!empty($name) || !empty($description)) {
                     $query = "insert into tbl_info(name,description) values('".$name."','".$description."')";
                     $result = mysqli_query($conn, $query);
@@ -123,17 +88,3 @@ if(isset($_POST["submit"])) {
     }*/
 }
 ?>
-    <script type="text/javascript">
-        $(document).ready(function () {
-        bsCustomFileInput.init()
-        })
-    </script>
-    <!--
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $.ajax({
-                type: "GET",
-            url: 'files.php'
-        });
-            });
-    </script> -->

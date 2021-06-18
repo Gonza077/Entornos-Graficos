@@ -76,9 +76,6 @@
   <?php include('components/toast.php');?>
 </body>
 
-
-
-
 <?php include('components/inscripcionConsultaModal.php'); ?>
 <?php include('components/bloquearConsultaModal.php'); ?>
 <?php include('components/cancelarConsultaModal.php'); ?>

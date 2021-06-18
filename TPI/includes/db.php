@@ -24,11 +24,11 @@ class DB{
         $this-> user     = 'root';
         $this-> password = "";
         $this-> charset  = 'utf8mb4';
-        $this ->    conn;
+        $this ->conn ;
+        $this -> conectarDB();
     }
 
-    function connect(){
-    
+    function conectarDB(){    
         $this -> conn = new mysqli($this->host,$this->user,$this->password,$this->db);
         $this -> conn ->set_charset($this->charset);
 
@@ -36,6 +36,9 @@ class DB{
             die('Error de Conexión (' . $this -> conn->connect_errno . ') '
                     . $this -> conn -> connect_error);
         }
+    }
+    
+    function connect(){
         return $this -> conn;
     }
 
