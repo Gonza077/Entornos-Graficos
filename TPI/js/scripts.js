@@ -97,7 +97,6 @@ function buscar () {
     });
 }
 
-
 function getConsulta(consultaId){
     return $.ajax({
       url:"./ajax/getConsulta.php",
@@ -111,5 +110,4 @@ function getConsulta(consultaId){
         openToast(response,"No Encontrada",'error');
       }
   });
-
 }
