@@ -1,4 +1,14 @@
 <!DOCTYPE html>
+
+
+<?php include_once('includes/user_session.php');
+      include_once('includes/user.php');
+
+$user_session = new UserSession();
+$user = $user_session->getCurrentUser();
+?> 
+
+
 <html lang="es">
 <head>
     <meta charset="utf-8">
