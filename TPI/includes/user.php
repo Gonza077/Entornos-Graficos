@@ -24,22 +24,38 @@ class User extends DB{
         return false;  
     }
 
-    public function setUser($email){
+    public function getUserByEmail($email){
         
-        $query = "SELECT id,nombre,apellido,email,docente  FROM `persona` WHERE email = '$email'";
+        $query = "SELECT id,nombre,apellido,email,docente,legajo  FROM `persona` WHERE email = '$email'";
 
+        $this->fetchUserFromDatabase($query);
+    }
+
+
+    public function getUserByLegajo($legajo,$docente){
+        
+        $query = "SELECT id,nombre,apellido,email,docente,legajo  FROM `persona` WHERE legajo = '$legajo'";
+
+        $this->fetchUserFromDatabase($query);
+    }
+
+    private function fetchUserFromDatabase($query){
         $stmt = $this->connect()->query($query);
 
         $fila = $stmt->fetch_row();
 
         if (!is_null($fila)){
-            $this->id = $fila[0];
-            $this->nombre = $fila[1];
-            $this->apellido = $fila[2];
-            $this->email = $fila[3];
-            $this->docente = $fila[4];
+            $this->setUser($fila);
         }
+    }
 
+    private function setUser($userArr){
+        $this->id = $userArr[0];
+        $this->nombre = $userArr[1];
+        $this->apellido = $userArr[2];
+        $this->email = $userArr[3];
+        $this->docente = $userArr[4];
+        $this->legajo = $userArr[5];
     }
 
     public function registerUser($email,$pass,$nombre,$apellido,$isDocente){

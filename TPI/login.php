@@ -13,9 +13,7 @@
       $passForm = $_POST['password'];
 
       if($user->userExists($userForm, $passForm)){
-          //echo "Existe el usuario";
-          echo "existe";
-          $user->setUser($userForm);
+          $user->getUserByEmail($userForm);
           $userSession->setCurrentUser($user);
           header("Location: http://localhost/consultas.php");
           
