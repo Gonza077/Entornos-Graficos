@@ -43,11 +43,11 @@
 
                 //Enviar el correo
                 $mail->send();
-                echo 'El mensaje ha sido enviado exitosamente.';
+                echo '<script type="text/javascript">','alert("El mensaje ha sido enviado con éxito, responderemos lo antes posible.");','</script>';
             } 
         catch (Exception $e) 
             {
-               echo 'El mensaje no pudo ser enviado.', $mail->ErrorInfo;
+               echo '<script type="text/javascript">','alert("Error al enviar el mensaje, intentelo nuevamente.");','</script>';
             }
     } 
 

@@ -7,7 +7,6 @@
     $user = $user_session->getCurrentUser();
 ?> 
 
-<?php require('navbar.php'); ?> 
 
 
 
@@ -20,7 +19,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
     </head>
     <body>
-    
+    <?php require('navbar.php'); ?> 
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-12 col-sm-6">
@@ -120,10 +119,7 @@
                 enviarMail($u_email,$u_asunto,$cuerpo_html);
 
             } 
-            else 
-            {
-                echo 'Complete el formulario y luego haz click en Enviar';
-            }
+
 
         ?>
         
