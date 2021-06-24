@@ -39,6 +39,17 @@ class User extends DB{
         $this->fetchUserFromDatabase($query);
     }
 
+
+    public function cambiarContraseñaUsuario($pass,$id)
+    {   
+
+        $passMD5=md5($pass);
+        $query="UPDATE `persona` Set password = $passMD5 where id=$id";
+
+        $stmt = $this->connect()->query($query);
+    }
+
+
     private function fetchUserFromDatabase($query){
         $stmt = $this->connect()->query($query);
 
