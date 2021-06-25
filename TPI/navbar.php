@@ -8,15 +8,26 @@
         <li class="nav-item active">
           <a class="nav-link" href="home.php">Inicio<span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="upload.php">Subir Horarios</a>
-        </li>
+        <?php if (isset($user)) {
+                $esAdmin = $user->isAdmin();
+                if ($esAdmin)
+                {
+                  echo '<li class="nav-item">
+                        <a class="nav-link" href="upload.php">Subir Horarios</a>
+                      </li>';
+                }
+        }
+        ?>
         <li class="nav-item">
           <a class="nav-link" href="contacto.php">Contacto</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="cuenta.php">Mi Cuenta</a>
-        </li>
+        <?php if (isset($user)) {
+                $nombre = $user->getNombre();
+                echo '<li class="nav-item">
+                        <a class="nav-link" href="cuenta.php">Mi Cuenta</a>
+                      </li>';
+        }
+          ?>
       </ul>
       <form class="form-inline my-2 my-lg-0">
         <?php if (isset($user)) {

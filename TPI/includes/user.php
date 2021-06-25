@@ -8,6 +8,7 @@ class User extends DB{
     private $apellido;
     private $email;
     private $docente;
+    private $admin;
 
     public function userExists($email_check, $pass_check){
         $md5pass_check = md5($pass_check);
@@ -44,7 +45,7 @@ class User extends DB{
     {   
 
         $passMD5=md5($pass);
-        $query="UPDATE `persona` Set password = $passMD5 where id=$id";
+        $query="UPDATE persona Set password = $passMD5 where id=$id";
 
         $stmt = $this->connect()->query($query);
     }
@@ -89,6 +90,7 @@ class User extends DB{
         }
         return false;  
     }
+    
 
     public function getNombre(){
         return $this->nombre;
@@ -104,6 +106,11 @@ class User extends DB{
 
     public function isDocente(){
         return $this->docente;
+    }
+
+    public function isAdmin()
+    {
+        return $this->admin;
     }
 }
 

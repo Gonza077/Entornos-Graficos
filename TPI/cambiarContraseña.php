@@ -1,10 +1,12 @@
 <?php 
-
+    include ('./includes/db.php');
     include_once('includes/user_session.php');
     include_once('includes/user.php');
 
     $user_session = new UserSession();
+    $user = new User();
     $user = $user_session->getCurrentUser();
+    $errorContraseñaDistintas = "";
     if ($user != null)
     {
         $id = $user->getId();
@@ -16,13 +18,16 @@
 
                     if ($clave1 == $clave2)
                     {
-                        $user->cambiarContraseñaUsuario($clave1,$id);
-                        echo '<script type="text/javascript">','alert("La contraseña ha sido modificada con éxito.");','</script>';
-                        header("Location: http://localhost/cuenta.php");
+                        // $user->cambiarContraseñaUsuario($clave1,$id);
+                        $db= new DB();
+                        $passMD5=md5($clave1);
+                        $query="UPDATE persona Set password = '$passMD5' where id=$id";
+                        $solicitudes = $db-> connect() ->query($query);
+                        $errorContraseñaDistintas= 'La contraseña ha sido modificada exitosamente.';
                     }
                     else
                     {
-                        echo '<script type="text/javascript">','alert("Error al modificar la contraseña, intentelo nuevamente.");','</script>';
+                        $errorContraseñaDistintas= 'Las contraseñas deben ser iguales, inténtelo nuevamente.';
                     }
                 }
 
@@ -47,19 +52,30 @@
     <body>
         <div class="container">
             <div class="row justify-content-center">
-            <div class="col-12 col-sm-6">
-                <form class="form-contact" action="cambiarContraseña.php" method="POST">
-                <div class="form-group">
-                    <h2 class="d-flex justify-content-center">Cambiar Contraseña</h2>
-                    <label for="inputPassword1">Nueva Contraseña</label>
-                    <input type="password" id="inputPassword1" name="password1" class="form-control" required>
-                    <br>
-                    <label for="inputPassword2">Repetir Nueva Contraseña</label>
-                    <input type="password" id="inputPassword2" name="password2" class="form-control" required>
+                <div class="col-12 col-sm-6">
+                    <form class="form-contact" action="cambiarContraseña.php" method="POST">
+                        <div class="form-group">
+                            <h2 class="d-flex justify-content-center">Cambiar Contraseña</h2>
+                            <label for="inputPassword1">Nueva Contraseña</label>
+                            <input type="password" id="inputPassword1" name="password1" class="form-control" required>
+                            <br>
+                            <label for="inputPassword2">Repetir Nueva Contraseña</label>
+                            <input type="password" id="inputPassword2" name="password2" class="form-control" required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <div class="row justify-content-center">
+                                <div class="col-md-6 text-right">
+                                    <button class="btn btn-lg btn-primary btn-block" type="submit">Aceptar</button>
+                                </div>
+                                <div class="col-md-6 text-left">
+                                    <button class="btn btn-lg btn-primary btn-block" onclick="window.location.href='cuenta.php'">Atrás</button>
+                                </div>
+                            </div>
+                        </div>
+                        <?php echo $errorContraseñaDistintas; ?>
+                    </form>   
                 </div>
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Aceptar</button>
-                </form>   
-            </div>
             </div>
         </div>
 
