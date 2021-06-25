@@ -3,6 +3,7 @@
 include ('./includes/db.php');
 include ('./includes/user_session.php');
 include ('./includes/user.php');
+include ('./includes/solicitud.php');
 
 $USER_SESSION = new UserSession();
 $USER = new User();
@@ -18,20 +19,26 @@ $horarioSelected  = $_GET['horarioSelected'] != NULL ? $_GET['horarioSelected'] 
 
 $db = new DB();
 
-$sqlQuerySolicitudes="SELECT consulta.id FROM consultas_db.persona
-                     INNER JOIN solicitud 
-                     ON persona.id = solicitud.persona_id
-                     INNER JOIN consulta 
-                     ON solicitud.consulta_id = consulta.id
-                     WHERE consulta.fecha >= CURDATE()";
+$sqlQuerySolicitudes="SELECT consulta.id AS consulta_id , persona.id AS persona_id , MAX(solicitud.id)
+                        FROM consultas_db.persona
+                        INNER JOIN solicitud 
+                        ON persona.id = solicitud.persona_id
+                        INNER JOIN consulta 
+                        ON solicitud.consulta_id = consulta.id
+                        WHERE solicitud.fecha_baja IS NULL AND consulta.fecha >= CURDATE()
+                        GROUP BY consulta_id AND persona_id";
 
-// $solicitudes[] = $db-> connect() ->query($sqlQuerySolicitudes)->fetch_all(MYSQLI_NUM);
+//$solicitudes[] = $db-> connect() ->query($sqlQuerySolicitudes)->fetch_all(MYSQLI_NUM);
+
+
+// $solicitudRepo = New SolicitudRepository();
+// $solicitudes = $consultaRepo->getConsultaById($consulta_id);
 
 $solicitudes = $db-> connect() ->query($sqlQuerySolicitudes);
 $ids_solicitudes[] = [];
 while($row = $solicitudes-> fetch_assoc())
 {
-   array_push($ids_solicitudes,$row['id']);
+   array_push($ids_solicitudes,$row['consulta_id']);
 }
 
 
@@ -44,8 +51,8 @@ while( $row = $registros -> fetch_assoc() ) {
    $cupo = $row["cupo"];
    $docente_id = $row["docente_id"];
    $idInSolicitudes = in_array($id,$ids_solicitudes)? 1:0;
-   echo "<tr class='".(TRUE == 'BLOQUEADA' ? "table-danger" : "")."'>";
-   echo "<td>"."ACA VA UN ESTADO CALCULADO"."</td>";
+   echo "<tr class='".(isset($row["fecha_baja"]) ? "table-danger" : "")."'>";
+   echo "<td>".$idInSolicitudes."</td>";
    echo "<td>".$row["materia"]."</td>";
    echo "<td>".$row["docente_nombre"]."</td>";
    echo "<td>".$row["horario"]."</td>";

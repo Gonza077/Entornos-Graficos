@@ -35,7 +35,7 @@
     function openInscripcionConsultaModal(consultaId){
       getConsulta(consultaId).done( response => {
         consuta = "";
-        consulta = response;
+        consulta = response.consulta;
         $('#idInscripcionConsulta').val(consulta.id);
         $('#datosInscripcionConsulta').html(consulta.horario + " - " + consulta.materia_nombre + " - " + consulta.docente_nombre + " - " + consulta.docente_apellido);
         $('#inscripcionConsultaModal').modal('show');
@@ -55,5 +55,7 @@
             openToast(response,"Bloquear Consulta",'error');
           }
       });
+      console.log("bsucar");
+      buscar();
     }
 </script>
