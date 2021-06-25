@@ -2,6 +2,8 @@
 include ('../includes/db.php');
 include ('../includes/user_session.php');
 include ('../includes/user.php');
+include ('../includes/solicitud.php');
+include ('../includes/consulta.php');
 
 $USER_SESSION = new UserSession();
 $USER = new User();
@@ -12,19 +14,12 @@ if(isset($USER)){
 
 
 $errorMessage='';
-$db = new DB();
+$solicitudRepo = New SolicitudRepository();
+$consultaRepo = New ConsultaRepository();
     if(isset($_POST['consultaId'])){
-        $consulta_id  = $_POST['consultaId'];
-        $query="UPDATE solicitud  SET fecha_baja = '".date('Y-m-d H:i:s')."', update_time = '".date('Y-m-d H:i:s')."' WHERE persona_id = $USER_ID";
-
-        $stmt = $db->connect()->query($query);
-        if ($db->getError() != NULL) {
-            $errorMessage = $db->getError();
-            echo json_encode($errorMessage);
-        } else {
-            echo json_encode($query,200);
-        }
-        $db->disconnect();
+        $consultaId  = $_POST['consultaId'];
+        $solicitudRepo -> bajaSolicitudByPersonaAndConsulta($USER_ID,$consultaId);
+        $consultaRepo -> subctractCupoToConsulta($consultaId);
     }else{
         echo json_encode("Id de consulta inexistente",204);
     }

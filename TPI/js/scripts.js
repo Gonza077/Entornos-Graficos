@@ -86,6 +86,7 @@ function docenteQueryCreateConsulta(docente){
 }
 
 function buscar () {
+  $("table#consultasTable tbody").html("");
     $.ajax({
         url:"consultaQuery.php",    //the page containing php script
         type: "get",    //request type,

@@ -49,10 +49,10 @@
           dataType: 'json',
           data: {consultaId: consultaId},
           success:function(response){
-            openToast(response,"Bloquear Consulta",'success');
+            openToast(response,"Inscripcion Consulta",'success');
           },
           error:function(response){
-            openToast(response,"Bloquear Consulta",'error');
+            openToast(response,"Inscripcion Consulta",'error');
           }
       });
       console.log("bsucar");

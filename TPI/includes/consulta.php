@@ -121,6 +121,19 @@ class ConsultaRepository extends DB{
     //     $this->docente_nombre = $consultaArr[6];
     //     $this->docente_apellido = $consultaArr[7];
     // }
+    public function addCupoToConsulta($consultaId){
+        $query="UPDATE consulta SET cupo = cupo + 1, update_time = '".date('Y-m-d H:i:s')."' WHERE consulta.id = $consultaId";
+        $this->executeQuery($query);
+    }
+
+    public function subctractCupoToConsulta($consultaId){
+        $query="UPDATE consulta SET cupo = cupo - 1, update_time = '".date('Y-m-d H:i:s')."' WHERE consulta.id = $consultaId";
+        $this->executeQuery($query);
+    }
+
+    private function executeQuery($query){
+        $this->connect()->query($query);
+    }
 
 }
 
