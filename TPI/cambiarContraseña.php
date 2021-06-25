@@ -7,9 +7,7 @@
     $user = new User();
     $user = $user_session->getCurrentUser();
     $errorContraseñaDistintas = "";
-    if ($user != null)
-    {
-        $id = $user->getId();
+    $id = $user->getId();
 
         if (isset($_POST['password1']) && isset($_POST['password2']))
                 {
@@ -31,12 +29,6 @@
                     }
                 }
 
-    }
-    else
-    {
-        header("Location: http://localhost/login.php");
-    }
-
 ?> 
 
 
@@ -55,6 +47,7 @@
                 <div class="col-12 col-sm-6">
                     <form class="form-contact" action="cambiarContraseña.php" method="POST">
                         <div class="form-group">
+                            <img class="mb-4 d-block mx-auto" src="img/LogoUTN.png" alt="Logo de la Universidad Tecnológica Nacional" width="100" height="100">
                             <h2 class="d-flex justify-content-center">Cambiar Contraseña</h2>
                             <label for="inputPassword1">Nueva Contraseña</label>
                             <input type="password" id="inputPassword1" name="password1" class="form-control" required>
@@ -66,7 +59,7 @@
                         <div class="form-group">
                             <div class="row justify-content-center">
                                 <div class="col-md-6 text-right">
-                                    <button class="btn btn-lg btn-primary btn-block" type="submit">Aceptar</button>
+                                    <button class="btn btn-lg btn-primary btn-block" style="background-color:green" type="submit">Cambiar</button>
                                 </div>
                                 <div class="col-md-6 text-left">
                                     <button class="btn btn-lg btn-primary btn-block" onclick="window.location.href='cuenta.php'">Atrás</button>

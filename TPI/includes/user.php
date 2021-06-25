@@ -9,6 +9,7 @@ class User extends DB{
     private $email;
     private $docente;
     private $admin;
+    private $telefono;
 
     public function userExists($email_check, $pass_check){
         $md5pass_check = md5($pass_check);
@@ -94,6 +95,14 @@ class User extends DB{
 
     public function getNombre(){
         return $this->nombre;
+    }
+
+    public function getTelefono(){
+        return $this->telefono;
+    }
+
+    public function getApellido(){
+        return $this->apellido;
     }
 
     public function getId(){
