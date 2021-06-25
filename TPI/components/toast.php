@@ -42,7 +42,7 @@
     background: #0072ec;
     }
 .toastInfo > div > .toast-header > .mr-auto{
-    color: aliceblue;
+    color: white;
     margin-left: 5px;
 }
 .toastInfo > div >.toast-body{
@@ -56,7 +56,7 @@
     background: #C82333;
     }
 .toastError > div > .toast-header > .mr-auto{
-    color: aliceblue;
+    color: white;
     margin-left: 5px;
 }
 .toastError > div >.toast-body{
@@ -68,9 +68,10 @@
 .toastSucces{}
 .toastSucces > div > .toast-header{
     background: #00C861;
+    color: white;
     }
 .toastSucces > div > .toast-header > .mr-auto{
-    color: #00C861;
+    color: #white;
     margin-left: 5px;
 }
 .toastSucces > div >.toast-body{

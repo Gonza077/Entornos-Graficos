@@ -16,18 +16,16 @@ if(in_array($_FILES["fileToUpload"]["type"],$allowedFileType)){
         if ($lines <= 0) {
             echo('No hay datos en la hoja de Excel');
         }
-        else{
-        $sql = "INSERT INTO persona (nombre,apellido,email,password,docente) values ";
+        else{   
+        $sql = "INSERT INTO consulta (docente_id,materia_id,fecha) values ";
         //Se saltea la primer fila y segundapor ser la cabecera y el nombre de la columna
-        for ($fila = 2; $fila <= $filaMasGrande; $fila++) {
-            $nombre =  $hojaDeTrabajo-> getCellByColumnAndRow (1, $fila) -> getValue (); // Nombre
-            $apellido = $hojaDeTrabajo-> getCellByColumnAndRow (2,$fila) -> getValue (); // apellido
-            $email =   $hojaDeTrabajo-> getCellByColumnAndRow (3, $fila) -> getValue (); // email
-            $password = $hojaDeTrabajo-> getCellByColumnAndRow (4, $fila) -> getValue (); // contraseña
-            $docente = $hojaDeTrabajo-> getCellByColumnAndRow (5, $fila) -> getValue (); // esDocente
-            $sql .= "('$nombre','$apellido','$email','$password','$docente'),";
-        }
-        $sql = rtrim ($sql, ","); // Eliminar el la coma final     
+        for ($fila = 2; $fila < $filaMasGrande; ++$fila) {
+            $legajo =  $hojaDeTrabajo-> getCellByColumnAndRow (1, $fila) -> getValue (); // 
+            $materiaID = $hojaDeTrabajo-> getCellByColumnAndRow (2,$fila) -> getValue (); // apellido
+            $fecha =  $hojaDeTrabajo-> getCellByColumnAndRow (3, $fila) -> getValue();// email
+            $fecha = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($fecha) -> format('Y-m-d H:i:s');
+            $sql .= "('$legajo','$materiaID','$fecha')";
+        }   
         $db=  new DB();
         $db-> connect() -> query($sql);
         $db -> disconnect();

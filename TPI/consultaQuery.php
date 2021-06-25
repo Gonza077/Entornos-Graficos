@@ -3,7 +3,6 @@
 include ('./includes/db.php');
 include ('./includes/user_session.php');
 include ('./includes/user.php');
-include ('./includes/solicitud.php');
 
 $USER_SESSION = new UserSession();
 $USER = new User();
@@ -19,14 +18,14 @@ $horarioSelected  = $_GET['horarioSelected'] != NULL ? $_GET['horarioSelected'] 
 
 $db = new DB();
 
-$sqlQuerySolicitudes="SELECT consulta.id AS consulta_id , persona.id AS persona_id , MAX(solicitud.id)
-                        FROM consultas_db.persona
-                        INNER JOIN solicitud 
-                        ON persona.id = solicitud.persona_id
-                        INNER JOIN consulta 
-                        ON solicitud.consulta_id = consulta.id
-                        WHERE solicitud.fecha_baja IS NULL AND consulta.fecha >= CURDATE()
-                        GROUP BY consulta_id AND persona_id";
+$sqlQuerySolicitudes="SELECT solicitud.consulta_id AS consulta_id , persona.id AS persona_id , MAX(solicitud.id)
+                     FROM consultas_db.persona
+                     INNER JOIN solicitud 
+                     ON persona.id = solicitud.persona_id
+                     INNER JOIN consulta 
+                     ON solicitud.consulta_id = consulta.id
+                     WHERE solicitud.fecha_baja IS NULL AND consulta.fecha >= CURDATE()
+                     GROUP BY solicitud.consulta_id ,solicitud.persona_id ";
 
 //$solicitudes[] = $db-> connect() ->query($sqlQuerySolicitudes)->fetch_all(MYSQLI_NUM);
 

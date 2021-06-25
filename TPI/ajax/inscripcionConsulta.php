@@ -2,6 +2,8 @@
 include ('../includes/db.php');
 include ('../includes/user_session.php');
 include ('../includes/user.php');
+include ('../includes/solicitud.php');
+include ('../includes/consulta.php');
 
 $USER_SESSION = new UserSession();
 $USER = new User();
@@ -12,19 +14,13 @@ if(isset($USER)){
 
 
 $errorMessage='';
-$db = new DB();
+$solicitudRepo = New SolicitudRepository();
+$consultaRepo = New ConsultaRepository();
     if(isset($_POST['consultaId'])){
-        $consulta_id  = $_POST['consultaId'];
-        $query="INSERT INTO solicitud (persona_id, consulta_id, update_time) VALUES ($USER_ID, $consulta_id,'".date('Y-m-d H:i:s')."')";
-
-        $stmt = $db->connect()->query($query);
-        if ($db->getError() != NULL) {
-            $errorMessage = $db->getError();
-            echo json_encode($errorMessage);
-        } else {
-            echo json_encode($query,200);
-        }
-        $db->disconnect();
+        $consultaId  = $_POST['consultaId'];
+        $solicitudRepo -> altaSolicitudByPersonaAndConsulta($USER_ID,$consultaId);
+        $consultaRepo -> addCupoToConsulta($consultaId);
+        echo json_encode("Solicitud Creada",200);
     }else{
         echo json_encode("Id de consulta inexistente",204);
     }
