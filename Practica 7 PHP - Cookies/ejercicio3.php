@@ -24,7 +24,7 @@ if(isset($_POST['borrar'])){
             <div class="col-12 col-sm-10">
                 <form class="form-signin" action="ejercicio3.php" method="POST">
                     <?php
-                        $nombre = $_COOKIE["nombre"]; 
+                        $nombre = $_COOKIE["nombre"] ?? ""; 
                         if($nombre == ''){
                             echo "<h2>No existe un nombre previamente guardado</h2>";
                         }else{
