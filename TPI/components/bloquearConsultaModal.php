@@ -65,13 +65,14 @@ function bloquearConsulta(consultaId,motivo) {
       url:"../ajax/bloquearConsulta.php",
       type: "post",
       dataType: 'json',
-      data: {consultaId: consultaId, descripcionBaja: motivo},
-      success:function(response){
+      data: {consultaId: consultaId, descripcionBaja: motivo}})
+      .done(response=>{
         openToast(response,"Bloquear Consulta",'success');
-      },
-      error:function(response){
+      })
+      .fail(response=>{
         openToast(response,"Bloquear Consulta",'error');
-      }
-  });
+      })
+      .always(r=>{buscar();});
 }
+
 </script>

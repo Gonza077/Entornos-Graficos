@@ -15,10 +15,10 @@ if(isset($USER)){
 $errorMessage='';
 $consultaRepo = New ConsultaRepository();
     if(isset($_POST['consultaId'])){
-        $consulta_id  = $_POST['consultaId'];
+        $consultaId  = $_POST['consultaId'];
         $descripcionBaja  = isset($_POST['descripcionBaja']) ? $_POST['descripcionBaja'] : "NULL";
         $consultaReemplazoId  = isset($_POST['consulta_reemplazo_id']) ? $_POST['consulta_reemplazo_id'] != "" ? $_POST['consulta_reemplazo_id'] : "NULL" : "NULL";
-        $consultaRepo -> bloquearConsulta($consultaId,$descripcionBaja,$consultaReemplazoId);
+        $consultaRepo -> bloquearConsulta($consultaId,$descripcionBaja);
         echo json_encode("Consulta Bloqueada Exitosamente",200);
     }else{
         echo json_encode("Id de consulta inexistente",204);
