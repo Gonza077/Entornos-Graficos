@@ -41,20 +41,20 @@
       });
   }
 
-  function cancelarConsulta(consultaId) {
-      $.ajax({
-          url:"../ajax/cancelarInscripcionConsulta.php",
-          type: "post",
-          dataType: 'json',
-          data: {consultaId: consultaId},
-          success:function(response){
-            openToast(response,"Cancelar Consulta",'success');
-          },
-          error:function(response){
-            openToast(response,"Cancelar Consulta",'error');
-          }
-      });
-      console.log("bsucar");
-      buscar();  
-    }
+  function cancelarConsulta(consultaId){
+    $.ajax({
+        url:"../ajax/cancelarInscripcionConsulta.php",
+        type: "post",
+        dataType: 'json',
+        data: {consultaId: consultaId}
+    }).done(response=>{
+        console.log("done");
+        openToast(response,"Cancelar Consulta",'success');
+      })
+      .fail(response=>{
+        console.log(response);
+        openToast(response,"Cancelar Consulta",'error');
+      })
+      .always(r=>{buscar();});
+  }
 </script>

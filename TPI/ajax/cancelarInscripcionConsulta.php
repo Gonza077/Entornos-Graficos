@@ -20,6 +20,7 @@ $consultaRepo = New ConsultaRepository();
         $consultaId  = $_POST['consultaId'];
         $solicitudRepo -> bajaSolicitudByPersonaAndConsulta($USER_ID,$consultaId);
         $consultaRepo -> subctractCupoToConsulta($consultaId);
+        echo json_encode("Consulta Cancelada",200);
     }else{
         echo json_encode("Id de consulta inexistente",204);
     }

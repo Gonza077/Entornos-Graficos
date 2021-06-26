@@ -42,20 +42,20 @@
       });
     }
 
-    function inscripcionConsulta(consultaId) {
+
+    function inscripcionConsulta(consultaId){
       $.ajax({
-          url:"../ajax/inscripcionConsulta.php",
-          type: "post",
-          dataType: 'json',
-          data: {consultaId: consultaId},
-          success:function(response){
+        url:"../ajax/inscripcionConsulta.php",
+        type: "post",
+        dataType: 'json',
+        data: {consultaId: consultaId}
+        }).done(response=>{
             openToast(response,"Inscripcion Consulta",'success');
-          },
-          error:function(response){
+          })
+          .fail(response=>{
             openToast(response,"Inscripcion Consulta",'error');
-          }
-      });
-      console.log("bsucar");
-      buscar();
+          })
+          .always(r=>{buscar();});
     }
+    
 </script>

@@ -67,12 +67,16 @@ class SolicitudRepository extends DB{
     }
 
     public function bajaSolicitudByPersonaAndConsulta($personaId,$consultaId){
-        $query="UPDATE solicitud  SET fecha_baja = '".date('Y-m-d H:i:s')."', update_time = '".date('Y-m-d H:i:s')."' WHERE persona_id = $personaId AND consulta_id = $consultaId ";
+        $query="UPDATE solicitud 
+                SET fecha_baja = CURRENT_TIMESTAMP(), update_time = CURRENT_TIMESTAMP()
+                WHERE persona_id = $personaId AND consulta_id = $consultaId
+                ORDER BY id DESC 
+                LIMIT 1";
         $this->executeQuery($query);
     }
 
     public function altaSolicitudByPersonaAndConsulta($personaId,$consultaId){
-        $query="INSERT INTO solicitud (persona_id, consulta_id, update_time) VALUES ($personaId, $consultaId,'".date('Y-m-d H:i:s')."')";
+        $query="INSERT INTO solicitud (persona_id, consulta_id, update_time) VALUES ($personaId, $consultaId,CURRENT_TIMESTAMP() )";
         $this->executeQuery($query);
     }
 
