@@ -121,8 +121,9 @@ class ConsultaRepository extends DB{
     //     $this->docente_nombre = $consultaArr[6];
     //     $this->docente_apellido = $consultaArr[7];
     // }
-    public function bloquearConsulta($consultaId,$descripcionBaja,$consultaReemplazoId){
-        $query="UPDATE consulta SET fecha_baja = CURRENT_TIMESTAMP(), descripcion_baja ='".$descripcionBaja."', consulta_reemplazo_id =".$consultaReemplazoId." ,update_time = CURRENT_TIMESTAMP()  WHERE id =".$consultaId."";
+    public function bloquearConsulta($consultaId,$descripcionBaja){
+       
+        $query= "UPDATE consulta SET fecha_baja = CURRENT_TIMESTAMP(), descripcion_baja ='$descripcionBaja',update_time = CURRENT_TIMESTAMP()  WHERE consulta.id = $consultaId";
         $this->executeQuery($query);
     }
 
