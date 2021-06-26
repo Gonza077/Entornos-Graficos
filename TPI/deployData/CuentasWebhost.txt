@@ -1,0 +1,10 @@
+#000webhost#
+CUENTA - entornoshosttest@gmail.com
+CONTRA - AA123456AA
+--- ConsultasUTN
+--- rPT82FKytl7Wd5*3sC1n
+
+DB
+--DATABASENAME --- consultas_db
+--USERNAME     --- admin
+--PASSWORD     --- Kb$FV#X6c4ZC+9[
