@@ -2,6 +2,7 @@
 include ('../includes/db.php');
 include ('../includes/user_session.php');
 include ('../includes/user.php');
+include ('../includes/consulta.php');
 
 $USER_SESSION = new UserSession();
 $USER = new User();
@@ -12,23 +13,13 @@ if(isset($USER)){
 
 
 $errorMessage='';
-$db = new DB();
+$consultaRepo = New ConsultaRepository();
     if(isset($_POST['consultaId'])){
         $consulta_id  = $_POST['consultaId'];
-        $descripcion_baja  = isset($_POST['descripcionBaja']) ? $_POST['descripcionBaja'] : "NULL";
-        $consulta_reemplazo_id  = isset($_POST['consulta_reemplazo_id']) ? $_POST['consulta_reemplazo_id'] != "" ? $_POST['consulta_reemplazo_id'] : "NULL" : "NULL";
-        $query="UPDATE consulta SET fecha_baja ='".date('Y-m-d H:i:s')."', descripcion_baja ='".$descripcion_baja."', consulta_reemplazo_id =".$consulta_reemplazo_id." ,update_time ='".date('Y-m-d H:i:s')."'WHERE id =".$consulta_id."";
-
-
-
-        $stmt = $db->connect()->query($query);
-        if ($db->getError() != NULL) {
-            $errorMessage = $db->getError();
-            echo json_encode($errorMessage);
-        } else {
-            echo json_encode($query,200);
-        }
-        $db->disconnect();
+        $descripcionBaja  = isset($_POST['descripcionBaja']) ? $_POST['descripcionBaja'] : "NULL";
+        $consultaReemplazoId  = isset($_POST['consulta_reemplazo_id']) ? $_POST['consulta_reemplazo_id'] != "" ? $_POST['consulta_reemplazo_id'] : "NULL" : "NULL";
+        $consultaRepo -> bloquearConsulta($consultaId,$descripcionBaja,$consultaReemplazoId);
+        echo json_encode("Consulta Bloqueada Exitosamente",200);
     }else{
         echo json_encode("Id de consulta inexistente",204);
     }

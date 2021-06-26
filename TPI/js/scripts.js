@@ -53,37 +53,7 @@ $(document).ready(function(){
             $("#materiaFilter").append(response);
         }
     });
-    docenteQueryCreateConsulta(1)
 });
-
-
-function materiaQueryCreateConsulta(a){
-  response = '';
-  $.ajax({
-    url:"materiaQuery.php",    //the page containing php script
-    type: "get",    //request type,
-    dataType: 'html',
-    data:{docente:docente},
-    success:function(response){
-      $("#materiaCreateFilter").append(response);
-    }
-  });
-  $('#materiaCreateFilter').removeAttr('hidden');
-}
-
-function docenteQueryCreateConsulta(docente){
-  response = '';
-  $.ajax({
-    url:"profesorQuery.php",    //the page containing php script
-    type: "get",    //request type,
-    dataType: 'html',
-    data:{docente:docente},
-    success:function(response){
-      $("#profesorCreateFilter").append(response);
-    }
-  });
-   
-}
 
 function buscar () {
   $("table#consultasTable tbody").html("");
