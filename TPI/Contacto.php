@@ -68,7 +68,7 @@
 
         <?php   
 
-            require 'includes/mail.php';
+        include ('includes/mail.php');
 
             if($_POST) 
             {
@@ -117,6 +117,7 @@
 
 
                 enviarMail($u_email,$u_asunto,$cuerpo_html);
+
 
             } 
 
