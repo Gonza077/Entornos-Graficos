@@ -19,7 +19,7 @@ $consultaRepo = New ConsultaRepository();
     if(isset($_POST['consultaId'])){
         $consultaId  = $_POST['consultaId'];
         $solicitudRepo -> altaSolicitudByPersonaAndConsulta($USER_ID,$consultaId);
-        $consultaRepo -> addCupoToConsulta($consultaId);
+        $consultaRepo -> subctractCupoToConsulta($consultaId);
         echo json_encode("Solicitud Creada",200);
     }else{
         echo json_encode("Id de consulta inexistente",204);

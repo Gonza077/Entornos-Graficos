@@ -44,13 +44,13 @@ while($row = $solicitudes-> fetch_assoc())
 $sqlQuery="CALL queryConsulta($materiaSelected,$profesorSelected,$estadoSelected)";
 $registros = $db-> connect() ->query($sqlQuery);
 #Mostramos los resultados obtenidos dentro de una tabla
-$bloqueadaClass="class='table-danger'";
 while( $row = $registros -> fetch_assoc() ) {
    $id = $row["id"];
    $cupo = $row["cupo"];
    $docente_id = $row["docente_id"];
+   $bloqueada = isset($row["fecha_baja"]);
    $idInSolicitudes = in_array($id,$ids_solicitudes)? 1:0;
-   echo "<tr class='".(isset($row["fecha_baja"]) ? "table-danger" : "")."'>";
+   echo "<tr class='".($bloqueada ? "table-danger" : "")."'>";
    echo "<td>".$idInSolicitudes."</td>";
    echo "<td>".$row["materia"]."</td>";
    echo "<td>".$row["docente_nombre"]."</td>";
@@ -58,7 +58,7 @@ while( $row = $registros -> fetch_assoc() ) {
    echo "<td>".$cupo."</td>";
    echo "<td>";
    if(isset($USER)){
-      if(!$USER->isDocente()){
+      if(!$USER->isDocente() && !$bloqueada ){
          if ($cupo > 0 && !$idInSolicitudes ){
             echo "<button type='button' class='btn btn-success' id='inscripcion-$id' onclick='openInscripcionConsultaModal($id)'>+</button>";
          }
