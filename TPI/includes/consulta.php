@@ -2,9 +2,14 @@
 
 include_once 'db.php';
 
-class Consulta extends DB{
+class Consulta{
     public $id;
-    public $horario;
+    // Datos para el excel
+    public $id_materia;
+    public $id_profesor;
+    public $legajo_profesor;
+    public $codigo_materia;
+    // Datos para el excel
     public $cupo;
     public $descripcion_baja;
     public $fecha_baja;
@@ -12,7 +17,10 @@ class Consulta extends DB{
     public $docente_nombre;
     public $docente_apellido;
 
-    public function __construct($consultaArr){
+    public function __construct(){
+    }
+
+    public function setConsulta($consultaArr){
         $this->id = $consultaArr[0];
         $this->horario = $consultaArr[1];
         $this->cupo = $consultaArr[2];
@@ -22,50 +30,6 @@ class Consulta extends DB{
         $this->docente_nombre = $consultaArr[6];
         $this->docente_apellido = $consultaArr[7];
     }
-
-    // public function getConsultaById($consulta_id){
-        
-    //     $query=" SELECT
-    //             CONSULTA.id AS 'id',
-    //             CONSULTA.fecha AS 'horario',
-    //             CONSULTA.cupo AS 'cupo',
-    //             CONSULTA.descripcion_baja AS 'descripcion_baja',
-    //             CONSULTA.fecha_baja AS 'fecha_baja',
-    //             MATERIA.nombre AS 'materia_nombre',
-    //             PERSONA.nombre AS 'docente_nombre',
-    //             PERSONA.apellido AS 'docente_apellido'
-    //             FROM CONSULTA
-    //             INNER JOIN PERSONA
-    //             ON CONSULTA.docente_id = PERSONA.id
-    //             INNER JOIN MATERIA
-    //             ON CONSULTA.materia_id = MATERIA.id
-    //             WHERE CONSULTA.id =$consulta_id" ;
-
-    //     $this->fetchConsultaFromDatabase($query);
-    //     return $this;
-    // }
-
-    // private function fetchConsultaFromDatabase($query){
-    //     $stmt = $this->connect()->query($query);
-
-    //     $fila = $stmt->fetch_row();
-
-    //     if (!is_null($fila)){
-    //         $this->setConsulta($fila);
-    //     }
-    // }
-
-    // private function setConsulta($consultaArr){
-    //     $this->id = $consultaArr[0];
-    //     $this->horario = $consultaArr[1];
-    //     $this->cupo = $consultaArr[2];
-    //     $this->descripcion_baja = $consultaArr[3];
-    //     $this->fecha_baja = $consultaArr[4];
-    //     $this->materia_nombre = $consultaArr[5];
-    //     $this->docente_nombre = $consultaArr[6];
-    //     $this->docente_apellido = $consultaArr[7];
-    // }
-
 }
 
 
@@ -97,7 +61,9 @@ class ConsultaRepository extends DB{
         $stmt = $this->connect()->query($query);
 
         $fila = $stmt->fetch_row();
-        return isset($fila) ? new Consulta($fila) : NULL ;
+        $consulta = new Consulta();
+        isset($fila) ? $consulta->setConsulta($fila) : $consulta = NULL ;
+        return $consulta;
     }
 
     private function query($materiaSelected,$profesorSelected,$estadoSelected){

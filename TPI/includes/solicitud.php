@@ -47,7 +47,7 @@ class SolicitudRepository extends DB{
         $stmt = $this->connect()->query($query);
 
         $fila = $stmt->fetch_row();
-        return isset($fila) ? new Consulta($fila) : NULL ;
+        return isset($fila) ? setConsulta(new Consulta(),$fila) : NULL ;
     }
 
     private function query($query){
