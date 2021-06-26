@@ -10,6 +10,8 @@ class User extends DB{
     private $docente;
     private $admin;
     private $telefono;
+    private $legajo;
+
 
     public function userExists($email_check, $pass_check){
         $md5pass_check = md5($pass_check);
@@ -25,6 +27,7 @@ class User extends DB{
         }
         return false;  
     }
+
 
     public function getUserByEmail($email){
         
@@ -103,6 +106,10 @@ class User extends DB{
 
     public function getApellido(){
         return $this->apellido;
+    }
+
+    public function getLegajo(){
+        return $this->legajo;
     }
 
     public function getId(){

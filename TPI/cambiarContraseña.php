@@ -6,28 +6,46 @@
     $user_session = new UserSession();
     $user = new User();
     $user = $user_session->getCurrentUser();
-    $errorContraseñaDistintas = "";
+    $error = "";
     $id = $user->getId();
 
-        if (isset($_POST['password1']) && isset($_POST['password2']))
-                {
-                    $clave1 = $_POST['password1'];
-                    $clave2 = $_POST['password2'];
+    if (isset($_POST['password1']))
 
-                    if ($clave1 == $clave2)
+    {   
+        $contraseñaActual  = $_POST['password1'];
+        $db= new DB();
+        $passMD5=md5($contraseñaActual);
+        $query = "SELECT id  FROM `persona` WHERE id = $id AND password = '$passMD5'";
+        $stmt = $db->connect()->query($query);
+        $fila = $stmt->fetch_row();
+
+        if (!is_null($fila))
+        {
+            if (isset($_POST['password2']) && isset($_POST['password3']))
+            {   
+                $clave2 = $_POST['password2'];
+                $clave3 = $_POST['password3'];
+
+                if ($clave2 == $clave3)
                     {
                         // $user->cambiarContraseñaUsuario($clave1,$id);
                         $db= new DB();
-                        $passMD5=md5($clave1);
+                        $passMD5=md5($clave2);
                         $query="UPDATE persona Set password = '$passMD5' where id=$id";
-                        $solicitudes = $db-> connect() ->query($query);
-                        $errorContraseñaDistintas= 'La contraseña ha sido modificada exitosamente.';
+                        $stmt = $db-> connect() ->query($query);
+                        $error= 'La contraseña ha sido modificada exitosamente.';
                     }
-                    else
-                    {
-                        $errorContraseñaDistintas= 'Las contraseñas deben ser iguales, inténtelo nuevamente.';
-                    }
+                else
+                {
+                    $error= 'Las nuevas contraseñas deben ser iguales, inténtelo nuevamente.';
                 }
+            }
+        }
+        else
+        $error= 'La contraseña actual es incorrecta.';
+            
+    }
+    
 
 ?> 
 
@@ -49,11 +67,14 @@
                         <div class="form-group">
                             <img class="mb-4 d-block mx-auto" src="img/LogoUTN.png" alt="Logo de la Universidad Tecnológica Nacional" width="100" height="100">
                             <h2 class="d-flex justify-content-center">Cambiar Contraseña</h2>
-                            <label for="inputPassword1">Nueva Contraseña</label>
-                            <input type="password" id="inputPassword1" name="password1" class="form-control" required>
+                            <label for="inputPassword1">Contraseña Actual</label>
+                            <input type="password" id="inputPassword1" name="password1" class="form-control" pattern="[A-Za-z0-​9]{6,20}" title="Ingrese su contraseña actual" required>
                             <br>
-                            <label for="inputPassword2">Repetir Nueva Contraseña</label>
-                            <input type="password" id="inputPassword2" name="password2" class="form-control" required>
+                            <label for="inputPassword2">Nueva Contraseña</label>
+                            <input type="password" id="inputPassword2" name="password2" class="form-control" pattern="[A-Za-z0-​9]{6,20}" title="Ingrese una contraseña de letras y/o números de 6 a 12 dígitos" required>
+                            <br>
+                            <label for="inputPassword3">Repetir Nueva Contraseña</label>
+                            <input type="password" id="inputPassword3" name="password3" class="form-control" required>
                         </div>
                         <br>
                         <div class="form-group">
@@ -66,7 +87,7 @@
                                 </div>
                             </div>
                         </div>
-                        <?php echo $errorContraseñaDistintas; ?>
+                        <?php echo $error; ?>
                     </form>   
                 </div>
             </div>

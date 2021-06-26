@@ -1,20 +1,17 @@
-.vertical-menu {
-    width: 200px;
-  }
-  
-  .vertical-menu a {
-    background-color: rgb(199, 220, 240);
-    color: black;
-    display: block;
-    padding: 12px;
-    text-decoration: none;
-  }
-  
-  .vertical-menu a:hover {
-    background-color: #ccc;
-  }
-  
-  .vertical-menu a.active {
-    background-color: #04AA6D;
-    color: white;
-  }
+
+.navbar-nav.navbar-center 
+{
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+}
+/* cambiar tipo de letra */
+.navbar-nav.navbar-center {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: large;
+}
+
+/* cambiar el color de fondo a la barra */
+nav.navbar{
+    background-color: #ffffff;
+}
