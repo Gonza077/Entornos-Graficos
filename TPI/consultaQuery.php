@@ -63,9 +63,15 @@ $sqlQuery=" SELECT
             ON consulta.materia_id = materia.id
             WHERE   (  materia_id = IFNULL($materiaSelected,materia_id) )
             AND     (  docente_id = IFNULL($profesorSelected,docente_id) )
-            AND    (isnull($estadoSelected)
-                  OR (NOT isnull($estadoSelected) AND $estadoSelected = 1 AND fecha_baja is not null )
-                     OR (NOT isnull($estadoSelected) AND $estadoSelected = 2 AND fecha_baja is null)  )
+            AND (isnull($estadoSelected)
+               OR (NOT isnull($estadoSelected) AND $estadoSelected = 1 AND fecha_baja is not null )
+               OR (NOT isnull($estadoSelected) AND $estadoSelected = 2 AND fecha_baja is null)  
+               )
+            AND (isnull($horarioSelected)
+				   OR (NOT isnull($horarioSelected) AND $horarioSelected = 1 AND CAST(fecha as time)  between '07:30:00' and '12:50:00')
+				   OR (NOT isnull($horarioSelected) AND $horarioSelected = 2 AND CAST(fecha as time)  between '13:10:00' and '18:30:00')
+				   OR (NOT isnull($horarioSelected) AND $horarioSelected = 3 AND CAST(fecha as time)  between '18:45:00' and '24:00:00')
+               )
             AND consulta.fecha >= CURDATE(); ";
 
 #Mostramos los resultados obtenidos dentro de una tabla
