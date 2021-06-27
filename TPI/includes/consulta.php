@@ -39,20 +39,20 @@ class ConsultaRepository extends DB{
     public function getConsultaById($consulta_id){
         
         $query=" SELECT
-                CONSULTA.id AS 'id',
-                CONSULTA.fecha AS 'horario',
-                CONSULTA.cupo AS 'cupo',
-                CONSULTA.descripcion_baja AS 'descripcion_baja',
-                CONSULTA.fecha_baja AS 'fecha_baja',
-                MATERIA.nombre AS 'materia_nombre',
-                PERSONA.nombre AS 'docente_nombre',
-                PERSONA.apellido AS 'docente_apellido'
-                FROM CONSULTA
-                INNER JOIN PERSONA
-                ON CONSULTA.docente_id = PERSONA.id
-                INNER JOIN MATERIA
-                ON CONSULTA.materia_id = MATERIA.id
-                WHERE CONSULTA.id =$consulta_id" ;
+                consulta.id AS 'id',
+                consulta.fecha AS 'horario',
+                consulta.cupo AS 'cupo',
+                consulta.descripcion_baja AS 'descripcion_baja',
+                consulta.fecha_baja AS 'fecha_baja',
+                materia.nombre AS 'materia_nombre',
+                persona.nombre AS 'docente_nombre',
+                persona.apellido AS 'docente_apellido'
+                FROM consulta
+                INNER JOIN persona
+                ON consulta.docente_id = persona.id
+                INNER JOIN materia
+                ON consulta.materia_id = materia.id
+                WHERE consulta.id =$consulta_id" ;
 
         // $this->fetchConsultaFromDatabase($query);
         return $this->fetchConsultaFromDatabase($query);

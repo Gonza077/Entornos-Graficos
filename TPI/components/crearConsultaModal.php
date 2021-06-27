@@ -38,49 +38,6 @@
 </div>
 
 <script>
-    $(document).ready(function(){
-        $( "#crearConsulta" ).click(function() {
-            $('#crearConsultaModal').modal('toggle');
-        });
-        docenteQueryCreateConsulta();
-    });
-
-    function openCrearConsultaModal(){
-        $('#crearConsultaModal').modal('show');
-    }
-
-    function docenteQueryCreateConsulta(docente){
-      response = '';
-      $.ajax({
-        url:"profesorQuery.php",
-        type: "get",
-        dataType: 'html',
-        data:{docente:docente},
-        success:function(response){
-          $("#profesorCreateFilter").append(response);
-        }
-      });  
-    }
-
-    function materiaQueryCreateConsulta(){
-      response = '';
-      var docente = $('#profesorCreateFilter').children("option:selected").val();
-      console.log()
-      if (docente != undefined || docente != ''){
-        $('#materiaCreateFilter').prop("disabled", false);
-        $("#materiaCreateFilter").html(response);
-        $.ajax({
-          url:"materiaQuery.php",
-          type: "get",
-          dataType: 'html',
-          data:{docente:docente},
-          success:function(response){
-            $("#materiaCreateFilter").append(response);
-          }
-        });
-        } else {
-          $('#materiaCreateFilter').prop("disabled", true);
-        }
-      }
+  
 
 </script>

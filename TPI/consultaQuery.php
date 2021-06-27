@@ -19,7 +19,7 @@ $horarioSelected  = $_GET['horarioSelected'] != NULL ? $_GET['horarioSelected'] 
 $db = new DB();
 
 $sqlQuerySolicitudes="SELECT solicitud.consulta_id AS consulta_id , persona.id AS persona_id , MAX(solicitud.id)
-                     FROM consultas_db.persona
+                     FROM persona
                      INNER JOIN solicitud 
                      ON persona.id = solicitud.persona_id
                      INNER JOIN consulta 
@@ -60,7 +60,7 @@ $sqlQuery=" SELECT
             INNER JOIN persona
             ON consulta.docente_id = persona.id
             INNER JOIN materia
-            ON consulta.materia_id = MATERIA.id
+            ON consulta.materia_id = materia.id
             WHERE   (  materia_id = IFNULL($materiaSelected,materia_id) )
             AND     (  docente_id = IFNULL($profesorSelected,docente_id) )
             AND    (isnull($estadoSelected)
