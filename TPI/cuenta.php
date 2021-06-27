@@ -36,29 +36,36 @@
                         <hr>
                         <div class="user-info">
                             <h3 class="d-flex justify-content-left">Datos Personales</h3>
-                            <div class="col-md-6">
-                                <?php $nombre = $user->getNombre();?>
-                                <label for="nombre">Nombre</label>
-                                <input readonly id="nombre" name="nombre" type="text" value="<?php echo $nombre ?>" class="form-control">
+                            <br>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <?php $legajo = $user->getLegajo();?>
+                                    <label for="legajo">Legajo</label>
+                                    <input readonly id="legajo" name="legajo" type="text" value="<?php echo $legajo ?>" class="form-control">
+                                </div>
                             </div>
                             <br>
-                            <div class="col-md-6">
-                                <label for="nombre">Apellido</label>
-                                <?php $apellido= $user->getApellido();?>
-                                <input readonly id="nombre" name="nombre" type="text" value="<?php echo $apellido ?>" class="form-control">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <?php $nombre = $user->getNombre();?>
+                                    <label for="nombre">Nombre</label>
+                                    <input readonly id="nombre" name="nombre" type="text" value="<?php echo $nombre ?>" class="form-control">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="nombre">Apellido</label>
+                                    <?php $apellido= $user->getApellido();?>
+                                    <input readonly id="nombre" name="nombre" type="text" value="<?php echo $apellido ?>" class="form-control">
+                                </div>
                             </div>
                             <br>
-                            <div class="col-md-6">
-                                <?php $email = $user->getEmail();?>
-                                <label for="email">Correo Electrónico</label>
-                                <input readonly id="email" name="email" type="text" value="<?php echo $email ?>" class="form-control">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <?php $email = $user->getEmail();?>
+                                    <label for="email">Correo Electrónico</label>
+                                    <input readonly id="email" name="email" type="text" value="<?php echo $email ?>" class="form-control">
+                                </div>
                             </div>
                             <br>
-                            <div class="col-md-6">
-                                <?php $legajo = $user->getLegajo();?>
-                                <label for="legajo">Legajo</label>
-                                <input readonly id="legajo" name="legajo" type="text" value="<?php echo $legajo ?>" class="form-control">
-                            </div>
                             <!-- <div class="col-md-12">
                             <?php $telefono = $user->getTelefono();?>
                                 <label for="telefono">Teléfono</label>
