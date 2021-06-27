@@ -49,18 +49,18 @@ if($result = $db-> connect() ->query($sqlQuerySolicitudes)){
 // $sqlQuery="CALL queryConsulta($materiaSelected,$profesorSelected,$estadoSelected)";
 
 $sqlQuery=" SELECT
-            CONSULTA.id as 'id',
-            MATERIA.nombre as 'materia',
-            PERSONA.nombre as 'docente_nombre',
-            PERSONA.id as 'docente_id',
-            CONSULTA.fecha as 'horario',
-            CONSULTA.cupo as 'cupo',
-            CONSULTA.fecha_baja as 'fecha_baja'
-            FROM CONSULTA
-            INNER JOIN PERSONA
-            ON CONSULTA.docente_id = PERSONA.id
-            INNER JOIN MATERIA
-            ON CONSULTA.materia_id = MATERIA.id
+            consulta.id as 'id',
+            materia.nombre as 'materia',
+            persona.nombre as 'docente_nombre',
+            persona.id as 'docente_id',
+            consulta.fecha as 'horario',
+            consulta.cupo as 'cupo',
+            consulta.fecha_baja as 'fecha_baja'
+            FROM consulta
+            INNER JOIN persona
+            ON consulta.docente_id = persona.id
+            INNER JOIN materia
+            ON consulta.materia_id = MATERIA.id
             WHERE   (  materia_id = IFNULL($materiaSelected,materia_id) )
             AND     (  docente_id = IFNULL($profesorSelected,docente_id) )
             AND    (isnull($estadoSelected)
