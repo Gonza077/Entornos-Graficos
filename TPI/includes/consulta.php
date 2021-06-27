@@ -4,6 +4,7 @@ include_once 'db.php';
 
 class Consulta{
     public $id;
+    public $horario;
     // Datos para el excel
     public $id_materia;
     public $id_profesor;

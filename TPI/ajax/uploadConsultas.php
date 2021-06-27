@@ -3,6 +3,7 @@ include('../includes/db.php');
 include('../vendor/autoload.php');
 //Se definen que tipos de archivos se aceptan,
 $allowedFileType = ['application/vnd.ms-excel','text/xls','text/xlsx','application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'];
+var $consultaArray = array();
 if(in_array($_FILES["fileToUpload"]["type"],$allowedFileType)){ 
     $target_file = "../uploads/".$_FILES["fileToUpload"]["name"];
     if(move_uploaded_file($_FILES["fileToUpload"]["tmp_name"],$target_file)){

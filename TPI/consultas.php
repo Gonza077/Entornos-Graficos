@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-
-
-<?php include_once('includes/user_session.php');
-      include_once('includes/user.php');
-
-$user_session = new UserSession();
-$user = $user_session->getCurrentUser();
+<?php 
+  include_once('includes/user_session.php');
+  include_once('includes/user.php');
+  $user_session = new UserSession();
+  $user = $user_session->getCurrentUser();
 ?> 
-
-
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="utf-8">
@@ -27,28 +23,25 @@ $user = $user_session->getCurrentUser();
       <div class="col-3">
       <label for="estadoFilter">Estado</label>
           <select class="custom-select" id="estadoFilter">
-            <option selected></option>
+            <option value="" selected></option>
           </select>
       </div>
       <div class="col-3">
         <label for="profesorFilter">Docente</label>
         <select class="custom-select" id="profesorFilter">
-          <option selected></option>
+          <option value="" selected></option>
         </select>
       </div>
       <div class="col-3">
         <label for="materiaFilter">Materia</label>
         <select class="custom-select" id="materiaFilter">
-          <option selected></option>
+          <option value="" selected></option>
         </select>
       </div>
       <div class="col-3">
       <label for="horarioFilter">Horario</label>
         <select class="custom-select" id="horarioFilter">
-          <option selected></option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
+          <option value="" selected></option>
         </select>
         </div>
       </div>

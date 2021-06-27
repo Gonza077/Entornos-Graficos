@@ -1,18 +1,9 @@
 <?php 
-
-    include_once('includes/user_session.php');
-    include_once('includes/user.php');
-
-    $user_session = new UserSession();
-    $user = $user_session->getCurrentUser();
-
-    // if(!isset($USER)){
-    //     header("Location: http://localhost/consultas.php");
-    //     die();
-    //  }
+  include_once('includes/user_session.php');
+  include_once('includes/user.php');
+  $user_session = new UserSession();
+  $user = $user_session->getCurrentUser();
 ?> 
-
-
 <!DOCTYPE html>
 <html>
     <head>

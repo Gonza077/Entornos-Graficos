@@ -53,6 +53,15 @@ $(document).ready(function(){
             $("#materiaFilter").append(response);
         }
     });
+
+    $.ajax({
+      url:"horarioQuery.php",    //the page containing php script
+      type: "get",    //request type,
+      dataType: 'html',
+      success:function(response){
+          $("#horarioFilter").append(response);
+      }
+  });
 });
 
 function buscar () {

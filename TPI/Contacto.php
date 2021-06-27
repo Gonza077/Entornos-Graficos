@@ -1,15 +1,9 @@
 <?php 
-
     include_once('includes/user_session.php');
     include_once('includes/user.php');
-
     $user_session = new UserSession();
     $user = $user_session->getCurrentUser();
 ?> 
-
-
-
-
 <!DOCTYPE html>
 <html>
     <head>

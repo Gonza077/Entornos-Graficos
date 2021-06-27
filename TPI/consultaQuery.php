@@ -33,57 +33,85 @@ $sqlQuerySolicitudes="SELECT solicitud.consulta_id AS consulta_id , persona.id A
 // $solicitudRepo = New SolicitudRepository();
 // $solicitudes = $consultaRepo->getConsultaById($consulta_id);
 
-$solicitudes = $db-> connect() ->query($sqlQuerySolicitudes);
+// $solicitudes = $db-> connect() ->query($sqlQuerySolicitudes);
 $ids_solicitudes[] = [];
-while($row = $solicitudes-> fetch_assoc())
-{
-   array_push($ids_solicitudes,$row['consulta_id']);
+// while($row = $solicitudes-> fetch_assoc())
+// {
+//    array_push($ids_solicitudes,$row['consulta_id']);
+// }
+if($result = $db-> connect() ->query($sqlQuerySolicitudes)){
+   while ($row = $result->fetch_assoc()) {
+        array_push($ids_solicitudes,$row['consulta_id']);
+   }
 }
 
 
-$sqlQuery="CALL queryConsulta($materiaSelected,$profesorSelected,$estadoSelected)";
-$registros = $db-> connect() ->query($sqlQuery);
+// $sqlQuery="CALL queryConsulta($materiaSelected,$profesorSelected,$estadoSelected)";
+
+$sqlQuery=" SELECT
+            CONSULTA.id as 'id',
+            MATERIA.nombre as 'materia',
+            PERSONA.nombre as 'docente_nombre',
+            PERSONA.id as 'docente_id',
+            CONSULTA.fecha as 'horario',
+            CONSULTA.cupo as 'cupo',
+            CONSULTA.fecha_baja as 'fecha_baja'
+            FROM CONSULTA
+            INNER JOIN PERSONA
+            ON CONSULTA.docente_id = PERSONA.id
+            INNER JOIN MATERIA
+            ON CONSULTA.materia_id = MATERIA.id
+            WHERE   (  materia_id = IFNULL($materiaSelected,materia_id) )
+            AND     (  docente_id = IFNULL($profesorSelected,docente_id) )
+            AND    (isnull($estadoSelected)
+                  OR (NOT isnull($estadoSelected) AND $estadoSelected = 1 AND fecha_baja is not null )
+                     OR (NOT isnull($estadoSelected) AND $estadoSelected = 2 AND fecha_baja is null)  )
+            AND consulta.fecha >= CURDATE(); ";
+
 #Mostramos los resultados obtenidos dentro de una tabla
-while( $row = $registros -> fetch_assoc() ) {
-   $id = $row["id"];
-   $cupo = $row["cupo"];
-   $docente_id = $row["docente_id"];
-   $bloqueada = isset($row["fecha_baja"]);
-   $idInSolicitudes = in_array($id,$ids_solicitudes)? 1:0;
-   echo "<tr class='".($bloqueada ? "table-danger" : "")."'>";
-   echo "<td>".($bloqueada ? "BLOQUEADA" : "")."</td>";
-   echo "<td>".$row["materia"]."</td>";
-   echo "<td>".$row["docente_nombre"]."</td>";
-   echo "<td>".$row["horario"]."</td>";
-   echo "<td>".$cupo."</td>";
-   echo "<td>";
-   if(isset($USER)){
-      if(!$USER->isDocente() && !$bloqueada ){
-         if ($cupo > 0 && !$idInSolicitudes ){
-            echo "<button type='button' class='btn btn-success' id='inscripcion-$id' onclick='openInscripcionConsultaModal($id)' title='Inscribirse a consulta'>
-               <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-calendar-plus-fill' viewBox='0 0 16 16'>
-                  <path d='M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4V.5zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2zM8.5 8.5V10H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V11H6a.5.5 0 0 1 0-1h1.5V8.5a.5.5 0 0 1 1 0z'/>
-               </svg>
-            </button>";
+
+if($registros = $db-> connect() ->query($sqlQuery)){
+   while ($row = $registros->fetch_assoc()) {
+      $id = $row["id"];
+      $cupo = $row["cupo"];
+      $docente_id = $row["docente_id"];
+      $bloqueada = isset($row["fecha_baja"]);
+      $idInSolicitudes = in_array($id,$ids_solicitudes)? 1:0;
+      echo "<tr class='".($bloqueada ? "table-danger" : "")."'>";
+      echo "<td>".($bloqueada ? "BLOQUEADA" : "")."</td>";
+      echo "<td>".$row["materia"]."</td>";
+      echo "<td>".$row["docente_nombre"]."</td>";
+      echo "<td>".$row["horario"]."</td>";
+      echo "<td>".$cupo."</td>";
+      echo "<td>";
+      if(isset($USER)){
+         if(!$USER->isDocente() && !$bloqueada ){
+            if ($cupo > 0 && !$idInSolicitudes ){
+               echo "<button type='button' class='btn btn-success' id='inscripcion-$id' onclick='openInscripcionConsultaModal($id)' title='Inscribirse a consulta'>
+                  <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-calendar-plus-fill' viewBox='0 0 16 16'>
+                     <path d='M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4V.5zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2zM8.5 8.5V10H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V11H6a.5.5 0 0 1 0-1h1.5V8.5a.5.5 0 0 1 1 0z'/>
+                  </svg>
+               </button>";
+            }
+            if($idInSolicitudes){
+               echo "<button type='button' class='btn btn-danger' id='cancelar-$id' onclick='openCancelarConsultaModal($id)' title='Cancelar inscripcion a consulta'>
+                  <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-calendar-x-fill' viewBox='0 0 16 16'>
+                     <path d='M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4V.5zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2zM6.854 8.146 8 9.293l1.146-1.147a.5.5 0 1 1 .708.708L8.707 10l1.147 1.146a.5.5 0 0 1-.708.708L8 10.707l-1.146 1.147a.5.5 0 0 1-.708-.708L7.293 10 6.146 8.854a.5.5 0 1 1 .708-.708z'/>
+                  </svg>
+               </button>";
+            }
          }
-         if($idInSolicitudes){
-            echo "<button type='button' class='btn btn-danger' id='cancelar-$id' onclick='openCancelarConsultaModal($id)' title='Cancelar inscripcion a consulta'>
-               <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-calendar-x-fill' viewBox='0 0 16 16'>
-                  <path d='M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4V.5zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2zM6.854 8.146 8 9.293l1.146-1.147a.5.5 0 1 1 .708.708L8.707 10l1.147 1.146a.5.5 0 0 1-.708.708L8 10.707l-1.146 1.147a.5.5 0 0 1-.708-.708L7.293 10 6.146 8.854a.5.5 0 1 1 .708-.708z'/>
+         if ($USER_ID == $docente_id && !$bloqueada){
+            echo "<button type='button' class='btn btn-danger' id='bloquear-$id' onclick='openBloquearConsultaModal($id)' title='Bloquear Consulta'>
+               <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-lock-fill' viewBox='0 0 16 16'>
+                  <path d='M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z'></path>
                </svg>
-            </button>";
+            </button>"; 
          }
       }
-      if ($USER_ID == $docente_id && !$bloqueada){
-         echo "<button type='button' class='btn btn-danger' id='bloquear-$id' onclick='openBloquearConsultaModal($id)' title='Bloquear Consulta'>
-            <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-lock-fill' viewBox='0 0 16 16'>
-               <path d='M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z'></path>
-            </svg>
-         </button>"; 
-      }
-   }
-   echo "</td>";
-   echo "<tr>";
-};
+      echo "</td>";
+      echo "<tr>";
+   };
+}
 $db -> disconnect();
 ?>

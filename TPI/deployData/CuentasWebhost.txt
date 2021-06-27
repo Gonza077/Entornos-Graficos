@@ -5,6 +5,6 @@ CONTRA - AA123456AA
 --- rPT82FKytl7Wd5*3sC1n
 
 DB
---DATABASENAME --- consultas_db
---USERNAME     --- admin
---PASSWORD     --- Kb$FV#X6c4ZC+9[
+--DATABASENAME --- id17138319_consultas_db
+--USERNAME     --- id17138319_administrador
+--PASSWORD     --- SkFwa$R_RhI~c3!!
