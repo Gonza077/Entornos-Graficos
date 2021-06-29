@@ -5,7 +5,7 @@ $query = "SELECT id,nombre FROM materia ORDER BY nombre ASC";
 
 if(isset($_GET['docente'])){
    $docente = $_GET['docente'];
-   $query = "SELECT * FROM materia 
+   $query = "SELECT materia.id as 'id' , materia.nombre as 'nombre' FROM materia 
    INNER JOIN materia_docente
    ON materia.id = materia_docente.materia_id
    WHERE materia_docente.docente_id = $docente

@@ -24,7 +24,7 @@ $consultaRepo = New ConsultaRepository();
         echo json_encode("Consulta Bloqueada Exitosamente",200);
         $consultaActual =$consultaRepo->getConsultaById($consultaId);
 
-        enviarMail('jpdok98@gmail.com','Bloqueo de Consulta',setearCuerpoMail($consultaActual));
+        enviarMail('entornoshosttest@gmail.com','Bloqueo de Consulta',setearCuerpoMail($consultaActual));
 
 
     }else{

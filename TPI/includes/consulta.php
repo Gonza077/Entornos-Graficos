@@ -4,10 +4,10 @@ include_once 'db.php';
 
 class Consulta{
     public $id;
-    public $horario;
+    public $fecha;
     // Datos para el excel
-    public $id_materia;
-    public $id_profesor;
+    public $docente_id;
+    public $materia_id;
     public $legajo_profesor;
     public $codigo_materia;
     // Datos para el excel
@@ -21,15 +21,17 @@ class Consulta{
     public function __construct(){
     }
 
-    public function setConsulta($consultaArr){
-        $this->id = $consultaArr[0];
-        $this->horario = $consultaArr[1];
-        $this->cupo = $consultaArr[2];
-        $this->descripcion_baja = $consultaArr[3];
-        $this->fecha_baja = $consultaArr[4];
-        $this->materia_nombre = $consultaArr[5];
-        $this->docente_nombre = $consultaArr[6];
-        $this->docente_apellido = $consultaArr[7];
+    public function setConsulta($id,$docente_id,$materia_id,$fecha,$cupo,$descripcion_baja=null,$fecha_baja=null,$materia_nombre=null,$docente_nombre=null,$docente_apellido=null){
+        $this->id = $id;
+        $this->docente_id = $docente_id;
+        $this->materia_id = $materia_id;
+        $this->fecha = $fecha;
+        $this->cupo = $cupo;
+        $this->descripcion_baja = $descripcion_baja;
+        $this->fecha_baja = $fecha_baja;
+        $this->materia_nombre = $materia_nombre;
+        $this->docente_nombre = $docente_nombre;
+        $this->docente_apellido = $docente_apellido;
     }
 }
 
@@ -40,7 +42,9 @@ class ConsultaRepository extends DB{
         
         $query=" SELECT
                 consulta.id AS 'id',
-                consulta.fecha AS 'horario',
+                consulta.docente_id AS 'docente_id',
+                consulta.materia_id AS 'materia_id',
+                consulta.fecha AS 'fecha',
                 consulta.cupo AS 'cupo',
                 consulta.descripcion_baja AS 'descripcion_baja',
                 consulta.fecha_baja AS 'fecha_baja',
@@ -52,9 +56,8 @@ class ConsultaRepository extends DB{
                 ON consulta.docente_id = persona.id
                 INNER JOIN materia
                 ON consulta.materia_id = materia.id
-                WHERE consulta.id =$consulta_id" ;
+                WHERE consulta.id = $consulta_id" ;
 
-        // $this->fetchConsultaFromDatabase($query);
         return $this->fetchConsultaFromDatabase($query);
     }
 
@@ -63,7 +66,9 @@ class ConsultaRepository extends DB{
 
         $fila = $stmt->fetch_row();
         $consulta = new Consulta();
-        isset($fila) ? $consulta->setConsulta($fila) : $consulta = NULL ;
+        isset($fila) 
+        ? $consulta->setConsulta($fila[0],$fila[1],$fila[2],$fila[3],$fila[4],$fila[5],$fila[6],$fila[7],$fila[8],$fila[9]) 
+        : $consulta = NULL ;
         return $consulta;
     }
 
@@ -102,6 +107,11 @@ class ConsultaRepository extends DB{
     public function subctractCupoToConsulta($consultaId){
         $query="UPDATE consulta SET cupo = cupo - 1, update_time = CURRENT_TIMESTAMP() WHERE consulta.id = $consultaId";
         $this->executeQuery($query);
+    }
+
+    public function crearConsulta($docenteId,$materiaId,$fecha,$cupo,$consultaReemplazoId){
+        $query="INSERT INTO consulta (docente_id,materia_id,create_time,update_time,fecha,cupo,consulta_reemplazo_id) VALUES ($docenteId,$materiaId,CURRENT_TIMESTAMP(),CURRENT_TIMESTAMP(),'$fecha',$cupo,$consultaReemplazoId)";
+        return $this->executeQuery($query);
     }
 
     private function executeQuery($query){

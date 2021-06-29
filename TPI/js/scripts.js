@@ -1,7 +1,8 @@
 var estadoSelected = profesorSelected = materiaSelected = horarioSelected = consulta = null;
-
+console.log(profesorSelected);
 $(document).ready(function(){
-
+    console.log(profesorSelected);
+    $("select#profesorFilter option[value='"+profesorSelected+"'").prop('selected', true);
     $("select#estadoFilter").change(function(){
       estadoSelected = $(this).children("option:selected").val();
       });
@@ -91,7 +92,7 @@ function getConsulta(consultaId){
       }
   });
 }
-
+// INSCRIPCION CONSULTA
 $(document).ready(function(){
   $( "#inscribirConsulta" ).click(function() {
   $('#inscripcionConsultaModal').modal('toggle');
@@ -125,54 +126,104 @@ $.ajax({
     })
     .always(r=>{buscar();});
 }
-
-
+// INSCRIPCION CONSULTA
+// CREAR CONSULTA
 $(document).ready(function(){
+  $('#datepickerCreate').datepicker({minDate: 0,dateFormat:"dd/mm/yy"});
   $( "#crearConsulta" ).click(function() {
       $('#crearConsultaModal').modal('toggle');
+      crearConsulta();
+      resetCrearConsulta();
   });
   docenteQueryCreateConsulta();
 });
+
+function resetCrearConsulta(){
+  $('#profesorCreateFilter').val(undefined);
+  $('#materiaCreateFilter').val(undefined);
+  $('#datepickerCreate').val(undefined);
+  $('#horaCreate').val(undefined);
+  $('#minutoCreate').val(undefined);
+  $('#crearConsulta').prop("disabled", true);
+}
+
+
+function crearConsulta(){
+  var consultaId = $('#profesorCreateFilter').children("option:selected").val();
+  var materiaId = $('#materiaCreateFilter').children("option:selected").val();
+  var fecha = $('#datepickerCreate').val();
+  var horarioHora = $('#horaCreate').children("option:selected").val();
+  var horarioMinutos = $('#minutoCreate').children("option:selected").val();
+  $.ajax({
+    url:"../ajax/crearConsulta.php",
+    type: "post",
+    dataType: 'json',
+    data: {docenteId:consultaId,materiaId:materiaId,fecha:fecha,horarioHora:horarioHora,horarioMinutos:horarioMinutos}
+    }).done(response=>{
+        openToast(response,"Creacion de Consulta",'success');
+      })
+      .fail(response=>{
+        openToast(response,"Creacion de Consulta",'error');
+      })
+      .always(r=>{buscar();});
+  }
 
 function openCrearConsultaModal(){
   $('#crearConsultaModal').modal('show');
 }
 
 function docenteQueryCreateConsulta(docente){
-response = '';
-$.ajax({
-  url:"profesorQuery.php",
-  type: "get",
-  dataType: 'html',
-  data:{docente:docente},
-  success:function(response){
-    $("#profesorCreateFilter").append(response);
-  }
-});  
-}
-
-function materiaQueryCreateConsulta(){
-response = '';
-var docente = $('#profesorCreateFilter').children("option:selected").val();
-console.log()
-if (docente != undefined || docente != ''){
-  $('#materiaCreateFilter').prop("disabled", false);
-  $("#materiaCreateFilter").html(response);
+  response = '';
   $.ajax({
-    url:"materiaQuery.php",
+    url:"profesorQuery.php",
     type: "get",
     dataType: 'html',
     data:{docente:docente},
     success:function(response){
-      $("#materiaCreateFilter").append(response);
+      $("#profesorCreateFilter").append(response);
     }
-  });
-  } else {
-    $('#materiaCreateFilter').prop("disabled", true);
-  }
+  });  
 }
 
+function materiaQueryCreateConsulta(){
+  setCrearConsultaDisabledState();
+  response = '';
+  var docente = $('#profesorCreateFilter').children("option:selected").val();
+  if (docente != undefined || docente != ''){
+    $('#materiaCreateFilter').prop("disabled", false);
+    $("#materiaCreateFilter").html("<option value='' selected disabled hidden>Seleccione Materia</option>");
+    $.ajax({
+      url:"materiaQuery.php",
+      type: "get",
+      dataType: 'html',
+      data:{docente:docente},
+      success:function(response){
+        $("#materiaCreateFilter").append(response);
+      }
+    });
+    } else {
+      $('#materiaCreateFilter').prop("disabled", true);
+    }
+    setCrearConsultaDisabledState();
+}
 
+function setCrearConsultaDisabledState(){
+  var docente = $('#profesorCreateFilter').children("option:selected").val();
+  var materia = $('#materiaCreateFilter').children("option:selected").val();
+  var fecha = $('#datepickerCreate').val();
+  var horarioHora = $('#horaCreate').children("option:selected").val();
+  var horarioMinutos = $('#minutoCreate').children("option:selected").val();
+  console.log(docente ,materia,fecha,horarioHora,horarioMinutos);
+  if (docente == '' || docente == undefined || materia == '' || materia == undefined || fecha == ''|| fecha== undefined ){
+    $('#crearConsulta').prop("disabled", true);
+  } else {
+    $('#crearConsulta').prop("disabled", false);
+  }
+
+}
+
+// CREAR CONSULTA
+// CANCELAR CONSULTA
 $(document).ready(function(){
   $( "#cancelarConsulta" ).click(function() {
   $('#cancelarConsultaModal').modal('toggle');
@@ -207,8 +258,8 @@ $.ajax({
 })
 .always(r=>{buscar();});
 }
-
-
+// CANCELAR CONSULTA
+// BLOQUEAR CONSULTA
 $(document).ready(function(){
 
   $( "#bloquearConsulta" ).click(function() {
@@ -255,3 +306,4 @@ $.ajax({
     })
     .always(r=>{buscar();});
 }
+// BLOQUEAR CONSULTA
