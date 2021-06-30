@@ -1,5 +1,5 @@
-<!-- Bloquear Consulta Modal -->
-<div class="modal fade" id="bloquearConsultaModal" tabindex="-1" aria-labelledby="bloquearConsultaModalLabel" aria-hidden="true">
+  <!-- Bloquear Consulta Modal -->
+  <div class="modal fade" id="bloquearConsultaModal" tabindex="-1" aria-labelledby="bloquearConsultaModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
     <form>

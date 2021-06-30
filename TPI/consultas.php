@@ -3,6 +3,13 @@
   include_once('includes/user.php');
   $user_session = new UserSession();
   $user = $user_session->getCurrentUser();
+  if ($user != null && $user->isDocente()){
+    $userId= $user->getId();
+    echo "<script type='text/javascript'>var profesorId = $userId;</script>";
+  } else {
+    echo "<script type='text/javascript'>var profesorId = undefined;</script>";
+  }
+
 ?> 
 <!DOCTYPE html>
 <html lang="es">
@@ -74,34 +81,6 @@
       </tbody>
     </table>
   </div>
-  <!-- Bloquear Consulta Modal -->
-<div class="modal fade" id="bloquearConsultaModal" tabindex="-1" aria-labelledby="bloquearConsultaModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-    <form>
-      <input type="text" name="idBloquearConsulta" id="idBloquearConsulta" hidden aria-hidden="true">
-        <div class="modal-header">
-          <h5 class="modal-title" id="bloquearConsultaModalLabel">Bloquear Consulta</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          Esta seguro que desea bloquear la consulta :
-          <br>
-          <b id="datosBloquearConsulta"></b>
-          <br>
-          <span><b>Indique motivo</b></span>
-          <textarea name="motivoBloqueo" id="motivoBloqueo" cols="60" rows="5" style="resize: none;" required></textarea>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Volver">Volver</button>
-          <button type="button" class="btn btn-danger" aria-label="Bloquear" id="bloquearConsulta" disabled>Bloquear</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
 
 <!-- Inscripcion Consulta Modal -->
 <div class="modal fade" id="inscripcionConsultaModal" tabindex="-1" aria-labelledby="inscripcionConsultaModalLabel" aria-hidden="true">
@@ -149,85 +128,8 @@
     </div>
   </div>
 </div>
-<!-- Crear Consulta Modal -->
-<div class="modal fade" id="crearConsultaModal" tabindex="-1" aria-labelledby="crearConsultaModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-    <form>
-      <div class="modal-header">
-        <h5 class="modal-title" id="crearConsultaModalLabel">Crear Consulta</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body"> 
-          <div class="row">
-            <div class="col-6">
-              <div class="form-group">
-                <label for="profesorCreateFilter">Docente</label>
-                <select class="custom-select" id="profesorCreateFilter" name="profesorCreateFilter" onchange="materiaQueryCreateConsulta()" required>
-                  <option value="" selected disabled hidden>Seleccione Docente</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-6" id="materiaCreateFilterCol">
-              <label for="materiaCreateFilter">Materia</label>
-              <select class="custom-select" id="materiaCreateFilter" onchange="setCrearConsultaDisabledState()" required>
-                <option value="" selected disabled hidden>Seleccione Materia</option>
-              </select>
-            </div>
-            <div class="col-6" id="fechaCreateFilterCol">
-              <label for="datepickerCreate">Fecha</label>
-              <input class="custom-select" type="text" name="datepickerCreate" id="datepickerCreate" onchange="setCrearConsultaDisabledState()" required></p>
-            </div>
-              <div class="col-3" id="fechaCreateFilterCol">
-                <label for="horaCreate">Hora</label>
-                <select class="custom-select" name="horaCreate" id="horaCreate" onchange="setCrearConsultaDisabledState()" required>
-                    <option value="07">7</option>
-                    <option value="08">8</option>
-                    <option value="09">9</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                    <option value="13">13</option>
-                    <option value="14">14</option>
-                    <option value="15">15</option>
-                    <option value="16">16</option>
-                    <option value="17">17</option>
-                    <option value="18">18</option>
-                    <option value="19">19</option>
-                    <option value="20">20</option>
-                    <option value="21">21</option>
-                    <option value="22">22</option>
-                    <option value="23">23</option>
-                </select>
-              </div>
-              <div class="col-3" id="fechaCreateFilterCol">
-                <label for="minutoCreate">Minutos</label>
-                <select class="custom-select" name="minutoCreate" id="minutoCreate" onchange="setCrearConsultaDisabledState()" required>
-                    <option value="00">00</option>
-                    <option value="05">10</option>
-                    <option value="15">15</option>
-                    <option value="20">20</option>
-                    <option value="25">25</option>
-                    <option value="30">30</option>
-                    <option value="35">35</option>
-                    <option value="40">40</option>
-                    <option value="45">45</option>
-                    <option value="50">50</option>
-                    <option value="55">55</option>
-                </select>
-              </div>
-            </div>
-          <br>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Volver" onclick="resetCrearConsulta()">Volver</button>
-        <button type="button" class="btn btn-success" aria-label="Crear" id="crearConsulta" disabled>Crear</button>
-      </div>
-      </form>
-    </div>
-  </div>
+<?php include('components/bloquearConsultaModal.php');?>
+<?php include('components/crearConsultaModal.php');?>
 </div>
   <?php include('components/toast.php');?>
   <?php include('footer.php');?>

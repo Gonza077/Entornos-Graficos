@@ -1,8 +1,6 @@
 var estadoSelected = profesorSelected = materiaSelected = horarioSelected = consulta = null;
 console.log(profesorSelected);
 $(document).ready(function(){
-    console.log(profesorSelected);
-    $("select#profesorFilter option[value='"+profesorSelected+"'").prop('selected', true);
     $("select#estadoFilter").change(function(){
       estadoSelected = $(this).children("option:selected").val();
       });
@@ -25,9 +23,6 @@ $(document).ready(function(){
       buscar();
     });
 
-    buscar();
-
-
     $.ajax({
         url:"estadoQuery.php",    //the page containing php script
         type: "get",    //request type,
@@ -40,11 +35,19 @@ $(document).ready(function(){
     $.ajax({
         url:"profesorQuery.php",    //the page containing php script
         type: "get",    //request type,
-        dataType: 'html',
-        success:function(response){
+        dataType: 'html'
+      }).
+        done(function(response){
             $("#profesorFilter").append(response);
-        }
-    });
+            if (profesorId){
+              console.log("entro")
+              // $("select#profesorFilter option:eq("+profesorId+")").prop('selected', true);
+              // $("select#profesorFilter option:nth-child("+profesorId+")").attr("selected", "");
+              $("select#profesorFilter").val(profesorId);
+              profesorSelected = profesorId;
+            }
+            buscar();
+        });
 
     $.ajax({
         url:"materiaQuery.php",    //the page containing php script
@@ -106,7 +109,7 @@ getConsulta(consultaId).done( response => {
   consuta = "";
   consulta = response.consulta;
   $('#idInscripcionConsulta').val(consulta.id);
-  $('#datosInscripcionConsulta').html(consulta.horario + " - " + consulta.materia_nombre + " - " + consulta.docente_nombre + " - " + consulta.docente_apellido);
+  $('#datosInscripcionConsulta').html(consulta.fecha + " - " + consulta.materia_nombre + " - " + consulta.docente_nombre + " - " + consulta.docente_apellido);
   $('#inscripcionConsultaModal').modal('show');
 });
 }
@@ -237,7 +240,7 @@ getConsulta(consultaId).done( response => {
   consuta = "";
   consulta = response.consulta;
   $('#idCancelarConsulta').val(consulta.id);
-  $('#datosCancelarConsulta').html(consulta.horario + " - " + consulta.materia_nombre + " - " + consulta.docente_nombre + " - " + consulta.docente_apellido);
+  $('#datosCancelarConsulta').html(consulta.fecha + " - " + consulta.materia_nombre + " - " + consulta.docente_nombre + " - " + consulta.docente_apellido);
   $('#cancelarConsultaModal').modal('show');
 });
 }
@@ -286,7 +289,7 @@ getConsulta(consultaId).done( response => {
   consuta = "";
   consulta = response.consulta;
   $('#idBloquearConsulta').val(consulta.id);
-  $('#datosBloquearConsulta').html(consulta.horario + " - " + consulta.materia_nombre + " - " + consulta.docente_nombre + " - " + consulta.docente_apellido);
+  $('#datosBloquearConsulta').html(consulta.fecha + " - " + consulta.materia_nombre + " - " + consulta.docente_nombre + " - " + consulta.docente_apellido);
   $('#bloquearConsultaModal').modal('show');
 }
 );}
