@@ -54,7 +54,6 @@
       </div>
     </div>
     <br>
-    <button type="button" class="btn btn-success" id="" onclick="openCrearConsultaModal()">Crear Consulta</button>
     <div class="row justify-content-end">
       <div class="col-4">
       </div>
@@ -62,10 +61,12 @@
         <div class="row justify-content-end">
           <button type="button" class="btn btn-info" id="clear">Limpiar Filtros</button>
           <button type="button" class="btn btn-primary" onclick="buscar()">Buscar</button>
+          <?php echo ($user != null && ($user->isDocente() ||$user->isAdmin()) ? '<button type="button" class="btn btn-success" id="creaConsulta" onclick="openCrearConsultaModal()">Crear Consulta</button>' :NULL) ?>
           <div class="col-2"></div>
         </div>
       </div>
     </div>
+    <br>
     <table class="table table-hover" id="consultasTable"> 
       <thead>
         <tr>
@@ -129,7 +130,7 @@
   </div>
 </div>
 <?php include('components/bloquearConsultaModal.php');?>
-<?php include('components/crearConsultaModal.php');?>
+<?php $user != null && ($user->isDocente() ||$user->isAdmin()) ? include('components/crearConsultaModal.php'):NULL;?>
 </div>
   <?php include('components/toast.php');?>
   <?php include('footer.php');?>
