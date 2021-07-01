@@ -27,25 +27,33 @@
     <div class="row">
     </div>
     <div class="row">
-      <div class="col-3">
-      <label for="estadoFilter">Estado</label>
-          <select class="custom-select" id="estadoFilter">
-            <option value="" selected></option>
-          </select>
+      <div class="col-2">
+        <label for="estadoFilter">Estado</label>
+            <select class="custom-select" id="estadoFilter">
+              <option value="" selected></option>
+            </select>
       </div>
-      <div class="col-3">
+      <div class="col-2">
+        <label for="fechaDesdeFilter">Fecha Desde</label>
+        <input class="custom-select" type="text" name="fechaDesdeFilter" id="fechaDesdeFilter">
+      </div>
+      <div class="col-2">
+        <label for="fechaHastaFilter">Fecha Hasta</label>
+        <input class="custom-select" type="text" name="fechaHastaFilter" id="fechaHastaFilter">
+      </div>
+      <div class="col-2">
         <label for="profesorFilter">Docente</label>
         <select class="custom-select" id="profesorFilter">
           <option value="" selected></option>
         </select>
       </div>
-      <div class="col-3">
+      <div class="col-2">
         <label for="materiaFilter">Materia</label>
         <select class="custom-select" id="materiaFilter">
           <option value="" selected></option>
         </select>
       </div>
-      <div class="col-3">
+      <div class="col-2">
       <label for="horarioFilter">Horario</label>
         <select class="custom-select" id="horarioFilter">
           <option value="" selected></option>

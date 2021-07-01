@@ -27,7 +27,7 @@
             </div>
             <div class="col-6" id="fechaCreateFilterCol">
               <label for="datepickerCreate">Fecha</label>
-              <input class="custom-select" type="text" name="datepickerCreate" id="datepickerCreate" onchange="setCrearConsultaDisabledState()" required></p>
+              <input class="custom-select" type="text" name="datepickerCreate" id="datepickerCreate" onchange="setCrearConsultaDisabledState()" required>
             </div>
               <div class="col-3" id="fechaCreateFilterCol">
                 <label for="horaCreate">Hora</label>

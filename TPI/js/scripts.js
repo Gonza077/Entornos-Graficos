@@ -1,6 +1,10 @@
-var estadoSelected = profesorSelected = materiaSelected = horarioSelected = consulta = null;
+var estadoSelected = profesorSelected = materiaSelected = horarioSelected = consulta = fechaDesdeSelected = fechaHastaSelected = null;
 console.log(profesorSelected);
 $(document).ready(function(){
+
+    $('#fechaDesdeFilter').datepicker({dateFormat:"dd/mm/yy"});
+    $('#fechaHastaFilter').datepicker({dateFormat:"dd/mm/yy"});
+    
     $("select#estadoFilter").change(function(){
       estadoSelected = $(this).children("option:selected").val();
       });
@@ -13,13 +17,22 @@ $(document).ready(function(){
     $("select#horarioFilter").change(function(){
       horarioSelected = $(this).children("option:selected").val();
     });
+
+    $("#fechaHastaFilter").change(function(){
+      fechaHastaFilter = $(this).val();
+    });
+    $("#fechaDesdeFilter").change(function(){
+      fechaDesdeFilter = $(this).val();
+    });
     
     $( "#clear" ).click(function() {
-      estadoSelected = profesorSelected = materiaSelected = horarioSelected = null;
+      estadoSelected = profesorSelected = materiaSelected = horarioSelected = fechaDesdeSelected = fechaHastaSelected = null;
       $("select#estadoFilter")[0].selectedIndex = 0;
       $("select#profesorFilter")[0].selectedIndex = 0;
       $("select#materiaFilter")[0].selectedIndex = 0;
       $("select#horarioFilter")[0].selectedIndex = 0;
+      $("#fechaHastaFilter").datepicker('setDate', null);
+      $("#fechaDesdeFilter").datepicker('setDate', null);
       buscar();
     });
 
@@ -74,7 +87,12 @@ function buscar () {
         url:"consultaQuery.php",    //the page containing php script
         type: "get",    //request type,
         dataType: 'html',
-        data: {estadoSelected: estadoSelected, profesorSelected: profesorSelected, materiaSelected: materiaSelected,horarioSelected: horarioSelected},
+        data: {estadoSelected: estadoSelected,
+           profesorSelected: profesorSelected,
+            materiaSelected: materiaSelected,
+            horarioSelected: horarioSelected,
+            fechaDesdeSelected: fechaDesdeSelected,
+            fechaHastaSelected: fechaHastaSelected},
         success:function(response){
             $("table#consultasTable tbody").html(response);
         }

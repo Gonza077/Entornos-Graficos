@@ -15,6 +15,8 @@ $estadoSelected   = $_GET['estadoSelected'] != NULL ? $_GET['estadoSelected'] : 
 $profesorSelected = $_GET['profesorSelected'] != NULL ? $_GET['profesorSelected'] : "NULL";
 $materiaSelected  = $_GET['materiaSelected'] != NULL ? $_GET['materiaSelected'] : "NULL";
 $horarioSelected  = $_GET['horarioSelected'] != NULL ? $_GET['horarioSelected'] : "NULL";
+$fechaDesdeSelected  = $_GET['fechaDesdeSelected'] != NULL ? $_GET['fechaDesdeSelected'] : "NULL";
+$fechaHastaSelected  = $_GET['fechaHastaSelected'] != NULL ? $_GET['fechaHastaSelected'] : "NULL";
 
 $db = new DB();
 
