@@ -25,7 +25,7 @@
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul class="nav navbar-nav navbar-center">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="home.php">Inicio</a>
+                                        <a class="nav-link" href="consultas.php">Inicio</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="cambiarContraseña.php">Cambiar Contraseña</a>
@@ -66,11 +66,6 @@
                                 </div>
                             </div>
                             <br>
-                            <!-- <div class="col-md-12">
-                            <?php $telefono = $user->getTelefono();?>
-                                <label for="telefono">Teléfono</label>
-                                <input readonly id="telefono" name="telefono" type="tel" value="<?php echo $telefono ?>" class="form-control">
-                            </div> -->
                         </div>
                     </form>
                 </div>

@@ -2,10 +2,11 @@
   include_once 'includes/user.php';
   include_once 'includes/user_session.php';
   $errorRegistro = "";
+  $exitoRegistro ="";
   $userSession = new UserSession();
   $user = new User();
   if(isset($_SESSION['user'])){
-    header("Location: http://localhost/home.php");
+    header("Location: http://localhost/consultas.php");
     die();
   } elseif (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['passwordRepeat']) && isset($_POST['nombre']) && isset($_POST['apellido']) && isset($_POST['legajo'])){
       $emailForm = $_POST['email'];
@@ -15,14 +16,13 @@
       $nombreForm = $_POST['nombre'];
       $apellidoForm = $_POST['apellido'];
       $isDocenteForm = isset($_POST['isDocente']) ? 1 : 0;
-      echo $isDocenteForm;
       if($user->checkIfUserExists($emailForm) || $user->checkIfUserExistsByLegajo($legajoForm)){
           $errorRegistro = "Usuario existente con mail o legajo ingresado. Inténtelo nuevamente o contacte a la administración.";
       }
       else{
         if($passForm == $passRepeatForm){
           $user->registerUser($emailForm,$passForm,$nombreForm,$apellidoForm,$isDocenteForm,$legajoForm);
-          header("Location: http://localhost/home.php");
+          $exitoRegistro = "El registro se ha realizado exitosamente!";
         }else{
           $errorRegistro = "Las contraseñas no coinciden.";
         }
@@ -95,14 +95,15 @@
             <div class="form-group">
                 <div class="row justify-content-center">
                     <div class="col-md-6 text-right">
-                      <button class="btn btn-lg btn-succes btn-block" type="submit">Registrarme</button>
+                      <button class="btn btn-lg btn-success btn-block" type="submit">Registrarme</button>
                     </div>
                     <div class="col-md-6 text-left">
-                      <button class="btn btn-lg btn-primary btn-block" onclick="window.location.href='home.php'">Ir a Inicio</button>
+                      <button class="btn btn-lg btn-primary btn-block" onclick="window.location.href='consultas.php'">Ir a Inicio</button>
                     </div>
                 </div>
             </div>
             <br>
+            <p style="color:green;"><?php echo $exitoRegistro; ?></p>
             <small style="color:red;"><?php echo $errorRegistro; ?></small>
           </form>
         </div>
