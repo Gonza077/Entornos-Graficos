@@ -111,7 +111,7 @@ class ConsultaRepository extends DB{
 
     public function crearConsulta($docenteId,$materiaId,$fecha,$cupo,$consultaReemplazoId){
         $query="INSERT INTO consulta (docente_id,materia_id,create_time,update_time,fecha,cupo,consulta_reemplazo_id) VALUES ($docenteId,$materiaId,CURRENT_TIMESTAMP(),CURRENT_TIMESTAMP(),'$fecha',$cupo,$consultaReemplazoId)";
-        return $this->executeQuery($query);
+        $this->executeQuery($query);
     }
 
     private function executeQuery($query){

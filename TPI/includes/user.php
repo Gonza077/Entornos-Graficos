@@ -31,7 +31,7 @@ class User extends DB{
 
     public function getUserByEmail($email){
         
-        $query = "SELECT id,nombre,apellido,email,docente,legajo  FROM `persona` WHERE email = '$email'";
+        $query = "SELECT id,nombre,apellido,email,docente,legajo,admin  FROM `persona` WHERE email = '$email'";
 
         $this->fetchUserFromDatabase($query);
     }
@@ -39,7 +39,7 @@ class User extends DB{
 
     public function getUserByLegajo($legajo,$docente){
         
-        $query = "SELECT id,nombre,apellido,email,docente,legajo  FROM `persona` WHERE legajo = '$legajo'";
+        $query = "SELECT id,nombre,apellido,email,docente,legajo,admin  FROM `persona` WHERE legajo = '$legajo'";
 
         $this->fetchUserFromDatabase($query);
     }
@@ -72,6 +72,7 @@ class User extends DB{
         $this->email = $userArr[3];
         $this->docente = $userArr[4];
         $this->legajo = $userArr[5];
+        $this->admin = $userArr[6];
     }
 
     public function registerUser($email,$pass,$nombre,$apellido,$isDocente,$legajo){

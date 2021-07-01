@@ -50,11 +50,11 @@
           </div>
           <div class="form-group">
             <div class="row justify-content-center">
-                <div class="col-md-6 text-right">
-                  <button class="btn btn-lg btn-primary btn-block" style="background-color:green" type="submit">Ingresar</button>
-                </div>
                 <div class="col-md-6 text-left">
                   <input class="btn btn-lg btn-primary btn-block" type="button" value="Atrás" onClick="history.go(-1);">
+                </div>
+                <div class="col-md-6 text-right">
+                  <button class="btn btn-lg btn-success btn-block" type="submit">Ingresar</button>
                 </div>
             </div>
           </div>

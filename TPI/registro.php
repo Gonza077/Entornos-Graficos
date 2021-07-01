@@ -95,7 +95,7 @@
             <div class="form-group">
                 <div class="row justify-content-center">
                     <div class="col-md-6 text-right">
-                      <button class="btn btn-lg btn-primary btn-block" style="background-color:green" type="submit">Registrarme</button>
+                      <button class="btn btn-lg btn-succes btn-block" type="submit">Registrarme</button>
                     </div>
                     <div class="col-md-6 text-left">
                       <button class="btn btn-lg btn-primary btn-block" onclick="window.location.href='home.php'">Ir a Inicio</button>

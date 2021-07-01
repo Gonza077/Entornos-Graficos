@@ -29,12 +29,16 @@ $consultaRepo = New ConsultaRepository();
         $minutos = $_POST['horarioMinutos'];
         $fechaFormatted = $fechaArr[2]."/".$fechaArr[1]."/".$fechaArr[0]." ".$hora.":".$minutos.":00";
         $descripcionBaja  = isset($_POST['descripcionBaja']) ? $_POST['descripcionBaja'] : "NULL";
-        if ($consultaRepo -> crearConsulta($docente,$materia,$fechaFormatted,4,'NULL')){
-            echo json_encode("Consulta creada exitosamente",200);
+        $consultaRepo -> crearConsulta($docente,$materia,$fechaFormatted,4,'NULL');
+        if ($consultaRepo ->connect()->error == "") {
+            http_response_code(200);
+            echo json_encode("Consulta creada exitosamente");
         } else {
+            http_response_code(500);
             echo json_encode("La consulta no pudo ser creada",500);
         }
     } else {
+        http_response_code(204);
         echo json_encode("Error al ingresar datos de nueva Consulta",204);
     }
 ?>

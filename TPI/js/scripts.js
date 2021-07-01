@@ -148,6 +148,7 @@ function resetCrearConsulta(){
   $('#horaCreate').val(undefined);
   $('#minutoCreate').val(undefined);
   $('#crearConsulta').prop("disabled", true);
+  $('#materiaCreateFilter').prop("disabled", true);
 }
 
 
@@ -163,6 +164,7 @@ function crearConsulta(){
     dataType: 'json',
     data: {docenteId:consultaId,materiaId:materiaId,fecha:fecha,horarioHora:horarioHora,horarioMinutos:horarioMinutos}
     }).done(response=>{
+        console.log("done")
         openToast(response,"Creacion de Consulta",'success');
       })
       .fail(response=>{
@@ -178,7 +180,7 @@ function openCrearConsultaModal(){
 function docenteQueryCreateConsulta(docente){
   response = '';
   $.ajax({
-    url:"profesorQuery.php",
+    url:"consultaProfesorQuery.php",
     type: "get",
     dataType: 'html',
     data:{docente:docente},
@@ -196,7 +198,7 @@ function materiaQueryCreateConsulta(){
     $('#materiaCreateFilter').prop("disabled", false);
     $("#materiaCreateFilter").html("<option value='' selected disabled hidden>Seleccione Materia</option>");
     $.ajax({
-      url:"materiaQuery.php",
+      url:"consultaMateriaQuery.php",
       type: "get",
       dataType: 'html',
       data:{docente:docente},
