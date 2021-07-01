@@ -15,8 +15,8 @@ $estadoSelected   = $_GET['estadoSelected'] != NULL ? $_GET['estadoSelected'] : 
 $profesorSelected = $_GET['profesorSelected'] != NULL ? $_GET['profesorSelected'] : "NULL";
 $materiaSelected  = $_GET['materiaSelected'] != NULL ? $_GET['materiaSelected'] : "NULL";
 $horarioSelected  = $_GET['horarioSelected'] != NULL ? $_GET['horarioSelected'] : "NULL";
-$fechaDesdeSelected  = $_GET['fechaDesdeSelected'] != NULL ? $_GET['fechaDesdeSelected'] : "NULL";
-$fechaHastaSelected  = $_GET['fechaHastaSelected'] != NULL ? $_GET['fechaHastaSelected'] : "NULL";
+$fechaDesdeSelected  = formatDate($_GET['fechaDesdeSelected']);
+$fechaHastaSelected  = formatDate($_GET['fechaHastaSelected']);
 
 $db = new DB();
 
@@ -66,15 +66,18 @@ $sqlQuery=" SELECT
             WHERE   (  materia_id = IFNULL($materiaSelected,materia_id) )
             AND     (  docente_id = IFNULL($profesorSelected,docente_id) )
             AND (isnull($estadoSelected)
-               OR (NOT isnull($estadoSelected) AND $estadoSelected = 1 AND fecha_baja is not null )
-               OR (NOT isnull($estadoSelected) AND $estadoSelected = 2 AND fecha_baja is null)  
+               OR (NOT isnull($estadoSelected) AND $estadoSelected = 1 AND fecha_baja is null )
+               OR (NOT isnull($estadoSelected) AND $estadoSelected = 2 AND fecha_baja is not null)  
                )
             AND (isnull($horarioSelected)
                OR (NOT isnull($horarioSelected) AND $horarioSelected = 1 AND CAST(fecha as time)  between '07:30:00' and '12:49:59')
 				   OR (NOT isnull($horarioSelected) AND $horarioSelected = 2 AND CAST(fecha as time)  between '12:50:00' and '18:44:59')
 				   OR (NOT isnull($horarioSelected) AND $horarioSelected = 3 AND CAST(fecha as time)  between '18:45:00' and '24:00:00')
                )
-            AND consulta.fecha >= CURDATE(); ";
+            AND (isnull($fechaDesdeSelected)
+               OR (NOT isnull($fechaDesdeSelected) AND CAST(fecha as date) >= $fechaDesdeSelected))
+            AND (isnull($fechaHastaSelected)
+               OR (NOT isnull($fechaHastaSelected) AND CAST(fecha as date) <= $fechaHastaSelected))";
 
 #Mostramos los resultados obtenidos dentro de una tabla
 
@@ -122,4 +125,14 @@ if($registros = $db-> connect() ->query($sqlQuery)){
    };
 }
 $db -> disconnect();
+
+
+function formatDate($fecha){
+   if($fecha != null ){
+      $fechaArr = explode("/", $fecha);
+      $fechaFormatted = '"'.$fechaArr[2]."/".$fechaArr[1]."/".$fechaArr[0].'"';
+      return $fechaFormatted;
+   }
+   return "NULL";
+}
 ?>

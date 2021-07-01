@@ -30,7 +30,9 @@
       <div class="col-2">
         <label for="estadoFilter">Estado</label>
             <select class="custom-select" id="estadoFilter">
-              <option value="" selected></option>
+              <option value=""></option>
+              <option value="1" selected>CONFIRMADA</option>
+              <option value="2">BLOQUEADA</option>
             </select>
       </div>
       <div class="col-2">

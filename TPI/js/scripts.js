@@ -1,10 +1,34 @@
 var estadoSelected = profesorSelected = materiaSelected = horarioSelected = consulta = fechaDesdeSelected = fechaHastaSelected = null;
-console.log(profesorSelected);
-$(document).ready(function(){
 
-    $('#fechaDesdeFilter').datepicker({dateFormat:"dd/mm/yy"});
-    $('#fechaHastaFilter').datepicker({dateFormat:"dd/mm/yy"});
+$(document).ready(function(){
     
+    $('#fechaDesdeFilter').datepicker(
+      {
+        dateFormat:"dd/mm/yy",
+        onSelect: function(d,i){
+          if(d !== i.lastVal){
+              $(this).change();
+          }
+        }
+      }
+    ).datepicker('setDate',new Date());
+    fechaDesdeSelected = new Date().toLocaleDateString('es-ES', {  year: 'numeric', month: 'numeric', day: 'numeric' });
+
+    const date = new Date();
+    date.setDate(date.getDate() + 7);
+    $('#fechaHastaFilter').datepicker(
+      {
+        dateFormat:"dd/mm/yy",
+        onSelect: function(d,i){
+          if(d !== i.lastVal){
+              $(this).change();
+          }
+        }
+      }
+    ).datepicker('setDate',date);
+    fechaHastaSelected = date.toLocaleDateString('es-ES', {  year: 'numeric', month: 'numeric', day: 'numeric' });
+    estadoSelected = 1;
+
     $("select#estadoFilter").change(function(){
       estadoSelected = $(this).children("option:selected").val();
       });
@@ -19,10 +43,10 @@ $(document).ready(function(){
     });
 
     $("#fechaHastaFilter").change(function(){
-      fechaHastaFilter = $(this).val();
+      fechaHastaSelected = $(this).datepicker('getDate').toLocaleDateString('es-ES', {  year: 'numeric', month: 'numeric', day: 'numeric' });
     });
     $("#fechaDesdeFilter").change(function(){
-      fechaDesdeFilter = $(this).val();
+      fechaDesdeSelected = $(this).datepicker('getDate').toLocaleDateString('es-ES', {  year: 'numeric', month: 'numeric', day: 'numeric' });
     });
     
     $( "#clear" ).click(function() {
@@ -37,15 +61,6 @@ $(document).ready(function(){
     });
 
     $.ajax({
-        url:"estadoQuery.php",    //the page containing php script
-        type: "get",    //request type,
-        dataType: 'html',
-        success:function(response){
-            $("#estadoFilter").append(response);
-        }
-    });
-
-    $.ajax({
         url:"profesorQuery.php",    //the page containing php script
         type: "get",    //request type,
         dataType: 'html'
@@ -53,9 +68,6 @@ $(document).ready(function(){
         done(function(response){
             $("#profesorFilter").append(response);
             if (profesorId){
-              console.log("entro")
-              // $("select#profesorFilter option:eq("+profesorId+")").prop('selected', true);
-              // $("select#profesorFilter option:nth-child("+profesorId+")").attr("selected", "");
               $("select#profesorFilter").val(profesorId);
               profesorSelected = profesorId;
             }
@@ -182,7 +194,6 @@ function crearConsulta(){
     dataType: 'json',
     data: {docenteId:consultaId,materiaId:materiaId,fecha:fecha,horarioHora:horarioHora,horarioMinutos:horarioMinutos}
     }).done(response=>{
-        console.log("done")
         openToast(response,"Creacion de Consulta",'success');
       })
       .fail(response=>{
@@ -236,7 +247,6 @@ function setCrearConsultaDisabledState(){
   var fecha = $('#datepickerCreate').val();
   var horarioHora = $('#horaCreate').children("option:selected").val();
   var horarioMinutos = $('#minutoCreate').children("option:selected").val();
-  console.log(docente ,materia,fecha,horarioHora,horarioMinutos);
   if (docente == '' || docente == undefined || materia == '' || materia == undefined || fecha == ''|| fecha== undefined ){
     $('#crearConsulta').prop("disabled", true);
   } else {
@@ -272,11 +282,9 @@ $.ajax({
   dataType: 'json',
   data: {consultaId: consultaId}
 }).done(response=>{
-  console.log("done");
   openToast(response,"Cancelar Consulta",'success');
 })
 .fail(response=>{
-  console.log(response);
   openToast(response,"Cancelar Consulta",'error');
 })
 .always(r=>{buscar();});
@@ -289,7 +297,6 @@ $(document).ready(function(){
     $('#bloquearConsultaModal').modal('toggle');
     var consultaId =  $('#idBloquearConsulta').val();
     var motivo =  $('#motivoBloqueo').val();
-    console.log(consultaId,motivo);
     bloquearConsulta(consultaId,motivo);
   });
 
