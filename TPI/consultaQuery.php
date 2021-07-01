@@ -91,7 +91,7 @@ if($registros = $db-> connect() ->query($sqlQuery)){
       echo "<td>".$cupo."</td>";
       echo "<td>";
       if(isset($USER)){
-         if(!$USER->isDocente() && !$bloqueada ){
+         if(!$USER->isDocente() && !$USER->isAdmin() && !$bloqueada ){
             if ($cupo > 0 && !$idInSolicitudes ){
                echo "<button type='button' class='btn btn-success' id='inscripcion-$id' onclick='openInscripcionConsultaModal($id)' title='Inscribirse a consulta'>
                   <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-calendar-plus-fill' viewBox='0 0 16 16'>

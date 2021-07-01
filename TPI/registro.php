@@ -64,7 +64,7 @@
             <div class="form-group">
               <label for="legajo">Legajo:</label>
               <label for="legajo" class="sr-only">Legajo</label>
-              <input type="text" class="form-control" name="legajo" id="legajo" aria-describedby="legajo" placeholder="" required>
+              <input type="number" class="form-control" name="legajo" id="legajo" min="1" aria-describedby="legajo" placeholder="" required>
             </div>
             
             <hr>
