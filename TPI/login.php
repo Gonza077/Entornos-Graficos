@@ -36,6 +36,7 @@
       <div class="col-6 col-sm-6">
         <form class="form-signin" action="login.php" method="POST">
           <div class="form-group">
+            <img class="mb-4 d-block mx-auto" src="img/LogoUTN.png" alt="Logo de la Universidad Tecnológica Nacional" width="100" height="100">
             <h1 class="d-flex justify-content-center">Iniciar sesion</h1>
             <label for="inputEmail" class="sr-only">Direccion de email</label>
             <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Direccion de email" required autofocus>
@@ -47,7 +48,16 @@
                 </label>
               </div>
           </div>
-          <button class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
+          <div class="form-group">
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-right">
+                  <button class="btn btn-lg btn-primary btn-block" style="background-color:green" type="submit">Ingresar</button>
+                </div>
+                <div class="col-md-6 text-left">
+                  <input class="btn btn-lg btn-primary btn-block" type="button" value="Atrás" onClick="history.go(-1);">
+                </div>
+            </div>
+          </div>
           <br>
           <a href="./home.php" class="d-flex justify-content-center">¿Olvidaste tu contraseña?</a>
           <hr>

@@ -34,6 +34,7 @@
                         $query="UPDATE persona Set password = '$passMD5' where id=$id";
                         $stmt = $db-> connect() ->query($query);
                         $error= 'La contraseña ha sido modificada exitosamente.';
+                        
                     }
                 else
                 {
@@ -79,14 +80,15 @@
                         <br>
                         <div class="form-group">
                             <div class="row justify-content-center">
-                            <div class="col-md-6 text-left">
-                                    <button class="btn btn-lg btn-primary btn-block" onclick="window.location.href='cuenta.php'">Atrás</button>
-                                </div>
                                 <div class="col-md-6 text-right">
-                                    <button class="btn btn-lg btn-success btn-block" type="submit">Cambiar</button>
+                                    <button class="btn btn-lg btn-primary btn-block" style="background-color:green" type="submit">Cambiar</button>
+                                </div>
+                                <div class="col-md-6 text-left">
+                                    <button class="btn btn-lg btn-primary btn-block" onclick="window.location.href='cuenta.php'">Atrás</button>
                                 </div>
                             </div>
                         </div>
+                        <br>
                         <?php echo $error; ?>
                     </form>   
                 </div>

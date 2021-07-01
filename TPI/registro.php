@@ -7,20 +7,22 @@
   if(isset($_SESSION['user'])){
     header("Location: http://localhost/home.php");
     die();
-  } elseif (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['passwordRepeat']) && isset($_POST['nombre']) && isset($_POST['apellido'])){
+  } elseif (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['passwordRepeat']) && isset($_POST['nombre']) && isset($_POST['apellido']) && isset($_POST['legajo'])){
       $emailForm = $_POST['email'];
+      $legajoForm = $_POST['legajo'];
       $passForm = $_POST['password'];
       $passRepeatForm = $_POST['passwordRepeat'];
       $nombreForm = $_POST['nombre'];
       $apellidoForm = $_POST['apellido'];
       $isDocenteForm = isset($_POST['isDocente']) ? 1 : 0;
       echo $isDocenteForm;
-      if($user->checkIfUserExists($emailForm)){
-          $errorRegistro = "Usuario ya existente.";
-      }else{
+      if($user->checkIfUserExists($emailForm) || $user->checkIfUserExistsByLegajo($legajoForm)){
+          $errorRegistro = "Usuario existente con mail o legajo ingresado. Inténtelo nuevamente o contacte a la administración.";
+      }
+      else{
         if($passForm == $passRepeatForm){
-          $user->registerUser($emailForm,$passForm,$nombreForm,$apellidoForm,$isDocenteForm);
-          header("Location: http://localhost/login.php");
+          $user->registerUser($emailForm,$passForm,$nombreForm,$apellidoForm,$isDocenteForm,$legajoForm);
+          header("Location: http://localhost/home.php");
         }else{
           $errorRegistro = "Las contraseñas no coinciden.";
         }
@@ -58,6 +60,12 @@
               <label for="apellido" class="sr-only">Apellido</label>
               <input type="text" class="form-control" name="apellido" id="apellido" aria-describedby="apellido" placeholder="" required>
             </div>
+
+            <div class="form-group">
+              <label for="legajo">Legajo:</label>
+              <label for="legajo" class="sr-only">Legajo</label>
+              <input type="text" class="form-control" name="legajo" id="legajo" aria-describedby="legajo" placeholder="" required>
+            </div>
             
             <hr>
             
@@ -84,8 +92,16 @@
               <label for="passwordRepeat" class="sr-only">Repita su Contraseña</label>
               <input type="password" name="passwordRepeat" class="form-control" id="passwordRepeat" placeholder="" required>
             </div>
-            
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Registrarme</button>
+            <div class="form-group">
+                <div class="row justify-content-center">
+                    <div class="col-md-6 text-right">
+                      <button class="btn btn-lg btn-primary btn-block" style="background-color:green" type="submit">Registrarme</button>
+                    </div>
+                    <div class="col-md-6 text-left">
+                      <button class="btn btn-lg btn-primary btn-block" onclick="window.location.href='home.php'">Ir a Inicio</button>
+                    </div>
+                </div>
+            </div>
             <br>
             <small style="color:red;"><?php echo $errorRegistro; ?></small>
           </form>

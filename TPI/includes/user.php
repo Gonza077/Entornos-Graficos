@@ -74,10 +74,10 @@ class User extends DB{
         $this->legajo = $userArr[5];
     }
 
-    public function registerUser($email,$pass,$nombre,$apellido,$isDocente){
+    public function registerUser($email,$pass,$nombre,$apellido,$isDocente,$legajo){
 
         $passMD5=md5($pass);
-        $query="INSERT INTO persona (nombre,apellido,email,password,docente) VALUES ('$nombre','$apellido','$email','$passMD5',$isDocente)";
+        $query="INSERT INTO persona (nombre,apellido,email,password,docente,legajo) VALUES ('$nombre','$apellido','$email','$passMD5',$isDocente,'$legajo')";
 
         $stmt = $this->connect()->query($query);
     }
@@ -94,7 +94,19 @@ class User extends DB{
         }
         return false;  
     }
-    
+
+    public function checkIfUserExistsByLegajo($legajo_check){
+        $query = "SELECT legajo  FROM `persona` WHERE legajo = '$legajo_check'";
+
+        $stmt = $this->connect()->query($query);
+
+        $fila = $stmt->fetch_row();
+
+        if (!is_null($fila)){
+            return true;
+        }
+        return false;  
+    }
 
     public function getNombre(){
         return $this->nombre;
