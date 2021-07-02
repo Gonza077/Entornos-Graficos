@@ -67,7 +67,7 @@
       </div>
     </div>
     <br>
-    <table class="table table-hover" id="consultasTable"> 
+    <table class="table table-hover" id="consultasTable" style="margin-bottom: 50px;"> 
       <thead>
         <tr>
           <th scope="col">Estado</th>
@@ -129,18 +129,17 @@
     </div>
   </div>
 </div>
-<?php include('components/bloquearConsultaModal.php');?>
-<?php $user != null && ($user->isDocente() ||$user->isAdmin()) ? include('components/crearConsultaModal.php'):NULL;?>
-  <?php include('components/toast.php');?>
-  <?php include('footer.php');?>
-
-  <script src="js/scripts.js"> </script>
+<?php $user != null && ($user->isDocente() ||$user->isAdmin()) ? include('components/bloquearConsultaModal.php'):"";?>
+<?php $user != null && ($user->isDocente() ||$user->isAdmin()) ? include('components/crearConsultaModal.php'):"";?>
+</body>
+<?php include('footer.php');?>
+<script src="js/scripts.js"> </script>
   <?php if ($user != null && $user->isDocente()){
     $userId= $user->getId();
     echo "<script>var profesorId = $userId;</script>";
   } else {
     echo "<script>var profesorId = undefined;</script>";
   } ?>
-</body>
+<?php include('components/toast.php');?>
 </html>
 

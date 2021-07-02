@@ -78,7 +78,8 @@ $sqlQuery=" SELECT
             AND (isnull($fechaDesdeSelected)
                OR (NOT isnull($fechaDesdeSelected) AND CAST(fecha as date) >= $fechaDesdeSelected))
             AND (isnull($fechaHastaSelected)
-               OR (NOT isnull($fechaHastaSelected) AND CAST(fecha as date) <= $fechaHastaSelected))";
+               OR (NOT isnull($fechaHastaSelected) AND CAST(fecha as date) <= $fechaHastaSelected))
+            ORDER BY consulta.fecha asc";
 
 #Mostramos los resultados obtenidos dentro de una tabla
 
