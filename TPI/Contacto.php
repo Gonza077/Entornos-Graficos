@@ -25,7 +25,7 @@
                         <div class="user-info">
                             <div class="col-md-12">
                                 <label for="nombre">Nombre y Apellido</label>
-                                <input id="nombre" name="nombre" type="text" placeholder="Ej: Juan Perez" class="form-control" pattern="([a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]{2,25})+([\s]{1})+([a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]{2,25})" title="Escriba nombre y apellido separado de espacios. Ej: Juan Perez" required>
+                                <input id="nombre" name="nombre" type="text" placeholder="Ej: Juan Perez" class="form-control" pattern="([a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]{3,25})+([\s]{1})+([a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]{2,25})" title="Escriba nombre y apellido separados por un espacio. Ej: Juan Perez" required>
                             </div>
                             <br>
                             <div class="col-md-12">
@@ -43,7 +43,7 @@
                         <div class="mensaje-info">
                             <div class="col-md-12">
                                 <label for="asunto">Asunto</label>
-                                <input id="asunto" name="asunto" type="text" placeholder="Ej: Consulta AyED" class="form-control" pattern="[A-Za-z0-​9-\s]{3,35}" title="Escriba un asunto con mas de 3 letras" required>
+                                <input id="asunto" name="asunto" type="text" placeholder="Ej: Consulta AyED" class="form-control" pattern="[A-Za-z0-​9-\s]{3,35}" title="Escriba un asunto de minimo 3 letras" required>
                                 </div>
                                 <br>
                             <div class="col-md-12">

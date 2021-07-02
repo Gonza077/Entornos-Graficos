@@ -52,19 +52,19 @@
             <div class="form-group">
               <label for="nombre">Nombre:</label>
               <label for="nombre" class="sr-only">Nombre</label>
-              <input type="text" class="form-control" name="nombre" id="nombre" aria-describedby="nombre" placeholder="" required>
+              <input type="text" class="form-control" name="nombre" id="nombre" aria-describedby="nombre" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]{3,25}" title="Ingrese un nombre de 3 letras mínimo" required>
             </div>
             
             <div class="form-group">
               <label for="apellido">Apellido:</label>
               <label for="apellido" class="sr-only">Apellido</label>
-              <input type="text" class="form-control" name="apellido" id="apellido" aria-describedby="apellido" placeholder="" required>
+              <input type="text" class="form-control" name="apellido" id="apellido" aria-describedby="apellido" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]{2,25}" title="Ingrese un apellido de 2 letras mínimo" required>
             </div>
 
             <div class="form-group">
               <label for="legajo">Legajo:</label>
               <label for="legajo" class="sr-only">Legajo</label>
-              <input type="number" class="form-control" name="legajo" id="legajo" min="1" aria-describedby="legajo" placeholder="" required>
+              <input type="number" class="form-control" name="legajo" id="legajo" min="1" aria-describedby="legajo" title="Ingrese su numero de legajo asignado" required>
             </div>
             
             <hr>
@@ -80,17 +80,17 @@
             <div class="form-group">
               <label for="email">Email Personal:</label>
               <label for="email" class="sr-only">Email Personal</label>
-              <input type="email" class="form-control" name="email" id="email" aria-describedby="email" required placeholder="EjemploEmail@email.com">
+              <input type="email" class="form-control" name="email" id="email" aria-describedby="email" placeholder="ejemploemail@email.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Ingrese su correo en minisculas" required>
             </div>
             <div class="form-group">
             <label for="password">Contraseña</label>
               <label for="password" class="sr-only">Contraseña</label>
-              <input type="password" name="password" class="form-control" id="password" placeholder="" required>
+              <input type="password" name="password" class="form-control" id="password"  pattern="[A-Za-z0-​9]{6,35}" title="Ingrese una contraseña de con letras y/o nuermos de mínimo 6 digitos" required>
             </div>
             <div class="form-group">
               <label for="passwordRepeat">Repita su Contraseña</label>
               <label for="passwordRepeat" class="sr-only">Repita su Contraseña</label>
-              <input type="password" name="passwordRepeat" class="form-control" id="passwordRepeat" placeholder="" required>
+              <input type="password" name="passwordRepeat" class="form-control" id="passwordRepeat" pattern="[A-Za-z0-​9]{6,35}" title="Ingrese una contraseña de con letras y/o nuermos de mínimo 6 digitos" required>
             </div>
             <div class="form-group">
                 <div class="row justify-content-center">
