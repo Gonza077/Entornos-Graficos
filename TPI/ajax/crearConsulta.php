@@ -20,16 +20,18 @@ if(isset($USER)){
 
 $errorMessage='';
 $consultaRepo = New ConsultaRepository();
-    if(isset($_POST['docenteId']) && isset($_POST['materiaId']) && isset($_POST['fecha']) && isset($_POST['horarioHora']) && isset($_POST['horarioMinutos'])){
+    if(isset($_POST['docenteId']) && isset($_POST['materiaId']) && isset($_POST['fecha']) 
+    && isset($_POST['horarioHora']) && isset($_POST['horarioMinutos']) && isset($_POST['cupo'])){
         $docente = $_POST['docenteId'];
         $materia = $_POST['materiaId'];
         $fecha = $_POST['fecha'];
+        $cupo = $_POST['cupo'];
         $fechaArr = explode("/", $fecha);
         $hora = $_POST['horarioHora'];
         $minutos = $_POST['horarioMinutos'];
         $fechaFormatted = $fechaArr[2]."/".$fechaArr[1]."/".$fechaArr[0]." ".$hora.":".$minutos.":00";
         $descripcionBaja  = isset($_POST['descripcionBaja']) ? $_POST['descripcionBaja'] : "NULL";
-        $consultaRepo -> crearConsulta($docente,$materia,$fechaFormatted,4,'NULL');
+        $consultaRepo -> crearConsulta($docente,$materia,$fechaFormatted,$cupo,'NULL');
         if ($consultaRepo ->connect()->error == "") {
             http_response_code(200);
             echo json_encode("Consulta creada exitosamente");

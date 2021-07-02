@@ -165,13 +165,29 @@ $(document).ready(function(){
   $('#datepickerCreate').datepicker({minDate: 0,dateFormat:"dd/mm/yy"});
   $( "#crearConsulta" ).click(function() {
       $('#crearConsultaModal').modal('toggle');
-      crearConsulta();
-      resetCrearConsulta();
+      var docenteId = $('#profesorCreateFilter').children("option:selected").val();
+      var materiaId = $('#materiaCreateFilter').children("option:selected").val();
+      var fecha = $('#datepickerCreate').val();
+      var horarioHora = $('#horaCreate').children("option:selected").val();
+      var horarioMinutos = $('#minutoCreate').children("option:selected").val();
+      var cupo = $('#cupoCreate').val();
+      crearConsulta(docenteId,materiaId,fecha,horarioHora,horarioMinutos,cupo,null);
+      //resetCrearConsulta();
   });
   docenteQueryCreateConsulta();
 });
 
-function resetCrearConsulta(){
+// function resetCrearConsulta(){
+//   $('#profesorCreateFilter').val(undefined);
+//   $('#materiaCreateFilter').val(undefined);
+//   $('#datepickerCreate').val(undefined);
+//   $('#horaCreate').val(undefined);
+//   $('#minutoCreate').val(undefined);
+//   $('#crearConsulta').prop("disabled", true);
+//   $('#materiaCreateFilter').prop("disabled", true);
+// }
+
+$('#crearConsultaModal').on('hidden.bs.modal', function (e) {
   $('#profesorCreateFilter').val(undefined);
   $('#materiaCreateFilter').val(undefined);
   $('#datepickerCreate').val(undefined);
@@ -179,20 +195,23 @@ function resetCrearConsulta(){
   $('#minutoCreate').val(undefined);
   $('#crearConsulta').prop("disabled", true);
   $('#materiaCreateFilter').prop("disabled", true);
-}
+})
 
 
-function crearConsulta(){
-  var consultaId = $('#profesorCreateFilter').children("option:selected").val();
-  var materiaId = $('#materiaCreateFilter').children("option:selected").val();
-  var fecha = $('#datepickerCreate').val();
-  var horarioHora = $('#horaCreate').children("option:selected").val();
-  var horarioMinutos = $('#minutoCreate').children("option:selected").val();
+function crearConsulta(consultaId,materiaId,fecha,horarioHora,horarioMinutos,cupo,idConsultaBloqueada){
   $.ajax({
     url:"../ajax/crearConsulta.php",
     type: "post",
     dataType: 'json',
-    data: {docenteId:consultaId,materiaId:materiaId,fecha:fecha,horarioHora:horarioHora,horarioMinutos:horarioMinutos}
+    data: {
+      docenteId:consultaId,
+      materiaId:materiaId,
+      fecha:fecha,
+      horarioHora:horarioHora,
+      horarioMinutos:horarioMinutos,
+      cupo:cupo,
+      idConsultaBloqueada:idConsultaBloqueada
+    }
     }).done(response=>{
         openToast(response,"Creacion de Consulta",'success');
       })
@@ -215,6 +234,7 @@ function docenteQueryCreateConsulta(docente){
     data:{docente:docente},
     success:function(response){
       $("#profesorCreateFilter").append(response);
+      $("#alternativoProfesorCreateFilter").append(response);
     }
   });  
 }
@@ -241,16 +261,52 @@ function materiaQueryCreateConsulta(){
     setCrearConsultaDisabledState();
 }
 
+function materiaQueryAlternativoCreateConsulta(){
+  setAlternativoCrearConsultaDisabledState();
+  response = '';
+  var docente = $('#alternativoProfesorCreateFilter').children("option:selected").val();
+  if (docente != undefined || docente != ''){
+    $('#alternativoMateriaCreateFilter').prop("disabled", false);
+    $("#alternativoMateriaCreateFilter").html("<option value='' selected disabled hidden>Seleccione Materia</option>");
+    $.ajax({
+      url:"consultaMateriaQuery.php",
+      type: "get",
+      dataType: 'html',
+      data:{docente:docente},
+      success:function(response){
+        $("#alternativoMateriaCreateFilter").append(response);
+      }
+    });
+    } else {
+      $('#alternativoMateriaCreateFilter').prop("disabled", true);
+    }
+    setAlternativoCrearConsultaDisabledState();
+}
+
+
 function setCrearConsultaDisabledState(){
   var docente = $('#profesorCreateFilter').children("option:selected").val();
   var materia = $('#materiaCreateFilter').children("option:selected").val();
   var fecha = $('#datepickerCreate').val();
-  var horarioHora = $('#horaCreate').children("option:selected").val();
-  var horarioMinutos = $('#minutoCreate').children("option:selected").val();
-  if (docente == '' || docente == undefined || materia == '' || materia == undefined || fecha == ''|| fecha== undefined ){
+  var cupo = $('#cupoCreate').val();
+  if (docente == '' || docente == undefined || materia == '' || materia == undefined || fecha == ''|| fecha== undefined || cupo == ''){
     $('#crearConsulta').prop("disabled", true);
   } else {
     $('#crearConsulta').prop("disabled", false);
+  }
+
+}
+
+
+function setAlternativoCrearConsultaDisabledState(){
+  var docente = $('#alternativoProfesorCreateFilter').children("option:selected").val();
+  var materia = $('#alternativoMateriaCreateFilter').children("option:selected").val();
+  var fecha = $('#alternativoDatepickerCreate').val();
+  var cupo = $('#alternativoCupoCreate').val();
+  if (docente == '' || docente == undefined || materia == '' || materia == undefined || fecha == ''|| fecha== undefined || cupo == ''){
+    $('#bloquearConsulta').prop("disabled", true);
+  } else {
+    $('#bloquearConsulta').prop("disabled", false);
   }
 
 }
@@ -292,19 +348,43 @@ $.ajax({
 // CANCELAR CONSULTA
 // BLOQUEAR CONSULTA
 $(document).ready(function(){
+  $('#alternativoDatepickerCreate').datepicker({minDate: 0,dateFormat:"dd/mm/yy"});
+
+  $('#bloquearConsultaModal').on('hidden.bs.modal', function (e) {
+    $('#modalFooterBloquearConsulta').prop('hidden', true);
+    $('#modalBodyBloquearConsulta').prop('hidden', true);
+    $('#bloquearConsultaOpenAlternativo').prop('disabled', true);
+    $('#modalFooterOpenAlternativoBloquearConsulta').prop('hidden', false);
+    $('#motivoBloqueo').prop('disabled',false);
+    $('#motivoBloqueo').val("");
+  })
+
+  $( "#bloquearConsultaOpenAlternativo" ).click(function() {
+    $('#modalFooterOpenAlternativoBloquearConsulta').prop('hidden', true);
+    $('#modalFooterBloquearConsulta').prop('hidden', false);
+    $('#modalBodyBloquearConsulta').prop('hidden', false);
+    $('#motivoBloqueo').prop('disabled',true);
+  });
 
   $( "#bloquearConsulta" ).click(function() {
     $('#bloquearConsultaModal').modal('toggle');
-    var consultaId =  $('#idBloquearConsulta').val();
+    var consultaIdBloqueada =  $('#idBloquearConsulta').val();
+    var cupo = $('#alternativoCupoCreate').val();
     var motivo =  $('#motivoBloqueo').val();
-    bloquearConsulta(consultaId,motivo);
+    var docenteId = $('#alternativoProfesorCreateFilter').children("option:selected").val();
+    var materiaId = $('#alternativoMateriaCreateFilter').children("option:selected").val();
+    var fecha = $('#alternativoDatepickerCreate').val();
+    var horarioHora = $('#alternativoHoraCreate').children("option:selected").val();
+    var horarioMinutos = $('#alternativoMinutoCreate').children("option:selected").val();
+    bloquearConsulta(consultaIdBloqueada,motivo);
+    crearConsulta(docenteId,materiaId,fecha,horarioHora,horarioMinutos,cupo,consultaIdBloqueada);
   });
 
   $('#motivoBloqueo').keyup(function() {
     if($(this).val() != '') {
-       $('#bloquearConsulta').prop('disabled', false);
+       $('#bloquearConsultaOpenAlternativo').prop('disabled', false);
     } else {
-      $('#bloquearConsulta').prop('disabled', true);
+      $('#bloquearConsultaOpenAlternativo').prop('disabled', true);
     }
  });
 });
@@ -312,13 +392,13 @@ $(document).ready(function(){
 
 
 function openBloquearConsultaModal(consultaId){
-getConsulta(consultaId).done( response => {
-  consuta = "";
-  consulta = response.consulta;
-  $('#idBloquearConsulta').val(consulta.id);
-  $('#datosBloquearConsulta').html(consulta.fecha + " - " + consulta.materia_nombre + " - " + consulta.docente_nombre + " - " + consulta.docente_apellido);
-  $('#bloquearConsultaModal').modal('show');
-}
+  getConsulta(consultaId).done( response => {
+    consuta = "";
+    consulta = response.consulta;
+    $('#idBloquearConsulta').val(consulta.id);
+    $('#datosBloquearConsulta').html(consulta.fecha + " - " + consulta.materia_nombre + " - " + consulta.docente_nombre + " - " + consulta.docente_apellido);
+    $('#bloquearConsultaModal').modal('show');
+  }
 );}
 
 
