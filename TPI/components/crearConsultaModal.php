@@ -67,6 +67,10 @@
                     <option value="55">55</option>
                 </select>
               </div>
+              <div class="col-3" id="cupoCreateFilterCol">
+                <label for="cupoCreate">Cupo</label>
+                <input class="custom-select" type="number" min="1" name="cupoCreate" id="cupoCreate" onchange="setCrearConsultaDisabledState()" required>
+              </div>
             </div>
           <br>
       </div>
