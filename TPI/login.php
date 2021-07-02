@@ -38,10 +38,14 @@
           <div class="form-group">
             <img class="mb-4 d-block mx-auto" src="img/LogoUTN.png" alt="Logo de la Universidad Tecnológica Nacional" width="100" height="100">
             <h1 class="d-flex justify-content-center">Iniciar sesion</h1>
-            <label for="inputEmail" class="sr-only">Direccion de email</label>
-            <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Direccion de email" required autofocus>
-            <label for="inputPassword" class="sr-only">Contraseña</label>
-            <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Contraseña" required>
+            <div class="form-group">
+              <label for="inputEmail" class="sr-only">Direccion de email</label>
+              <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Direccion de email" required autofocus>
+            </div>
+            <div class="form-group">
+              <label for="inputPassword" class="sr-only">Contraseña</label>
+              <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Contraseña" required> 
+            </div>
               <div class="checkbox mb-3">
                 <label>
                   <input type="checkbox" value="remember-me"> Recordarme
@@ -59,7 +63,6 @@
             </div>
           </div>
           <br>
-          <a href="./home.php" class="d-flex justify-content-center">¿Olvidaste tu contraseña?</a>
           <hr>
           <a href="./registro.php" class="btn btn-primary btn-lg btn-block">Registrarme</a>
           <?php echo $errorLogin; ?>
