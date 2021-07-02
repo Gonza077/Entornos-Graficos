@@ -1,11 +1,15 @@
-<footer class="bg-dark text-center text-white pt-4 my-md-5 pt-md-5 border-top" >
+<footer class="bg-dark text-center text-white fixed-bottom">
     <!-- El color del navbar es #343a40 pero no lo toma, seguramente que sea
         por las clases de Bootstrap-->
     <div class="row">
-        <div class="col-6 col-md">
+        <div class="col-3">
         <p>FACULTAD REGIONAL ROSARIO</p>
+        </div>
+        <div class="col-6">
         <p>Universidad Tecnológica Nacional</p>
-        <p>DIRECCIÓN: ZEBALLOS 1341 - S2000BQA - ROSARIO</p>
+        </div>
+        <div class="col-3">
+        <p>ZEBALLOS 1341 - S2000BQA - ROSARIO</p>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
