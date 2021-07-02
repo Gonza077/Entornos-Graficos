@@ -31,23 +31,17 @@
           echo '<li class="nav-item active">
                   <a class="nav-link" href="cuenta.php">Mi Cuenta</a>
                 </li>';}
-        ?>
-        <form class="form-inline my-2 my-lg-0">
-        <?php if (isset($user)) {
-                $nombre = $user->getNombre();
-              }
-        ?>
-          <input class="form-control mr-sm-2" type="search" disabled value="<?php isset($nombre)? printf("%s",$nombre) : '';?>">
-          <?php if (isset($user)) {
-                  echo '<a class="btn btn-info" href="./includes/logout.php" role="button">Desconectarse</a>';
-                }
-                else{
-                  echo '<a class="btn btn-info" href="login.php" role="button">Iniciar Sesion</a>';
-                  
-                }
-          ?>
-          
-        </form>
+        ?> 
+        <li>
+          <div class="form-inline my-2 my-lg-0">
+          <?php if (isset($user)) {$nombre = $user->getNombre();}?>
+            <input class="form-control mr-sm-2" type="search" disabled value="<?php isset($nombre)? printf("%s",$nombre) : '';?>">
+            <?php if (isset($user)) {
+                    echo '<a class="btn btn-info" href="./includes/logout.php" role="button">Desconectarse</a>';
+                  }else{echo '<a class="btn btn-info" href="login.php" role="button">Iniciar Sesion</a>';}
+            ?>
+          </div>
+        </li>
       </ul>
     </div>
 </nav>

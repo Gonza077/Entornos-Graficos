@@ -3,13 +3,6 @@
   include_once('includes/user.php');
   $user_session = new UserSession();
   $user = $user_session->getCurrentUser();
-  if ($user != null && $user->isDocente()){
-    $userId= $user->getId();
-    echo "<script type='text/javascript'>var profesorId = $userId;</script>";
-  } else {
-    echo "<script type='text/javascript'>var profesorId = undefined;</script>";
-  }
-
 ?> 
 <!DOCTYPE html>
 <html lang="es">
@@ -23,17 +16,16 @@
 <body>
 <?php include('navbar.php'); ?>
   <div class="container-fluid">
-  <br>
-    <div class="row">
-    </div>
+    <br>
+    <div class="row"></div>
     <div class="row">
       <div class="col-2">
-        <label for="estadoFilter">Estado</label>
-            <select class="custom-select" id="estadoFilter">
-              <option value=""></option>
-              <option value="1" selected>CONFIRMADA</option>
-              <option value="2">BLOQUEADA</option>
-            </select>
+          <label for="estadoFilter">Estado</label>
+          <select class="custom-select" id="estadoFilter">
+            <option value="" label="Seleccione Estado"></option>
+            <option value="1" selected>CONFIRMADA</option>
+            <option value="2">BLOQUEADA</option>
+          </select>
       </div>
       <div class="col-2">
         <label for="fechaDesdeFilter">Fecha Desde</label>
@@ -46,27 +38,25 @@
       <div class="col-2">
         <label for="profesorFilter">Docente</label>
         <select class="custom-select" id="profesorFilter">
-          <option value="" selected></option>
+          <option value="" label="Seleccione Docente" selected></option>
         </select>
       </div>
       <div class="col-2">
         <label for="materiaFilter">Materia</label>
         <select class="custom-select" id="materiaFilter">
-          <option value="" selected></option>
+          <option value="" label="Seleccione Materia" selected></option>
         </select>
       </div>
       <div class="col-2">
-      <label for="horarioFilter">Horario</label>
+        <label for="horarioFilter">Horario</label>
         <select class="custom-select" id="horarioFilter">
-          <option value="" selected></option>
+          <option value="" label="Seleccione Horario" selected></option>
         </select>
-        </div>
       </div>
     </div>
     <br>
     <div class="row justify-content-end">
-      <div class="col-4">
-      </div>
+      <div class="col-4"></div>
       <div class="col-4">
         <div class="row justify-content-end">
           <button type="button" class="btn btn-info" id="clear">Limpiar Filtros</button>
@@ -98,7 +88,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-       <input type="text" name="idInscripcionConsulta" id="idInscripcionConsulta" hidden aria-hidden="true">
+       <input type="text" name="idInscripcionConsulta" id="idInscripcionConsulta" hidden>
         <h5 class="modal-title" id="inscripcionConsultaModalLabel">Inscripcion a consulta</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
           <span aria-hidden="true">&times;</span>
@@ -117,11 +107,11 @@
   </div>
 </div>
 <!-- Cancelar Consulta Modal -->
-<div class="modal fade" id="cancelarConsultaModal" tabindex="-1" aria-labelledby="cancelarConsultaModalLabel" aria-hidden="true">
+<div class="modal fade" id="cancelarConsultaModal" tabindex="-1" aria-labelledby="cancelarConsultaModalLabel">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-      <input type="text" name="idCancelarConsulta" id="idCancelarConsulta" hidden aria-hidden="true">
+      <input type="text" name="idCancelarConsulta" id="idCancelarConsulta" hidden>
         <h5 class="modal-title" id="cancelarConsultaModalLabel">Cancelar Consulta</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
           <span aria-hidden="true">&times;</span>
@@ -141,11 +131,16 @@
 </div>
 <?php include('components/bloquearConsultaModal.php');?>
 <?php $user != null && ($user->isDocente() ||$user->isAdmin()) ? include('components/crearConsultaModal.php'):NULL;?>
-</div>
   <?php include('components/toast.php');?>
   <?php include('footer.php');?>
 
   <script src="js/scripts.js"> </script>
+  <?php if ($user != null && $user->isDocente()){
+    $userId= $user->getId();
+    echo "<script>var profesorId = $userId;</script>";
+  } else {
+    echo "<script>var profesorId = undefined;</script>";
+  } ?>
 </body>
 </html>
 

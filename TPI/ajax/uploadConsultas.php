@@ -23,10 +23,9 @@ try{
                 $startDate = date("Y")."-01-01";
                 $endDate = date("Y")."-12-31";
                 if($registros = $db-> connect() -> query("SELECT CAST(fecha AS DATE) fecha from fechas WHERE fecha = current_date()")){
-                    while ($row = $registros->fetch_assoc()) {
-                        if (!isset($row["fecha"])) {
-                            $db-> connect() -> query("CALL filldates($startDate,$endDate)");
-                        }
+                    $row = $registros->fetch_assoc();
+                    if (!isset($row)) {
+                        $db-> connect() -> query("CALL filldates('$startDate','$endDate')");
                     }
                 }
                 //Se saltea la primer fila y segundapor ser la cabecera y el nombre de la columna
@@ -53,8 +52,9 @@ try{
                     foreach ($consultasArr as &$consulta) {
                         if (getDayNumber($consulta->dia) == $current_dia) {
                             $full_date = $current_fecha." ".$consulta->horario_hora.":".$consulta->horario_minuto.":00";
-                            $sql = "CALL crear_consulta_excel('$consulta->codigo_materia','$consulta->legajo_profesor',CAST('$full_date' AS DATETIME),'$consulta->cupo')";
-                            $db-> connect() -> query($sql);
+                            $query = "CALL crear_consulta_excel('$consulta->codigo_materia',$consulta->legajo_profesor,'$full_date',$consulta->cupo)";
+                            $db-> connect() -> query($query);
+                            echo $db->connect()->error;
                         }
                     }
                 }
@@ -95,5 +95,4 @@ function getDayNumber($day) {
             break;
     }
 }
-
 ?>

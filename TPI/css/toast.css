@@ -1,0 +1,41 @@
+.toastInfo{}
+.toastInfo > div > .toast-header{
+    background: #0072ec;
+    }
+.toastInfo > div > .toast-header > .mr-auto{
+    color: #FFFFFF;
+    margin-left: 5px;
+}
+.toastInfo > div >.toast-body{
+    background: #3c9aff;
+    color: #FFFFFF;
+}
+
+
+.toastError{}
+.toastError > div > .toast-header{
+    background: #C82333;
+    }
+.toastError > div > .toast-header > .mr-auto{
+    color: #FFFFFF;
+    margin-left: 5px;
+}
+.toastError > div >.toast-body{
+    background: #C82333;
+    color: #FFFFFF;
+}
+
+
+.toastSucces{}
+.toastSucces > div > .toast-header{
+    background: #00C861;
+    color: #FFFFFF;
+    }
+.toastSucces > div > .toast-header > .mr-auto{
+    color: #FFFFFF;
+    margin-left: 5px;
+}
+.toastSucces > div >.toast-body{
+    background: #00C861;
+    color: #FFFFFF;
+}
