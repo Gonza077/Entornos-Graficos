@@ -5,12 +5,13 @@
   $user = $user_session->getCurrentUser();
 ?> 
 <!DOCTYPE html>
-<html>
+<html lang="es">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <LINK REL=StyleSheet HREF="./css/micuenta.css" TYPE="text/css">
         <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
+        <title>Mi Cuenta</title>
     </head>
     <body>
     
