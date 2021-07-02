@@ -23,5 +23,6 @@ $user = $user_session->getCurrentUser();
     </form>
 </body>
 <?php require('footer.php')?>
+<?php include('./components/toast.php');?>
 <script src="js/uploadConsulta.js"></script>
 </html>

@@ -5,10 +5,12 @@ function uploadConsultas(){
         type: "post",
         data : Form,
         processData: false,
-        contentType: false,
-        success: function(response){
-            alert(response)
-        }
-    });
+        contentType: false})
+        .done(response=>{
+            openToast(response,"Carga Consulta",'success');
+          })
+        .fail(response=>{
+            openToast(response,"Carga Consulta",'error');
+        });
   }
   

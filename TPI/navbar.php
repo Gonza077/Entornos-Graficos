@@ -20,7 +20,7 @@
                 if ($esAdmin)
                 {
                   echo '<li class="nav-item active">
-                        <a class="nav-link" href="upload.php"><small>Subir Horarios<small></a>
+                        <a class="nav-link" href="upload.php"><small>Subir Horarios</small></a>
                       </li>';
                 }
         }

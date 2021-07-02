@@ -59,12 +59,13 @@ try{
                     }
                 }
             }
-
-
+            http_response_code(200);
+            echo json_encode("Consultas cargadas exitosamente");
         }
     }
         else{
-            echo "Formato ingresado incorrecto";
+            http_response_code(204);
+            echo json_encode("Formato ingresado incorrecto");
         }
 }
 catch(Exception $e){
