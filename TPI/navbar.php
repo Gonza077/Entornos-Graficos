@@ -8,16 +8,6 @@
         <li class="nav-item active">
           <a class="nav-link" href="contacto.php">Contacto<span class="sr-only">(current)</span></a>
         </li>
-        <?php if (isset($user)) {
-                $esAdmin = $user->isAdmin();
-                if ($esAdmin)
-                {
-                  echo '<li class="nav-item">
-                        <a class="nav-link" href="upload.php">Subir Horarios</a>
-                      </li>';
-                }
-        }
-        ?>
         <li class="nav-item active dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menú</a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -25,6 +15,16 @@
             <a class="dropdown-item" href="#">Información Importante</a>
           </div>
         </li>
+        <?php if (isset($user)) {
+                $esAdmin = $user->isAdmin();
+                if ($esAdmin)
+                {
+                  echo '<li class="nav-item active">
+                        <a class="nav-link" href="upload.php"><small>Subir Horarios<small></a>
+                      </li>';
+                }
+        }
+        ?>
       </ul>
       <ul class="nav navbar-nav flex-fill w-100 justify-content-end">
         <?php if (isset($user) && $user !=null) {
@@ -33,8 +33,12 @@
                 </li>';}
         ?>
         <form class="form-inline my-2 my-lg-0">
+        <?php if (isset($user)) {
+                $nombre = $user->getNombre();
+              }
+        ?>
+          <input class="form-control mr-sm-2" type="search" disabled value="<?php isset($nombre)? printf("%s",$nombre) : '';?>">
           <?php if (isset($user)) {
-                  $nombre = $user->getNombre();
                   echo '<a class="btn btn-info" href="./includes/logout.php" role="button">Desconectarse</a>';
                 }
                 else{
@@ -42,9 +46,8 @@
                   
                 }
           ?>
-          <input class="form-control mr-sm-2" type="search" disabled value="<?php isset($nombre)? printf("%s",$nombre) : '';?>">
+          
         </form>
-
       </ul>
     </div>
 </nav>

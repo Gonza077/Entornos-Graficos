@@ -54,6 +54,7 @@ $sqlQuery=" SELECT
             consulta.id as 'id',
             materia.nombre as 'materia',
             persona.nombre as 'docente_nombre',
+            persona.apellido as 'docente_apellido',
             persona.id as 'docente_id',
             consulta.fecha as 'horario',
             consulta.cupo as 'cupo',
@@ -89,9 +90,9 @@ if($registros = $db-> connect() ->query($sqlQuery)){
       $bloqueada = isset($row["fecha_baja"]);
       $idInSolicitudes = in_array($id,$ids_solicitudes)? 1:0;
       echo "<tr class='".($bloqueada ? "table-danger" : "")."'>";
-      echo "<td>".($bloqueada ? "BLOQUEADA" : "")."</td>";
+      echo "<td>".($bloqueada ? "BLOQUEADA" : "CONFIRMADA")."</td>";
       echo "<td>".$row["materia"]."</td>";
-      echo "<td>".$row["docente_nombre"]."</td>";
+      echo "<td>".$row["docente_apellido"].", ".$row["docente_nombre"]."</td>";
       echo "<td>".$row["horario"]."</td>";
       echo "<td>".$cupo."</td>";
       echo "<td>";
