@@ -38,7 +38,7 @@
         <form class="form-signin" action="login.php" method="POST">
           <div class="form-group">
             <img class="mb-4 d-block mx-auto" src="img/LogoUTN.png" alt="Logo de la Universidad Tecnológica Nacional" width="100" height="100">
-            <h1 class="d-flex justify-content-center">Iniciar sesion</h1>
+            <h1 class="d-flex justify-content-center">Iniciar Sesión</h1>
             <div class="form-group">
               <label for="inputEmail" class="sr-only">Direccion de email</label>
               <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Direccion de email" required autofocus>
