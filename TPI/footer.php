@@ -9,7 +9,7 @@
         <p>Universidad Tecnológica Nacional</p>
         </div>
         <div class="col-3">
-        <p>ZEBALLOS 1341 - S2000BQA - ROSARIO</p>
+        <p> <small>ZEBALLOS 1341 - S2000BQA - ROSARIO TEL: 0341-4481871</small></p>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
