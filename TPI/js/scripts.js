@@ -381,8 +381,22 @@ $(document).ready(function(){
     var fecha = $('#alternativoDatepickerCreate').val();
     var horarioHora = $('#alternativoHoraCreate').children("option:selected").val();
     var horarioMinutos = $('#alternativoMinutoCreate').children("option:selected").val();
-    bloquearConsulta(consultaIdBloqueada,motivo);
-    crearConsulta(docenteId,materiaId,fecha,horarioHora,horarioMinutos,cupo,consultaIdBloqueada);
+
+    $.ajax({
+      url:"../ajax/bloquearConsulta.php",
+      type: "post",
+      dataType: 'json',
+      data: {consultaId: consultaIdBloqueada, descripcionBaja: motivo}})
+      .done(response=>{
+        //openToast(response,"Bloquear Consulta",'success');
+
+      })
+      .fail(response=>{
+        openToast(response,"Bloquear Consulta",'error');
+      })
+      .always(r=>{
+        crearConsulta(docenteId,materiaId,fecha,horarioHora,horarioMinutos,cupo,consultaIdBloqueada)
+        buscar()});
   });
 
   $('#motivoBloqueo').keyup(function() {
@@ -407,18 +421,4 @@ function openBloquearConsultaModal(consultaId){
 );}
 
 
-function bloquearConsulta(consultaId,motivo) {
-$.ajax({
-    url:"../ajax/bloquearConsulta.php",
-    type: "post",
-    dataType: 'json',
-    data: {consultaId: consultaId, descripcionBaja: motivo}})
-    .done(response=>{
-      openToast(response,"Bloquear Consulta",'success');
-    })
-    .fail(response=>{
-      openToast(response,"Bloquear Consulta",'error');
-    })
-    .always(r=>{buscar();});
-}
 // BLOQUEAR CONSULTA
