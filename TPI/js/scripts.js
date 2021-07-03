@@ -357,6 +357,11 @@ $(document).ready(function(){
     $('#modalFooterOpenAlternativoBloquearConsulta').prop('hidden', false);
     $('#motivoBloqueo').prop('disabled',false);
     $('#motivoBloqueo').val("");
+    $('#alternativoCupoCreate').val(undefined);
+    $('#motivoBloqueo').val(undefined);
+    $('#alternativoProfesorCreateFilter').val(undefined);
+    $('#alternativoMateriaCreateFilter').val(undefined);
+    $('#alternativoDatepickerCreate').val(undefined);
   })
 
   $( "#bloquearConsultaOpenAlternativo" ).click(function() {

@@ -9,7 +9,6 @@
     <title>Pagina Principal</title>
 </head>
 <body>
-<?php include('navbar.php');?>
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -20,8 +19,7 @@
                         <strong>Disculpa, un error ha ocurrido, la pagina solicitada no se ha encontrado!</strong>
                     </div>
                     <div class="botones">
-                        <!-- Aca irian los href del Home y el contacto-->
-                        <a href="./home.php" class="btn btn-primary btn-lg">Home</a>
+                        <a href="./consultas.php" class="btn btn-primary btn-lg">Volver</a>
                         <a href="./contacto.php" class="btn btn-info btn-lg">Contactar al soporte</a>
                     </div>
                 </div>
