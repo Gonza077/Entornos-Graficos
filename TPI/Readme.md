@@ -172,18 +172,4 @@ CREATE TABLE IF NOT EXISTS `universidad`.`Persona` (
 ENGINE = InnoDB;
 ```
 
-- Script para cargar datos en la tabla Persona:
 
-```
--- No es necesario indicar el Id pero lo puse igual porque es solo para probar que ande.
-INSERT INTO `Persona` (`Id_Persona`,`Email_Personal`,`Nombre`,`Apellido`) VALUES ('1','amolatex@mail.com ','Juan Ignacio','Torres');
-INSERT INTO `Persona` (`Id_Persona`,`Email_Personal`,`Nombre`,`Apellido`) VALUES ('2','amobitcoin@mail.com ','Jose Luis','Feraboli');
-INSERT INTO `Persona` (`Id_Persona`,`Email_Personal`,`Nombre`,`Apellido`) VALUES ('3','amocockburn@mail.com ','Alejandro','Rozas');
-```
-Tabla con los datos:
-
-Id_Persona | Email_Personal | Nombre | Apellido | Tipo
---|--|--|--|--
-1| amolatex@mail.com | Juan Ignacio | Torres | Docente
-2| amobitcoin@gmail.com| Jose Luis | Feraboli | Docente
-3| amocockburn@gmail.com| Alejandro | Rozas | Docente
