@@ -19,7 +19,7 @@
     <br>
     <div class="row"></div>
     <div class="row">
-      <div class="col-2">
+      <div class="col-lg-2 col-md-6 col-sm-8 col-xs-12">
           <label for="estadoFilter">Estado</label>
           <select class="custom-select" id="estadoFilter">
             <option value="" label="Seleccione Estado"></option>
@@ -27,27 +27,27 @@
             <option value="2">BLOQUEADA</option>
           </select>
       </div>
-      <div class="col-2">
+      <div class="col-lg-2 col-md-6 col-sm-8 col-xs-12">
         <label for="fechaDesdeFilter">Fecha Desde</label>
         <input class="custom-select" type="text" name="fechaDesdeFilter" id="fechaDesdeFilter">
       </div>
-      <div class="col-2">
+      <div class="col-lg-2 col-md-6 col-sm-8 col-xs-12">
         <label for="fechaHastaFilter">Fecha Hasta</label>
         <input class="custom-select" type="text" name="fechaHastaFilter" id="fechaHastaFilter">
       </div>
-      <div class="col-2">
+      <div class="col-lg-2 col-md-6 col-sm-8 col-xs-12">
         <label for="profesorFilter">Docente</label>
         <select class="custom-select" id="profesorFilter">
           <option value="" label="Seleccione Docente" selected></option>
         </select>
       </div>
-      <div class="col-2">
+      <div class="col-lg-2 col-md-6 col-sm-8 col-xs-12">
         <label for="materiaFilter">Materia</label>
         <select class="custom-select" id="materiaFilter">
           <option value="" label="Seleccione Materia" selected></option>
         </select>
       </div>
-      <div class="col-2">
+      <div class="col-lg-2 col-md-6 col-sm-8 col-xs-12">
         <label for="horarioFilter">Horario</label>
         <select class="custom-select" id="horarioFilter">
           <option value="" label="Seleccione Horario" selected></option>
@@ -56,13 +56,12 @@
     </div>
     <br>
     <div class="row justify-content-end">
-      <div class="col-4"></div>
-      <div class="col-4">
+      <div class="col-lg-2 col-md-6 col-sm-8 col-xs-12 offset-md-4">
         <div class="row justify-content-end">
           <button type="button" class="btn btn-info" id="clear">Limpiar Filtros</button>
           <button type="button" class="btn btn-primary" onclick="buscar()">Buscar</button>
           <?php echo ($user != null && ($user->isDocente() ||$user->isAdmin()) ? '<button type="button" class="btn btn-success" id="creaConsulta" onclick="openCrearConsultaModal()">Crear Consulta</button>' :NULL) ?>
-          <div class="col-2"></div>
+          <div class=" offset-3"></div>
         </div>
       </div>
     </div>
