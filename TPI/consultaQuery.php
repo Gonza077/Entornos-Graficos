@@ -26,7 +26,7 @@ $sqlQuerySolicitudes="SELECT solicitud.consulta_id AS consulta_id , persona.id A
                      ON persona.id = solicitud.persona_id
                      INNER JOIN consulta 
                      ON solicitud.consulta_id = consulta.id
-                     WHERE solicitud.fecha_baja IS NULL AND consulta.fecha >= CURDATE()
+                     WHERE solicitud.fecha_baja IS NULL AND consulta.fecha >= CURDATE() AND persona.id = $USER_ID
                      GROUP BY solicitud.consulta_id ,solicitud.persona_id ";
 
 //$solicitudes[] = $db-> connect() ->query($sqlQuerySolicitudes)->fetch_all(MYSQLI_NUM);
