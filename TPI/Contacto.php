@@ -25,7 +25,7 @@
                         <div class="user-info">
                             <div class="col-md-12">
                                 <label for="nombre">Nombre y Apellido</label>
-                                <input id="nombre" name="nombre" type="text" placeholder="Ej: Juan Perez" class="form-control" pattern="([a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]{3,25})+([\s]{1})+([a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]{2,25})" title="Escriba nombre y apellido separados por un espacio. Ej: Juan Perez" required>
+                                <input id="nombre" name="nombre" type="text" placeholder="Ej: Juan Perez" class="form-control" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ-\s]{3,25}" title="Escriba nombre y apellido separados por un espacio. Ej: Juan Perez" required>
                             </div>
                             <br>
                             <div class="col-md-12">
@@ -103,7 +103,7 @@
                 
                 <body> 
                 <h1>Correo enviado desde el Sistema de Consultas</h1>
-                <h2>Información enviada por el usuario de la web:</h2>
+                <h2>Mensaje enviado por el usuario de la web:</h2>
                 <p>Nombre: '.$u_nombre.'</p>
                 <p>Email: '.$u_email.'</p>
                 <p>Telefono: '.$u_telefono.'</p>
@@ -113,7 +113,7 @@
                 <br />';
 
 
-                enviarMail($u_email,$u_asunto,$cuerpo_html);
+                enviarMail('moduloconsultas@gmail.com',$u_asunto,$cuerpo_html);
 
 
             } 
