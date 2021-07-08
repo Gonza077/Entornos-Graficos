@@ -31,7 +31,7 @@ $consultaRepo = New ConsultaRepository();
         }
         $consultaActual =$consultaRepo->getConsultaById($consultaId);
 
-        enviarMail('entornoshosttest@gmail.com','Bloqueo de Consulta',setearCuerpoMail($consultaActual));
+        enviarMail('moduloconsultas@gmail.com','Bloqueo de Consulta',setearCuerpoMail($consultaActual));
 
 
     }else{

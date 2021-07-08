@@ -54,7 +54,6 @@ try{
                             $full_date = $current_fecha." ".$consulta->horario_hora.":".$consulta->horario_minuto.":00";
                             $query = "CALL crear_consulta_excel('$consulta->codigo_materia',$consulta->legajo_profesor,'$full_date',$consulta->cupo)";
                             $db-> connect() -> query($query);
-                            echo $db->connect()->error;
                         }
                     }
                 }

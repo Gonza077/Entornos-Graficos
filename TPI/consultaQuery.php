@@ -20,14 +20,7 @@ $fechaHastaSelected  = formatDate($_GET['fechaHastaSelected']);
 
 $db = new DB();
 
-$sqlQuerySolicitudes="SELECT solicitud.consulta_id AS consulta_id , persona.id AS persona_id , MAX(solicitud.id)
-                     FROM persona
-                     INNER JOIN solicitud 
-                     ON persona.id = solicitud.persona_id
-                     INNER JOIN consulta 
-                     ON solicitud.consulta_id = consulta.id
-                     WHERE solicitud.fecha_baja IS NULL AND consulta.fecha >= CURDATE() AND persona.id = $USER_ID
-                     GROUP BY solicitud.consulta_id ,solicitud.persona_id ";
+
 
 //$solicitudes[] = $db-> connect() ->query($sqlQuerySolicitudes)->fetch_all(MYSQLI_NUM);
 
@@ -41,11 +34,22 @@ $ids_solicitudes[] = [];
 // {
 //    array_push($ids_solicitudes,$row['consulta_id']);
 // }
-if($result = $db-> connect() ->query($sqlQuerySolicitudes)){
-   while ($row = $result->fetch_assoc()) {
-        array_push($ids_solicitudes,$row['consulta_id']);
+if (isset($USER)){
+   $sqlQuerySolicitudes="SELECT solicitud.consulta_id AS consulta_id , persona.id AS persona_id , MAX(solicitud.id)
+   FROM persona
+   INNER JOIN solicitud 
+   ON persona.id = solicitud.persona_id
+   INNER JOIN consulta 
+   ON solicitud.consulta_id = consulta.id
+   WHERE solicitud.fecha_baja IS NULL AND consulta.fecha >= CURDATE() AND persona.id = $USER_ID
+   GROUP BY solicitud.consulta_id ,solicitud.persona_id ";
+   if($result = $db-> connect() ->query($sqlQuerySolicitudes)){
+      while ($row = $result->fetch_assoc()) {
+      array_push($ids_solicitudes,$row['consulta_id']);
+      }
    }
 }
+
 
 
 // $sqlQuery="CALL queryConsulta($materiaSelected,$profesorSelected,$estadoSelected)";
