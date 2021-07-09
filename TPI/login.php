@@ -47,11 +47,7 @@
               <label for="inputPassword" class="sr-only">Contraseña</label>
               <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Contraseña" required> 
             </div>
-              <div class="checkbox mb-3">
-                <label>
-                  <input type="checkbox" value="remember-me"> Recordarme
-                </label>
-              </div>
+            <a href="forgotPassword.php">Olvidó su contraseña?</a>
           </div>
           <div class="form-group">
             <div class="row justify-content-center">
