@@ -18,7 +18,7 @@
                     <div class="detalles-error">
                         <strong>Disculpa, un error ha ocurrido, la pagina solicitada no se ha encontrado!</strong>
                     </div>
-                    <div class="botones">
+                    <div class="form-group">
                         <a href="./consultas.php" class="btn btn-primary btn-lg">Volver</a>
                         <a href="./contacto.php" class="btn btn-info btn-lg">Contactar al soporte</a>
                     </div>

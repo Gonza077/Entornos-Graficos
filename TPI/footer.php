@@ -1,6 +1,4 @@
-<footer class="bg-dark text-center text-white fixed-bottom">
-    <!-- El color del navbar es #343a40 pero no lo toma, seguramente que sea
-        por las clases de Bootstrap-->
+<footer class="footer bg-dark text-center text-white fixed-bottom">
     <div class="row">
         <div class="col-3">
         <p>FACULTAD REGIONAL ROSARIO</p>
@@ -20,4 +18,6 @@
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <link rel="stylesheet" href="./css/toast.css">
+    <link rel="stylesheet" href="./css/footer.css">
+    <link rel="stylesheet" href="./css/sitemap.css">
 </footer>
