@@ -3,6 +3,9 @@
   include_once('includes/user.php');
   $user_session = new UserSession();
   $user = $user_session->getCurrentUser();
+  if(!isset($user)|| !$user->isDocente()){
+      header("Location: http://localhost/consultas.php");
+  }
 ?> 
 <!DOCTYPE html>
 <html lang="es">
@@ -12,7 +15,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
     <link rel="icon" href="./assets/Icono.ico">
-    <title>Consultas</title>
+    <title>Mis Consultas</title>
 </head>
 <body>
 <?php include('navbar.php'); ?>
@@ -20,6 +23,12 @@
     <br>
     <div class="row"></div>
     <div class="row">
+      <div class="col-lg-2 col-md-6 col-sm-8 col-xs-12">
+        <label for="profesorFilter">Docente</label>
+        <select class="custom-select" id="profesorFilter" disabled>
+          <option value="" label="Seleccione Docente" selected></option>
+        </select>
+      </div>
       <div class="col-lg-2 col-md-6 col-sm-8 col-xs-12">
           <label for="estadoFilter">Estado</label>
           <select class="custom-select" id="estadoFilter">
@@ -36,12 +45,7 @@
         <label for="fechaHastaFilter">Fecha Hasta</label>
         <input class="custom-select" type="text" name="fechaHastaFilter" id="fechaHastaFilter">
       </div>
-      <div class="col-lg-2 col-md-6 col-sm-8 col-xs-12">
-        <label for="profesorFilter">Docente</label>
-        <select class="custom-select" id="profesorFilter">
-          <option value="" label="Seleccione Docente" selected></option>
-        </select>
-      </div>
+
       <div class="col-lg-2 col-md-6 col-sm-8 col-xs-12">
         <label for="materiaFilter">Materia</label>
         <select class="custom-select" id="materiaFilter">
@@ -82,58 +86,11 @@
       </tbody>
     </table>
   </div>
-
-<!-- Inscripcion Consulta Modal -->
-<div class="modal fade" id="inscripcionConsultaModal" tabindex="-1" aria-labelledby="inscripcionConsultaModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-       <input type="text" name="idInscripcionConsulta" id="idInscripcionConsulta" hidden>
-        <h5 class="modal-title" id="inscripcionConsultaModalLabel">Inscripcion a consulta</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Esta seguro que desea inscribirse a la consulta de:
-        <br> 
-        <b id="datosInscripcionConsulta"></b>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Volver">Volver</button>
-        <button type="button" class="btn btn-success" aria-label="Inscribir" id="inscribirConsulta">Inscribir</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Cancelar Consulta Modal -->
-<div class="modal fade" id="cancelarConsultaModal" tabindex="-1" aria-labelledby="cancelarConsultaModalLabel">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-      <input type="text" name="idCancelarConsulta" id="idCancelarConsulta" hidden>
-        <h5 class="modal-title" id="cancelarConsultaModalLabel">Cancelar Consulta</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Esta seguro que desea cancelar la inscripcion a 
-        <br>
-        <b id="datosCancelarConsulta"></b>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Volver">Volver</button>
-        <button type="button" class="btn btn-danger" aria-label="Cancelar" id="cancelarConsulta">Cancelar</button>
-      </div>
-    </div>
-  </div>
-</div>
 <?php $user != null && ($user->isDocente() ||$user->isAdmin()) ? include('components/bloquearConsultaModal.php'):"";?>
 <?php $user != null && ($user->isDocente() ||$user->isAdmin()) ? include('components/crearConsultaModal.php'):"";?>
 </body>
 <?php include('footer.php');?>
-<script src="js/scripts.js"> </script>
+<script src="js/miConsultascripts.js"> </script>
   <?php if ($user != null && $user->isDocente()){
     $userId= $user->getId();
     echo "<script>var profesorId = $userId;</script>";

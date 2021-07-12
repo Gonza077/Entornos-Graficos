@@ -11,11 +11,19 @@
             <a class="nav-link" href="preguntasFrecuentes.php">Preguntas Frecuentes</a>
         </li>
         <?php if (isset($user)) {
-                $esAdmin = $user->isAdmin();
-                if ($esAdmin)
-                {
+                if ($user->isAdmin()) {
                   echo '<li class="nav-item active text-nowrap">
                         <a class="nav-link" href="upload.php">Subir Horarios</a>
+                      </li>';
+                }
+                if (!$user->isDocente()) {
+                  echo '<li class="nav-item active text-nowrap">
+                        <a class="nav-link" href="misSolicitudes.php">Mis Solicitudes</a>
+                      </li>';
+                }
+                if ($user->isDocente()) {
+                  echo '<li class="nav-item active text-nowrap">
+                        <a class="nav-link" href="misConsultas.php">Mis Consultas</a>
                       </li>';
                 }
         }

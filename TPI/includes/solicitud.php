@@ -84,6 +84,22 @@ class SolicitudRepository extends DB{
         $this->connect()->query($query);
     }
 
+
+    public function queryByPersonaId($persona_id){
+        
+        $query="SELECT consulta.id AS consulta_id , persona.id AS persona_id , MAX(solicitud.id)
+        FROM consultas_db.persona
+        INNER JOIN solicitud 
+        ON persona.id = solicitud.persona_id
+        INNER JOIN consulta 
+        ON solicitud.consulta_id = consulta.id
+        WHERE solicitud.fecha_baja IS NULL AND consulta.fecha >= CURDATE()
+        GROUP BY consulta_id AND persona_id";
+
+        // $this->fetchConsultaFromDatabase($query);
+        return $this->query($query);
+    }
+
 }
 
 ?>
