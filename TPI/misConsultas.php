@@ -86,8 +86,9 @@
       </tbody>
     </table>
   </div>
-<?php $user != null && ($user->isDocente() ||$user->isAdmin()) ? include('components/bloquearConsultaModal.php'):"";?>
-<?php $user != null && ($user->isDocente() ||$user->isAdmin()) ? include('components/crearConsultaModal.php'):"";?>
+<?php $user != null && $user->isDocente() ? include('components/bloquearConsultaModal.php'):"";?>
+<?php $user != null && $user->isDocente() ? include('components/crearConsultaModal.php'):"";?>
+<?php $user != null && $user->isDocente() ? include('components/detalleConsultaModal.php'):"";?>
 </body>
 <?php include('footer.php');?>
 <script src="js/miConsultascripts.js"> </script>

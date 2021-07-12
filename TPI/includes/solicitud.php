@@ -100,6 +100,27 @@ class SolicitudRepository extends DB{
         return $this->query($query);
     }
 
+    public function queryByConsultaId($consulta_id){
+        
+        $query="SELECT consulta.id AS consulta_id , persona.id AS persona_id ,MAX(persona.nombre)
+        AS nombre,MAX(persona.apellido) AS apellido,MAX(persona.email) AS email
+               FROM consultas_db.persona
+               INNER JOIN solicitud 
+               ON persona.id = solicitud.persona_id
+               INNER JOIN consulta 
+               ON solicitud.consulta_id = consulta.id
+               WHERE solicitud.fecha_baja IS NULL AND consulta_id = $consulta_id
+               GROUP BY consulta_id AND persona_id";
+
+        $solicitudes=[];
+        if($result = $this-> connect() ->query($query)){
+            while ($row = $result->fetch_assoc()) {
+            array_push($solicitudes,$row);
+            }
+         }
+        return $solicitudes;
+    }
+
 }
 
 ?>

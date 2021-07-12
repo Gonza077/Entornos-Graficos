@@ -77,6 +77,8 @@ $(document).ready(function(){
         url:"materiaQuery.php",    //the page containing php script
         type: "get",    //request type,
         dataType: 'html',
+        data: {
+          profesorSelected: profesorId},
         success:function(response){
             $("#materiaFilter").append(response);
         }
@@ -343,3 +345,41 @@ function openBloquearConsultaModal(consultaId){
 
 
 // BLOQUEAR CONSULTA
+// VER DETALLE CONSULTA
+function openDetalleConsultaModal(consultaId){
+  getConsulta(consultaId).done( response => {
+    consuta = "";
+    consulta = response.consulta;
+    $('#idDetalleConsultaModal').val(consulta.id);
+    $('#detalleFecha').html(consulta.fecha);
+    $('#detalleFechaBaja').html(consulta.fecha_baja);
+    $('#detalleMateria').html(consulta.materia_nombre);
+    $('#detalleMotivo').html(consulta.descripcion_baja);
+    if (consulta.fecha_baja != null){
+      $('#detalleBaja').prop('hidden', false);
+    }
+      $.ajax({
+        url:"../ajax/getInscripcionesConsulta.php",
+        type: "get",
+        dataType: 'json',
+        data: {consultaId: consultaId}
+      })
+        .done(response=>{
+          $("table#alumnosTable tbody").html("");
+          response.suscripciones.forEach(suscripcion => {
+            var row = "<tr>"+"<td>"+suscripcion.apellido+", "+suscripcion.nombre+"</td>"+"<td><a href='mailto:suscripcion.email'>"+suscripcion.email+"</a></td></tr>";
+            $("table#alumnosTable tbody").append(row);
+          });
+        })
+        .fail(response=>{
+          openToast(response,"",'error');
+        })
+        .always(r=>{
+          buscar()});
+    $('#detalleConsultaModal').modal('show');
+  }
+);}
+
+$('#detalleConsultaModal').on('hidden.bs.modal', function (e) {
+  $('#detalleBaja').prop('hidden', true);
+})
