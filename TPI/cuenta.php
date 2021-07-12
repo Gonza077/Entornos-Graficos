@@ -12,6 +12,7 @@
         <LINK REL=StyleSheet HREF="./css/micuenta.css" TYPE="text/css">
         <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
         <title>Mi Cuenta</title>
+        <link rel="icon" href="./assets/Icono.ico">
     </head>
     <body>
     
