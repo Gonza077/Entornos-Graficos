@@ -91,7 +91,7 @@
 <?php $user != null && $user->isDocente() ? include('components/detalleConsultaModal.php'):"";?>
 </body>
 <?php include('footer.php');?>
-<script src="js/miConsultascripts.js"> </script>
+<script src="js/miConsultaScripts.js"> </script>
   <?php if ($user != null && $user->isDocente()){
     $userId= $user->getId();
     echo "<script>var profesorId = $userId;</script>";
