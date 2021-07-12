@@ -21,6 +21,11 @@
                         <a class="nav-link" href="misSolicitudes.php">Mis Solicitudes</a>
                       </li>';
                 }
+                if ($user->isDocente()) {
+                  echo '<li class="nav-item active text-nowrap">
+                        <a class="nav-link" href="misConsultas.php">Mis Consultas</a>
+                      </li>';
+                }
         }
         ?>
       </ul>
