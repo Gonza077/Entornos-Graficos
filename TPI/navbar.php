@@ -5,7 +5,7 @@
           <a class="nav-link" href="contacto.php">Contacto</a>
         </li>
         <li class="nav-item active text-nowrap">
-            <a class="nav-link" href="https://gradienteutn.files.wordpress.com/2021/01/calendario-academico-2021-2022-a3.pdf">Calendario Académico</a>
+            <a class="nav-link" href="calendarioAcademico.php">Calendario Académico</a>
         </li>
         <li class="nav-item active text-nowrap">
             <a class="nav-link" href="preguntasFrecuentes.php">Preguntas Frecuentes</a>
