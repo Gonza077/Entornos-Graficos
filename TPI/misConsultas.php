@@ -20,8 +20,6 @@
 <body>
 <?php include('navbar.php'); ?>
   <div class="container-fluid">
-    <br>
-    <div class="row"></div>
     <div class="row">
       <div class="col-lg-2 col-md-6 col-sm-8 col-xs-12">
         <label for="profesorFilter">Docente</label>
@@ -60,17 +58,11 @@
       </div>
     </div>
     <br>
-    <div class="row justify-content-end">
-      <div class="col-lg-2 col-md-6 col-sm-8 col-xs-12 offset-md-4">
-        <div class="row justify-content-end">
-          <button type="button" class="btn btn-info" id="clear">Limpiar Filtros</button>
-          <button type="button" class="btn btn-primary" onclick="buscar()">Buscar</button>
-          <?php echo ($user != null && ($user->isDocente() ||$user->isAdmin()) ? '<button type="button" class="btn btn-success" id="creaConsulta" onclick="openCrearConsultaModal()">Crear Consulta</button>' :NULL) ?>
-          <div class=" offset-3"></div>
-        </div>
-      </div>
+    <div class="row form-group justify-content-end">
+      <button type="button" class="btn btn-info" id="clear">Limpiar Filtros</button>
+      <button type="button" class="btn btn-primary" onclick="buscar()">Buscar</button>
+      <?php echo ($user != null && ($user->isDocente() ||$user->isAdmin()) ? '<button type="button" class="btn btn-success" id="creaConsulta" onclick="openCrearConsultaModal()">Crear Consulta</button>' :NULL) ?>
     </div>
-    <br>
     <table class="table table-hover" id="consultasTable" style="margin-bottom: 50px;"> 
       <thead>
         <tr>

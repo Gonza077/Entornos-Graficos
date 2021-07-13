@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar form-group navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="consultas.php">Consultas</a>
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">

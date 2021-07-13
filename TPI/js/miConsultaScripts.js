@@ -1,10 +1,17 @@
 var estadoSelected = profesorSelected = materiaSelected = horarioSelected = consulta = fechaDesdeSelected = fechaHastaSelected = null;
 
+$(function () {
+  $.datepicker.setDefaults($.datepicker.regional["es"]);
+  $("#datepicker").datepicker({
+  showButtonPanel: true
+  });
+  });
+
 $(document).ready(function(){
-    
     $('#fechaDesdeFilter').datepicker(
       {
         dateFormat:"dd/mm/yy",
+        showButtonPanel: true,
         onSelect: function(d,i){
           if(d !== i.lastVal){
               $(this).change();

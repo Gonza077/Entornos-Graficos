@@ -1,24 +1,23 @@
 var estadoSelected = profesorSelected = materiaSelected = horarioSelected = consulta = fechaDesdeSelected = fechaHastaSelected = null;
 
 $(document).ready(function(){
+    cambiarIdiomaDatePicker();
     
     $('#fechaDesdeFilter').datepicker(
-      {
+      { 
         dateFormat:"dd/mm/yy",
-        onSelect: function(d,i){
-          if(d !== i.lastVal){
-              $(this).change();
-          }
-        }
+        minDate:new Date(),
       }
     ).datepicker('setDate',new Date());
     fechaDesdeSelected = new Date().toLocaleDateString('es-ES', {  year: 'numeric', month: 'numeric', day: 'numeric' });
-
+    
     const date = new Date();
     date.setDate(date.getDate() + 7);
     $('#fechaHastaFilter').datepicker(
       {
         dateFormat:"dd/mm/yy",
+        minDate:new Date(),
+        
         onSelect: function(d,i){
           if(d !== i.lastVal){
               $(this).change();
@@ -28,6 +27,7 @@ $(document).ready(function(){
     ).datepicker('setDate',date);
     fechaHastaSelected = date.toLocaleDateString('es-ES', {  year: 'numeric', month: 'numeric', day: 'numeric' });
     estadoSelected = 1;
+
 
     $("select#estadoFilter").change(function(){
       estadoSelected = $(this).children("option:selected").val();
@@ -109,6 +109,26 @@ function buscar () {
             $("table#consultasTable tbody").html(response);
         }
     });
+}
+
+function cambiarIdiomaDatePicker(){
+  $.datepicker.regional['es'] = {
+    closeText: 'Cerrar',
+    prevText: '< Ant',
+    nextText: 'Sig >',
+    currentText: 'Hoy',
+    monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+    monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+    dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+    dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
+    dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+    weekHeader: 'Sm',
+    dateFormat: 'dd/mm/yy',
+    firstDay: 1,
+    isRTL: false,
+    showMonthAfterYear: false,
+    yearSuffix: ''
+    };
 }
 
 function getConsulta(consultaId){
