@@ -373,10 +373,15 @@ function openDetalleConsultaModal(consultaId){
       })
         .done(response=>{
           $("table#alumnosTable tbody").html("");
-          response.suscripciones.forEach(suscripcion => {
-            var row = "<tr>"+"<td>"+suscripcion.apellido+", "+suscripcion.nombre+"</td>"+"<td><a href='mailto:suscripcion.email'>"+suscripcion.email+"</a></td></tr>";
-            $("table#alumnosTable tbody").append(row);
-          });
+          if (Array.isArray(response.suscripciones) && response.suscripciones.length) {
+            response.suscripciones.forEach(suscripcion => {
+              var row = "<tr>"+"<td>"+suscripcion.apellido+", "+suscripcion.nombre+"</td>"+"<td><a href='mailto:suscripcion.email'>"+suscripcion.email+"</a></td></tr>";
+              $("table#alumnosTable tbody").append(row);
+            });
+        } else {
+          $("table#alumnosTable tbody").append("<tr><td>No hay Inscriptos</td></tr>");
+        }
+
         })
         .fail(response=>{
           openToast(response,"",'error');
