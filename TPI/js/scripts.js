@@ -1,7 +1,6 @@
 var estadoSelected = profesorSelected = materiaSelected = horarioSelected = consulta = fechaDesdeSelected = fechaHastaSelected = null;
 
 $(document).ready(function(){
-    cambiarIdiomaDatePicker();
     
     $('#fechaDesdeFilter').datepicker(
       { 
@@ -27,7 +26,6 @@ $(document).ready(function(){
     ).datepicker('setDate',date);
     fechaHastaSelected = date.toLocaleDateString('es-ES', {  year: 'numeric', month: 'numeric', day: 'numeric' });
     estadoSelected = 1;
-
 
     $("select#estadoFilter").change(function(){
       estadoSelected = $(this).children("option:selected").val();
@@ -55,8 +53,8 @@ $(document).ready(function(){
       $("select#profesorFilter")[0].selectedIndex = 0;
       $("select#materiaFilter")[0].selectedIndex = 0;
       $("select#horarioFilter")[0].selectedIndex = 0;
-      $("#fechaHastaFilter").datepicker('setDate', null);
-      $("#fechaDesdeFilter").datepicker('setDate', null);
+      $("#fechaHastaFilter").datepicker('setDate', new Date().getDate()-7);
+      $("#fechaDesdeFilter").datepicker('setDate',new Date() );
       buscar();
     });
 
@@ -99,37 +97,20 @@ function buscar () {
         url:"consultaQuery.php",    //the page containing php script
         type: "get",    //request type,
         dataType: 'html',
-        data: {estadoSelected: estadoSelected,
-           profesorSelected: profesorSelected,
-            materiaSelected: materiaSelected,
-            horarioSelected: horarioSelected,
-            fechaDesdeSelected: fechaDesdeSelected,
-            fechaHastaSelected: fechaHastaSelected},
+        data: {
+          estadoSelected: estadoSelected,
+          profesorSelected: profesorSelected,
+          materiaSelected: materiaSelected,
+          horarioSelected: horarioSelected,
+          fechaDesdeSelected: fechaDesdeSelected,
+          fechaHastaSelected: fechaHastaSelected
+        },
         success:function(response){
             $("table#consultasTable tbody").html(response);
         }
     });
 }
 
-function cambiarIdiomaDatePicker(){
-  $.datepicker.regional['es'] = {
-    closeText: 'Cerrar',
-    prevText: '< Ant',
-    nextText: 'Sig >',
-    currentText: 'Hoy',
-    monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-    monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
-    dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
-    dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
-    dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
-    weekHeader: 'Sm',
-    dateFormat: 'dd/mm/yy',
-    firstDay: 1,
-    isRTL: false,
-    showMonthAfterYear: false,
-    yearSuffix: ''
-    };
-}
 
 function getConsulta(consultaId){
     return $.ajax({

@@ -17,7 +17,6 @@
 <body>
 <?php include('navbar.php'); ?>
   <div class="container-fluid">
-    <br>
     <div class="row" style="height: 60em">
       <iframe src="./assets/calendario-academico-2021-2022-a3.pdf" width="100%" height="100%">
         Este navegador no soporta PDFs. Porfavor descarga el PDF para verlo: 

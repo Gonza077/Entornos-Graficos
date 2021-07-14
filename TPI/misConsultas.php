@@ -20,7 +20,7 @@
 <body>
 <?php include('navbar.php'); ?>
   <div class="container-fluid">
-    <div class="row">
+    <div class="row form-group" style="margin-top: 10px;" >
       <div class="col-lg-2 col-md-6 col-sm-8 col-xs-12">
         <label for="profesorFilter">Docente</label>
         <select class="custom-select" id="profesorFilter" disabled>
