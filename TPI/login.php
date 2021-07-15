@@ -5,7 +5,7 @@
   $userSession = new UserSession();
   $user = new User();
   if(isset($_SESSION['user'])){
-    header("Location: http://localhost/consultas.php");
+    header("Location: ../consultas.php");
     die();
   } elseif (isset($_POST['email']) && isset($_POST['password'])){
       
@@ -15,7 +15,7 @@
       if($user->userExists($userForm, $passForm)){
           $user->getUserByEmail($userForm);
           $userSession->setCurrentUser($user);
-          header("Location: http://localhost/consultas.php");
+          header("Location: ../consultas.php");
           
       }else{
           $errorLogin = "Nombre de usuario y/o password incorrecto";

@@ -57,8 +57,10 @@ $(document).ready(function(){
       $("select#materiaFilter")[0].selectedIndex = 0;
       $("select#horarioFilter")[0].selectedIndex = 0;
       $("select#horarioFilter")[0].selectedIndex = 0;
-      $("#fechaHastaFilter").datepicker('setDate', new Date().getDate()-7);
-      $("#fechaDesdeFilter").datepicker('setDate',new Date() );
+      $("#fechaHastaFilter").datepicker('setDate', new Date().getDate()-8);
+      $("#fechaDesdeFilter").datepicker('setDate',new Date());
+      fechaDesdeSelected = $("#fechaDesdeFilter").val();
+      fechaHastaSelected = $("#fechaHastaFilter").val();
       buscar();
     });
 

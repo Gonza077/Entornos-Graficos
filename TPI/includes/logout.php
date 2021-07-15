@@ -6,5 +6,5 @@
     $userSession->closeSession();
     $user= new User();
 
-    header("Location: http://localhost/consultas.php");
+    header("Location: ../consultas.php");
 ?>

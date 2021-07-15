@@ -1,7 +1,7 @@
 var estadoSelected = profesorSelected = materiaSelected = horarioSelected = consulta = fechaDesdeSelected = fechaHastaSelected = null;
 
 $(document).ready(function(){
-    
+
     $('#fechaDesdeFilter').datepicker(
       { 
         dateFormat:"dd/mm/yy",
@@ -48,13 +48,15 @@ $(document).ready(function(){
     });
     
     $( "#clear" ).click(function() {
-      estadoSelected = profesorSelected = materiaSelected = horarioSelected = fechaDesdeSelected = fechaHastaSelected = null;
+      estadoSelected = profesorSelected = materiaSelected = horarioSelected =  null;
       $("select#estadoFilter")[0].selectedIndex = 0;
       $("select#profesorFilter")[0].selectedIndex = 0;
       $("select#materiaFilter")[0].selectedIndex = 0;
       $("select#horarioFilter")[0].selectedIndex = 0;
-      $("#fechaHastaFilter").datepicker('setDate', new Date().getDate()-7);
-      $("#fechaDesdeFilter").datepicker('setDate',new Date() );
+      $("#fechaHastaFilter").datepicker('setDate', new Date().getDate()-8);
+      $("#fechaDesdeFilter").datepicker('setDate',new Date());
+      fechaDesdeSelected = $("#fechaDesdeFilter").val();
+      fechaHastaSelected = $("#fechaHastaFilter").val();
       buscar();
     });
 

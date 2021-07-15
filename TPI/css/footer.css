@@ -7,3 +7,9 @@
     background-image: -webkit-linear-gradient(#191919, #000000);
     background-image: linear-gradient(top, #191919, #000000);
 }
+
+@media handheld, only screen and (max-width: 767px) {
+    .footer{
+        display:none;
+    }
+}
