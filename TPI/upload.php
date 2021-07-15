@@ -16,7 +16,7 @@ $user = $user_session->getCurrentUser();
 <body>
 <?php require('navbar.php'); ?>
     <form method="post" enctype="multipart/form-data" id="filesForm">
-        <div class="col-md-4 offset-md-4">
+        <div class="col-md-4 offset-md-4" style="margin-top: 25px;">
             <input class="form-control" type="file" name="fileToUpload">
             <button type="button" id="import" onclick="uploadConsultas()" class="btn btn-primary form-control" >Cargar</button>
         </div>

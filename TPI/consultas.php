@@ -58,7 +58,7 @@
       <button type="button" class="btn btn-primary" onclick="buscar()">Buscar</button>
       <?php echo ($user != null && ($user->isDocente() ||$user->isAdmin()) ? '<button type="button" class="btn btn-success" id="creaConsulta" onclick="openCrearConsultaModal()">Crear Consulta</button>' :NULL) ?>
     </div>
-    <table class="table table-hover" id="consultasTable" style="margin-bottom: 50px;"> 
+    <table class="table table-hover" id="consultasTable" > 
       <thead>
         <tr>
           <th scope="col">Estado</th>
@@ -72,7 +72,7 @@
       <tbody>
       </tbody>
     </table>
-  </div>
+    </div>
 
 <!-- Inscripcion Consulta Modal -->
 <div class="modal fade" id="inscripcionConsultaModal" tabindex="-1" aria-labelledby="inscripcionConsultaModalLabel" aria-hidden="true">
@@ -97,6 +97,7 @@
     </div>
   </div>
 </div>
+
 <!-- Cancelar Consulta Modal -->
 <div class="modal fade" id="cancelarConsultaModal" tabindex="-1" aria-labelledby="cancelarConsultaModalLabel">
   <div class="modal-dialog">
@@ -120,6 +121,7 @@
     </div>
   </div>
 </div>
+
 <?php $user != null && ($user->isDocente() ||$user->isAdmin()) ? include('components/bloquearConsultaModal.php'):"";?>
 <?php $user != null && ($user->isDocente() ||$user->isAdmin()) ? include('components/crearConsultaModal.php'):"";?>
 <?php $user != null && $user->isDocente() ? include('components/detalleConsultaModal.php'):"";?>
@@ -133,5 +135,6 @@
     echo "<script>var profesorId = undefined;</script>";
   } ?>
 <?php include('components/toast.php');?>
+
 </html>
 

@@ -1,4 +1,4 @@
-<footer class="footer bg-dark text-center text-white fixed-bottom">
+<footer class="footer">
     <div class="row">
         <div class="col-3">
         <p>FACULTAD REGIONAL ROSARIO</p>

@@ -6,6 +6,12 @@
     background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #191919), color-stop(1, #000000));
     background-image: -webkit-linear-gradient(#191919, #000000);
     background-image: linear-gradient(top, #191919, #000000);
+    color: white;
+    text-align: center;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
 }
 
 @media handheld, only screen and (max-width: 767px) {

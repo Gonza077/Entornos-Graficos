@@ -16,8 +16,8 @@
     </head>
     <body>
     <?php require('navbar.php'); ?> 
-        <div class="container">
-            <div class="row justify-content-center">
+        <div class="container-fluid">
+            <div class="row justify-content-center form-group">
                 <div class="col-12 col-sm-6">
                     <form class="form-contact" action="contacto.php" method="post">
                         <img class="mb-4 d-block mx-auto" src="img/LogoUTN.png" alt="Logo de la Universidad Tecnológica Nacional" width="100" height="100">
@@ -40,7 +40,6 @@
                             </div>
                         </div>
                         <hr>
-
                         <div class="mensaje-info">
                             <div class="col-md-12">
                                 <label for="asunto">Asunto</label>
@@ -61,68 +60,61 @@
                     </form>
                 </div>
             </div>
+            <br>
         </div>
-
-
-        <?php   
-
-        include ('includes/mail.php');
-
-            if($_POST) 
-            {
-                $u_nombre = "";
-                $u_email = "";
-                $u_telefono = "";
-                $u_asunto ="";
-                $u_mensaje = "";
-
-                if(isset($_POST['nombre'])) {
-                $u_nombre = filter_var($_POST['nombre'], FILTER_SANITIZE_STRING);
-                }
-
-                if(isset($_POST['email'])) {
-                $u_email = str_replace(array("\r", "\n", "%0a", "%0d"), '', $_POST['email']);
-                $u_email = filter_var($u_email, FILTER_VALIDATE_EMAIL);
-                }
-
-                if(isset($_POST['asunto'])) {
-                $u_asunto = filter_var($_POST['asunto'], FILTER_SANITIZE_STRING);
-                }
-
-                if(isset($_POST['telefono'])) {
-                $u_telefono = filter_var($_POST['telefono'], FILTER_SANITIZE_NUMBER_INT);
-                }
-
-                if(isset($_POST['mensaje'])) {
-                $u_mensaje = htmlspecialchars($_POST['mensaje']);
-                }
-                
-
-
-                //Preparamos el mail y usamos la funcion del include mail.php
-                $cuerpo_html='<html> 
-                
-                <body> 
-                <h1>Correo enviado desde el Sistema de Consultas</h1>
-                <h2>Mensaje enviado por el usuario de la web:</h2>
-                <p>Nombre: '.$u_nombre.'</p>
-                <p>Email: '.$u_email.'</p>
-                <p>Telefono: '.$u_telefono.'</p>
-                <p>Mensaje: '.$u_mensaje.'</p>
-                </body>
-                </html>
-                <br />';
-
-
-                enviarMail('moduloconsultas@gmail.com',$u_asunto,$cuerpo_html);
-
-
-            } 
-
-
-        ?>
-        
         <?php require('footer.php'); ?>
-
     </body>
 </html>
+
+
+<?php   
+
+include ('includes/mail.php');
+
+    if($_POST) 
+    {
+        $u_nombre = "";
+        $u_email = "";
+        $u_telefono = "";
+        $u_asunto ="";
+        $u_mensaje = "";
+
+        if(isset($_POST['nombre'])) {
+        $u_nombre = filter_var($_POST['nombre'], FILTER_SANITIZE_STRING);
+        }
+
+        if(isset($_POST['email'])) {
+        $u_email = str_replace(array("\r", "\n", "%0a", "%0d"), '', $_POST['email']);
+        $u_email = filter_var($u_email, FILTER_VALIDATE_EMAIL);
+        }
+
+        if(isset($_POST['asunto'])) {
+        $u_asunto = filter_var($_POST['asunto'], FILTER_SANITIZE_STRING);
+        }
+
+        if(isset($_POST['telefono'])) {
+        $u_telefono = filter_var($_POST['telefono'], FILTER_SANITIZE_NUMBER_INT);
+        }
+
+        if(isset($_POST['mensaje'])) {
+        $u_mensaje = htmlspecialchars($_POST['mensaje']);
+        }
+        
+
+
+        //Preparamos el mail y usamos la funcion del include mail.php
+        $cuerpo_html='<html> 
+        
+        <body> 
+        <h1>Correo enviado desde el Sistema de Consultas</h1>
+        <h2>Mensaje enviado por el usuario de la web:</h2>
+        <p>Nombre: '.$u_nombre.'</p>
+        <p>Email: '.$u_email.'</p>
+        <p>Telefono: '.$u_telefono.'</p>
+        <p>Mensaje: '.$u_mensaje.'</p>
+        </body>
+        </html>
+        <br />';
+        enviarMail('moduloconsultas@gmail.com',$u_asunto,$cuerpo_html);
+    } 
+?>   
