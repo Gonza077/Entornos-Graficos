@@ -101,16 +101,18 @@ class SolicitudRepository extends DB{
     }
 
     public function queryByConsultaId($consulta_id){
-        
-        $query="SELECT consulta.id AS consulta_id , persona.id AS persona_id ,MAX(persona.nombre)
-        AS nombre,MAX(persona.apellido) AS apellido,MAX(persona.email) AS email
-               FROM consultas_db.persona
-               INNER JOIN solicitud 
-               ON persona.id = solicitud.persona_id
-               INNER JOIN consulta 
-               ON solicitud.consulta_id = consulta.id
-               WHERE solicitud.fecha_baja IS NULL AND consulta_id = $consulta_id
-               GROUP BY consulta_id AND persona_id";
+                        
+       $query="SELECT p.id AS persona_id ,p.nombre AS nombre,p.apellido AS apellido,p.email AS email 
+       FROM persona p
+       INNER JOIN (
+       SELECT persona.id AS persona_id FROM persona 
+           INNER JOIN solicitud ON persona.id = solicitud.persona_id 
+           INNER JOIN consulta 
+           ON solicitud.consulta_id = consulta.id 
+           WHERE solicitud.fecha_baja IS NULL AND consulta_id = $consulta_id 
+           GROUP BY persona.id
+       ) as SQ
+       ON p.id = SQ.persona_id";
 
         $solicitudes=[];
         if($result = $this-> connect() ->query($query)){
