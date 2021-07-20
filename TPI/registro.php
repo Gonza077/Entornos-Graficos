@@ -22,6 +22,7 @@
       else{
         if($passForm == $passRepeatForm){
           $user->registerUser($emailForm,$passForm,$nombreForm,$apellidoForm,$isDocenteForm,$legajoForm);
+          
           $exitoRegistro = "El registro se ha realizado exitosamente!";
         }else{
           $errorRegistro = "Las contraseñas no coinciden.";
@@ -29,16 +30,14 @@
       }
   }
 ?>
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
     <title>Registro</title>
     <link rel="icon" href="./assets/Icono.ico">
+    <link rel="stylesheet" href="./css/footerRelativo.css" >
 </head>
 <body>
   <div class="container">
@@ -102,16 +101,14 @@
                       <button class="btn btn-lg btn-primary btn-block" onclick="window.location.href='consultas.php'">Ir a Inicio</button>
                     </div>
                 </div>
-            </div>
-            <br>
-            <p style="color:green;"><?php echo $exitoRegistro; ?></p>
-            <small style="color:red;"><?php echo $errorRegistro; ?></small>
+            </div>          
+            <p class="bg-success"><?php echo $exitoRegistro; ?></p>
+            <p class="bg-danger"><strong><?php echo $errorRegistro; ?></strong></p>
           </form>
         </div>
       </div>
-    </div>
-    
+    </div>   
     <?php require('footer.php'); ?>
   </body>
-  </html>
+</html>
   

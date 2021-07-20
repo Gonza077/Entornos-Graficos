@@ -1,14 +1,8 @@
 <nav class="navbar  navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="consultas.php">Consultas</a>
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="contacto.php">Contacto</a>
-        </li>
         <li class="nav-item active text-nowrap">
             <a class="nav-link" href="calendarioAcademico.php">Calendario Académico</a>
-        </li>
-        <li class="nav-item active text-nowrap">
-            <a class="nav-link" href="preguntasFrecuentes.php">Preguntas Frecuentes</a>
         </li>
         <?php if (isset($user)) {
                 if ($user->isAdmin()) {

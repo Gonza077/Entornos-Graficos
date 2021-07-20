@@ -1,5 +1,8 @@
-<?php 
-  include_once('includes/user_session.php');
+<?php
+
+use Psr\Http\Message\RequestInterface;
+
+include_once('includes/user_session.php');
   include_once('includes/user.php');
   $user_session = new UserSession();
   $user = $user_session->getCurrentUser();
@@ -10,12 +13,12 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <LINK REL=StyleSheet HREF="./css/micuenta.css" TYPE="text/css">
-        <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
+        <link rel="stylesheet" href="./css/footerRelativo.css">
         <title>Mi Cuenta</title>
         <link rel="icon" href="./assets/Icono.ico">
     </head>
     <body>
-    
+        <?php  require './navbar.php' ?>
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-12 col-md-6">
@@ -23,7 +26,7 @@
                         <img class="mb-4 d-block mx-auto" src="img/LogoUTN.png" alt="Logo de la Universidad Tecnológica Nacional" width="100" height="100">
                         <h1 class="d-flex justify-content-center">Mi Cuenta</h1>
                         <hr>
-                        <nav class="navbar navbar-expand-lg">
+                        <nav class="navbar navbar-expand-lg ">
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul class="nav navbar-nav navbar-center">
                                     <li class="nav-item">

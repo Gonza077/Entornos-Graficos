@@ -52,8 +52,8 @@ $(document).ready(function(){
       $("select#estadoFilter")[0].selectedIndex = 0;
       $("select#profesorFilter")[0].selectedIndex = 0;
       $("select#materiaFilter")[0].selectedIndex = 0;
-      $("select#horarioFilter")[0].selectedIndex = 0;
-      $("#fechaHastaFilter").datepicker('setDate', new Date().getDate()-8);
+      $("select#horarioFilter")[0].selectedIndex = 0;   
+      $("#fechaHastaFilter").datepicker('setDate', date);
       $("#fechaDesdeFilter").datepicker('setDate',new Date());
       fechaDesdeSelected = $("#fechaDesdeFilter").val();
       fechaHastaSelected = $("#fechaHastaFilter").val();

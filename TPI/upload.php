@@ -11,18 +11,21 @@ $user = $user_session->getCurrentUser();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./css/footerFixed.css">
     <title>Subir Consultas</title>
 </head>
 <body>
 <?php require('navbar.php'); ?>
-    <form method="post" enctype="multipart/form-data" id="filesForm">
-        <div class="col-md-4 offset-md-4" style="margin-top: 25px;">
-            <input class="form-control" type="file" name="fileToUpload">
-            <button type="button" id="import" onclick="uploadConsultas()" class="btn btn-primary form-control" >Cargar</button>
-        </div>
-    </form>
+    <div class="container-fluid">
+        <form method="post" enctype="multipart/form-data" id="filesForm">
+            <div class="col-md-4 offset-md-4" style="margin-top: 50px;">
+                <input class="form-control" type="file" name="fileToUpload">
+                <button type="button" id="import" onclick="uploadConsultas()" class="btn btn-primary form-control" >Cargar</button>
+            </div>
+        </form>
+    </div>
+    <?php require('footer.php')?>
 </body>
-<?php require('footer.php')?>
 <?php include('./components/toast.php');?>
 <script src="js/uploadConsulta.js"></script>
 </html>

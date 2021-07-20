@@ -1,5 +1,4 @@
-.footer{
-    min-height: 70px;
+footer{
     background-color: #191919;
     background-image: -moz-linear-gradient(top, #191919, #000000);
     background-image: -o-linear-gradient(top, #191919, #000000);
@@ -12,10 +11,12 @@
     left: 0;
     bottom: 0;
     width: 100%;
+    font-size:  small;
+    padding: 0.5%;
 }
 
 @media handheld, only screen and (max-width: 767px) {
-    .footer{
+    footer{
         display:none;
     }
 }

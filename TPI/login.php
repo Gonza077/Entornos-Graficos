@@ -28,12 +28,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Login</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
+    <link rel="stylesheet" href="./css/footerRelativo.css">
     <link rel="icon" href="./assets/Icono.ico">
   </head>
 <body>
-  <div class="container">
+  <div class="container form-group">
     <div class="row justify-content-center">
       <div class="col-6 col-sm-6">
         <form class="form-signin" action="login.php" method="POST">
