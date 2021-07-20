@@ -28,12 +28,12 @@
 
                 if ($clave2 == $clave3)
                     {
-                        // $user->cambiarContraseñaUsuario($clave1,$id);
                         $db= new DB();
                         $passMD5=md5($clave2);
                         $query="UPDATE persona Set password = '$passMD5' where id=$id";
                         $stmt = $db-> connect() ->query($query);
                         $error= 'La contraseña ha sido modificada exitosamente.';
+                        $db->disconnect();
                         
                     }
                 else

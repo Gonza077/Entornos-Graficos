@@ -1,3 +1,32 @@
+<?php 
+
+include ('includes/mail.php');
+include_once('includes/user.php');
+include_once('includes/recuperarContraseña.php');
+$user = new User();
+$msgExito = "";
+$msgError="";
+
+if(isset($_POST['email'])) 
+{
+    $email = $_POST['email'];
+    $user->getUserByEmail($email);
+    $persona_id = $user->getId();
+    // $token = generarToken($persona_id); 
+
+    if (isset($persona_id) && !is_null($persona_id))
+    {   
+        $token=setearNuevaContraseña($persona_id);
+        enviarMail($email,'Recuperacion de Password',setearCuerpoHtml($token));
+        $msgExito = "El mail de recuperación de contraseña fue enviado a su correo electronico.";
+    }
+    else 
+        $msgError="No existe usuario con el correo electronico ingresado.";
+}
+
+?>
+
+
 <html lang="es">
     <head>
         <meta charset="utf-8">
@@ -10,11 +39,10 @@
 
     </head>
     <body>
-        <?php require('navbar.php'); ?> 
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-12 col-sm-6">
-                    <form class="form-regis" action="forgotPassword.php" method="post">
+                    <form class="form-regis" action="olvideContraseña.php" method="post">
                         <img class="mb-4 d-block mx-auto" src="img/LogoUTN.png" alt="Logo de la Universidad Tecnológica Nacional" width="100" height="100">
                         <h1 class="d-flex justify-content-center">Recuperar Contraseña</h1>
                         <hr>
@@ -25,37 +53,22 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-md-12 text-center">
-                                <button type="button" class="btn btn-primary bt-lg" onclick="enviarMailContraseña()" name="generarToken">Enviar</button>
-                            </div>
+                            <div class="row justify-content-center">
+
+                                <div class="col-md-6 text-rig">
+                                    <button type="submit" class="btn btn-lg btn-success btn-block">Enviar</button>
+                                </div>
+                                <div class="col-md-6 text-left">
+                                    <button class="btn btn-lg btn-primary btn-block" onclick="window.location.href='consultas.php'">Ir a Inicio</button>
+                                </div>
+                            </div> 
                         </div>
-                        <div class="form-group">
-                            <div class="col-md-12 text-center">
-                                <button type="submit" class="btn btn-primary bt-lg" name="recuperar" disabled>Recuperar contraseña</button>
-                            </div>
-                        </div>
+                        <p style="color:green;"><?php echo $msgExito; ?></p>
+                        <p style="color:red;"><?php echo $msgError; ?></p>
                     </form>
                 </div>
             </div>
         </div>
     </body>
     <?php require('footer.php'); ?>
-        <script>
-                function enviarMailContraseña(){
-                var email = $('#email').val();
-                $.ajax({
-                    url: "ajax/generarToken.php",
-                    type: "post",
-                    data : email,
-                    processData: false,
-                    contentType: false})
-                    .done(response=>{
-                        openToast(response,"Carga Consulta",'success');
-                    })
-                    .fail(response=>{
-                        openToast(response,"Carga Consulta",'error');
-                    });
-                }
-  
-        </script>
 </html>

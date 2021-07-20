@@ -5,7 +5,7 @@
   $userSession = new UserSession();
   $user = new User();
   if(isset($_SESSION['user'])){
-    header("Location: ../consultas.php");
+    header("Location: /consultas.php");
     die();
   } elseif (isset($_POST['email']) && isset($_POST['password'])){
       
@@ -15,7 +15,7 @@
       if($user->userExists($userForm, $passForm)){
           $user->getUserByEmail($userForm);
           $userSession->setCurrentUser($user);
-          header("Location: ../consultas.php");
+          header("Location: /consultas.php");
           
       }else{
           $errorLogin = "Nombre de usuario y/o password incorrecto";
@@ -47,7 +47,7 @@
               <label for="inputPassword" class="sr-only">Contraseña</label>
               <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Contraseña" required> 
             </div>
-            <a href="forgotPassword.php">Olvidó su contraseña?</a>
+            <a href="olvideContraseña.php">Olvidó su contraseña?</a>
           </div>
           <div class="form-group">
             <div class="row justify-content-center">
@@ -61,7 +61,7 @@
           </div>
           <br>
           <hr>
-          <a href="./registro.php" class="btn btn-primary btn-lg btn-block">Registrarme</a>
+          <a href="/registro.php" class="btn btn-primary btn-lg btn-block">Registrarme</a>
           <?php echo $errorLogin; ?>
         </form>   
       </div>
