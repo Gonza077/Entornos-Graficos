@@ -124,8 +124,8 @@
 <?php $user != null && ($user->isDocente() ||$user->isAdmin()) ? include('components/bloquearConsultaModal.php'):"";?>
 <?php $user != null && ($user->isDocente() ||$user->isAdmin()) ? include('components/crearConsultaModal.php'):"";?>
 <?php $user != null && $user->isDocente() ? include('components/detalleConsultaModal.php'):"";?>
-</body>
 <?php include('footer.php');?>
+
 <script src="js/scripts.js"> </script>
   <?php if ($user != null && $user->isDocente()){
     $userId= $user->getId();
@@ -134,6 +134,8 @@
     echo "<script>var profesorId = undefined;</script>";
   } ?>
 <?php include('components/toast.php');?>
+</body>
+
 
 </html>
 

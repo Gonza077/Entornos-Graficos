@@ -19,20 +19,20 @@
   <?php include('navbar.php'); ?>
     <div class="container-fluid ">
       <div class="row justify-content-center" style="height: 60em">
-        <iframe src="./assets/calendario-academico-2021-2022-a3.pdf" width="100%" height="100%">
-          Este navegador no soporta PDFs. Porfavor descarga el PDF para verlo: 
-          <a href="./assets/calendario-academico-2021-2022-a3.pdf">Download PDF</a></iframe>
+        <iframe src="./assets/calendario-academico-2021-2022-a3.pdf" style="width:100%;height:100%"> </iframe>
+        <a href="./assets/calendario-academico-2021-2022-a3.pdf">Este navegador no soporta PDFs. Haga click para descargar</a>
       </div>
     </div>
-      <?php require('footer.php');?>  
+    <?php require('footer.php');?>  
+    <?php require('components/toast.php');?>
+    <script src="js/miConsultaScripts.js"></script>
+    <?php if ($user != null && $user->isDocente()){
+      $userId= $user->getId();
+      echo "<script>var profesorId = $userId;</script>";
+    } else {
+      echo "<script>var profesorId = undefined;</script>";
+    } ?>
   </body>
-</html>
-<?php include('components/toast.php');?>
 
-<script src="js/miConsultaScripts.js"></script>
-  <?php if ($user != null && $user->isDocente()){
-    $userId= $user->getId();
-    echo "<script>var profesorId = $userId;</script>";
-  } else {
-    echo "<script>var profesorId = undefined;</script>";
-  } ?>
+</html>
+

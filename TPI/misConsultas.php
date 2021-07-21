@@ -80,7 +80,6 @@
 <?php $user != null && $user->isDocente() ? include('components/bloquearConsultaModal.php'):"";?>
 <?php $user != null && $user->isDocente() ? include('components/crearConsultaModal.php'):"";?>
 <?php $user != null && $user->isDocente() ? include('components/detalleConsultaModal.php'):"";?>
-</body>
 <?php include('footer.php');?>
 <script src="js/miConsultaScripts.js"> </script>
   <?php if ($user != null && $user->isDocente()){
@@ -90,5 +89,6 @@
     echo "<script>var profesorId = undefined;</script>";
   } ?>
 <?php include('components/toast.php');?>
+</body>
 </html>
 

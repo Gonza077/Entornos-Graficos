@@ -114,7 +114,7 @@ function buscar () {
         success:function(response){
             $("table#consultasTable tbody").html(response);
         }
-    });s
+    });
 }
 
 function getConsulta(consultaId){

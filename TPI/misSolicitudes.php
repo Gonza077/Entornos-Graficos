@@ -15,7 +15,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="./assets/Icono.ico">
-    <link rel="stylesheet" href="./css/footerFixed.css">
+    <link rel="stylesheet" href="./css/footerRelativo.css">
     <title>Mis Solicitudes</title>
 </head>
 <body>
@@ -23,7 +23,7 @@
   <div class="container-fluid">
     <br>
     <br>
-    <table class="table table-hover" id="solicitudesTable" style="margin-bottom: 15em;"> 
+    <table class="table table-hover" id="solicitudesTable"> 
       <thead>
         <tr>
           <th scope="col">Estado</th>
