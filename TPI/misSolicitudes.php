@@ -20,7 +20,7 @@
 </head>
 <body>
 <?php include('navbar.php'); ?>
-  <div class="container-fluid">
+  <div class="container-fluid" style="min-height:500px">
     <br>
     <br>
     <table class="table table-hover" id="solicitudesTable"> 
