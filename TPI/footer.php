@@ -13,10 +13,10 @@
 
   <div class="container text-center text-md-left mt-5">
       <!-- Grid row -->
-      <div class="row ">
+      <div class="row form-group">
 
         <!-- Grid column -->
-        <div class="offset-2 col-md-6 col-lg-6 col-xl-3 mb-4">
+        <div class=" col-md-4 col-lg-6 col-xl-3 mx-auto mb-4">
           <!-- Content -->
           <h6 class="text-uppercase font-weight-bold">Quienes somos?</h6>
           <hr style="border-top: 3px solid gray;">
@@ -33,7 +33,7 @@
         <!-- Grid column -->
 
         <!-- Grid column -->
-        <div class="offset-2 col-md-6 col-lg-6 col-xl-2 mx-auto mb-4">
+        <div class=" col-md-4 col-lg-4 col-xl-2 mx-auto mb-4">
           <!-- Links -->
           <h6 class="text-uppercase font-weight-bold">Links de ayuda</h6>
           <hr  style="border-top: 3px solid gray;">
@@ -55,6 +55,14 @@
         </div>
         <!-- Grid column -->
 
+        <div class=" col-md-4 col-lg-4 col-xl-2 mx-auto mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase font-weight-bold">Fecha de publicacion</h6>
+          <hr  style="border-top: 3px solid gray;">
+          <p>
+            <?php echo date("d-m-Y H:i:s"); ?>
+          </p>  
+        </div>
   </div>
   <!-- Grid row -->
 
