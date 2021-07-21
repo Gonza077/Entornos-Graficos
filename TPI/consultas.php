@@ -15,7 +15,7 @@
 </head>
 <body>
 <?php include('navbar.php'); ?>
-  <div class="container-fluid" style="min-height:500px">
+  <div class="container-fluid" style="min-height:800px">
     <div class="row form-group" style="margin-top: 10px;">
       <div class="col-lg-2 col-md-6 col-sm-8 col-xs-12">
           <label for="estadoFilter">Estado</label>
