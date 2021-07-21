@@ -22,40 +22,35 @@
                         <img class="mb-4 d-block mx-auto" src="img/LogoUTN.png" alt="Logo de la Universidad Tecnológica Nacional" width="100" height="100">
                         <h1 class="d-flex justify-content-center">Contacto</h1>
                         <hr>
-                        <div class="user-info">
+                        <div class="user-info form-group">
                             <div class="col-md-12">
                                 <label for="nombre">Nombre y Apellido</label>
                                 <input id="nombre" name="nombre" type="text" placeholder="Ej: Juan Perez" class="form-control" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ-\s]{3,25}" title="Escriba nombre y apellido separados por un espacio. Ej: Juan Perez" required>
                             </div>
-                            <br>
-                            <div class="col-md-12">
+                            <div class="col-md-12 form-group">
                                 <label for="email">Correo Electrónico</label>
                                 <input id="email" name="email" type="text" placeholder="Ej: juanperez@hotmail.com" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Escribir en minisculas" required>
-                            </div>
-                            <br>
-                            <div class="col-md-12">
+                            </div>                         
+                            <div class="col-md-12 form-group">
                                 <label for="telefono">Teléfono</label>
                                 <input id="telefono" name="telefono" type="tel" placeholder="Ej: 3411112223" class="form-control" pattern="[0-9]{10}" title="Debe tener 10 digitos" required>
                             </div>
                         </div>
-                        <hr>
-                        <div class="mensaje-info">
+                        <div class="mensaje-info form-group">
                             <div class="col-md-12">
                                 <label for="asunto">Asunto</label>
                                 <input id="asunto" name="asunto" type="text" placeholder="Ej: Consulta AyED" class="form-control" pattern="[A-Za-z0-​9-\s]{3,35}" title="Escriba un asunto de minimo 3 letras" required>
                                 </div>
                                 <br>
-                            <div class="col-md-12">
+                            <div class="col-md-12 form-group">
                                 <label for="mensaje">Mensaje</label>
                                 <textarea class="form-control" style="min-height: 90px; max-height: 150px;" id="mensaje" name="mensaje" placeholder="Escriba su mensaje aquí." rows="7" required></textarea>
                             </div>
                             <br>
-                            <div class="col-md-12 text-right">
+                            <div class="col-md-12 text-right form-group">
                                 <button type="submit" class="btn btn-primary bt-lg">Enviar</button>
                             </div>
                         </div>
-                        <br>
-                        <br>
                     </form>
                 </div>
             </div>          
