@@ -25,22 +25,42 @@ try{
                     $consulta = new Consulta();
                     $consulta->codigo_materia =  $hojaDeTrabajo-> getCellByColumnAndRow (1, $fila) -> getValue ();
                     $consulta->legajo_profesor = $hojaDeTrabajo-> getCellByColumnAndRow (2,$fila) -> getValue ();
-                    $consulta->fecha = $hojaDeTrabajo -> getCellByColumnAndRow(3,$fila) ->getValue();
-                    $consulta->fecha = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($consulta->fecha) ->format("Y/m/d H:i:s");
-                    $consulta->cupo = $hojaDeTrabajo-> getCellByColumnAndRow (4, $fila) -> getValue();
+                    $consulta->dia = $hojaDeTrabajo-> getCellByColumnAndRow (3,$fila) -> getValue ();
+                    $consulta->hora = $hojaDeTrabajo -> getCellByColumnAndRow(4,$fila) ->getValue();
+                    $consulta->hora = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($consulta->hora) ->format("H:i:s");
+                    $consulta->cupo = $hojaDeTrabajo-> getCellByColumnAndRow (5, $fila) -> getValue();
                     $consultasArr[] = $consulta;                                     
                 }
                 #Hasta aca se cargan el arreglo con las consultas que posteriormente deberan incluirse en la BD
             }
             $endDate = date("Y",time())."-12-31"; 
+            function dame_el_dia ($fecha)
+            {
+                $array_dias['Sunday'] = "Domingo";
+                $array_dias['Monday'] = "Lunes";
+                $array_dias['Tuesday'] = "Martes";
+                $array_dias['Wednesday'] = "Miercoles";
+                $array_dias['Thursday'] = "Jueves";
+                $array_dias['Friday'] = "Viernes";
+                $array_dias['Saturday'] = "Sabado";
+                return $array_dias[date('l', strtotime($fecha))];
+            }
             foreach($consultasArr as $consulta){
-                $fechaConsulta = date('Y-m-d H:i:s', strtotime($consulta-> fecha));
-                while( strtotime($fechaConsulta) <= strtotime($endDate) ){                   
-                    $query = "CALL crear_consulta_excel('$consulta->codigo_materia','$consulta->legajo_profesor','$fechaConsulta','$consulta->cupo')";
-                    $db -> connect() -> query($query);
-                    #Se va a repetir el proceso cada semana, durante todo el año
-                    $fechaConsulta = strtotime('+7 days',strtotime($fechaConsulta)); #Devuelve un timeStap, hay que castearlo a DateTime
-                    $fechaConsulta = date('Y-m-d H:i:s', $fechaConsulta);
+                $fechaConsulta = date('Y-m-d');
+                while(1){
+                    $fechaConsulta = strtotime('+1 days',strtotime($fechaConsulta)); #Devuelve un timeStap, hay que castearlo a DateTime
+                    $fechaConsulta = date('Y-m-d', $fechaConsulta); 
+                    if (dame_el_dia($fechaConsulta) == $consulta->dia){                
+                        while( strtotime($fechaConsulta) <= strtotime($endDate) ){             
+                            $fechaFormato= $fechaConsulta." ".$consulta->hora;                      
+                            $query = "CALL crear_consulta_excel('$consulta->codigo_materia','$consulta->legajo_profesor','$fechaFormato','$consulta->cupo')";
+                            $db -> connect() -> query($query);              
+                            #Se va a repetir el proceso cada semana, durante todo el año
+                            $fechaConsulta = strtotime('+7 days',strtotime($fechaConsulta)); #Devuelve un timeStap, hay que castearlo a DateTime
+                            $fechaConsulta = date('Y-m-d', $fechaConsulta);                                     
+                        }
+                    break; 
+                    }                                               
                 }
             }
             http_response_code(200);

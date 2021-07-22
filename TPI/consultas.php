@@ -63,6 +63,7 @@
           <th scope="col">Estado</th>
           <th scope="col">Materia</th>
           <th scope="col">Docente</th>
+          <th scope="col">Fecha</th>
           <th scope="col">Horario</th>
           <th scope="col">Cupo</th>
           <th scope="col">Operaciones</th>

@@ -98,7 +98,8 @@ if($registros = $db-> connect() ->query($sqlQuery)){
       echo "<td>".($bloqueada ? "BLOQUEADA" : "CONFIRMADA")."</td>";
       echo "<td>".$row["materia"]."</td>";
       echo "<td>".$row["docente_apellido"].", ".$row["docente_nombre"]."</td>";
-      echo "<td>".$row["horario"]."</td>";
+      echo "<td>".date("d-m-Y",strtotime($row["horario"]))."</td>";
+      echo "<td>".date("H:i:s",strtotime($row["horario"]))."</td>";
       echo "<td>".$cupo."</td>";
       echo "<td>";
       if(isset($USER)){

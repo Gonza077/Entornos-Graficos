@@ -11,8 +11,7 @@ class Consulta{
     public $legajo_profesor;
     public $codigo_materia;
     public $dia;
-    public $horario_hora;
-    public $horario_minuto;
+    public $hora;
     // Datos para el excel
     public $cupo;
     public $descripcion_baja;
