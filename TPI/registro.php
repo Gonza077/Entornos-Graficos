@@ -6,7 +6,7 @@
   $userSession = new UserSession();
   $user = new User();
   if(isset($_SESSION['user'])){
-    header("Location: http://localhost/consultas.php");
+    header("Location: ./consultas.php");
     die();
   } elseif (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['passwordRepeat']) && isset($_POST['nombre']) && isset($_POST['apellido']) && isset($_POST['legajo'])){
       $emailForm = $_POST['email'];

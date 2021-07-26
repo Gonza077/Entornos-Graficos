@@ -68,6 +68,7 @@
           <th scope="col">Estado</th>
           <th scope="col">Materia</th>
           <th scope="col">Docente</th>
+          <th scope="col">Fecha</th>
           <th scope="col">Horario</th>
           <th scope="col">Cupo</th>
           <th scope="col">Operaciones</th>
@@ -84,7 +85,7 @@
 <script src="js/miConsultaScripts.js"> </script>
   <?php if ($user != null && $user->isDocente()){
     $userId= $user->getId();
-    echo "<script>var profesorId = $userId;</script>";
+    echo "<script>var profesorId = '$userId';</script>";
   } else {
     echo "<script>var profesorId = undefined;</script>";
   } ?>

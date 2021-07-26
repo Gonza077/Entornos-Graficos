@@ -10,7 +10,7 @@
                         <a class="nav-link" href="upload.php">Subir Horarios</a>
                       </li>';
                 }
-                if (!$user->isDocente()) {
+                if (!$user->isDocente() && !$user->isAdmin()) {
                   echo '<li class="nav-item active text-nowrap">
                         <a class="nav-link" href="misSolicitudes.php">Mis Solicitudes</a>
                       </li>';

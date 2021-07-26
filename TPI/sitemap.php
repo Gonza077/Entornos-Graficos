@@ -1,9 +1,4 @@
-<?php 
-  include_once('includes/user_session.php');
-  include_once('includes/user.php');
-  $user_session = new UserSession();
-  $user = $user_session->getCurrentUser();
-?> 
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -16,7 +11,7 @@
 </head>
 <body>
     <?php require 'navbar.php'?>
-    <div class="container">
+    <div class="container-fluid">
         <div class="offset-2">
             <h1>Mapa del sitio</h1>
             <div class="row">

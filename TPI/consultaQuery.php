@@ -20,20 +20,8 @@ $fechaHastaSelected  = formatDate($_GET['fechaHastaSelected']);
 
 $db = new DB();
 
-
-
-//$solicitudes[] = $db-> connect() ->query($sqlQuerySolicitudes)->fetch_all(MYSQLI_NUM);
-
-
-// $solicitudRepo = New SolicitudRepository();
-// $solicitudes = $consultaRepo->getConsultaById($consulta_id);
-
-// $solicitudes = $db-> connect() ->query($sqlQuerySolicitudes);
 $ids_solicitudes[] = [];
-// while($row = $solicitudes-> fetch_assoc())
-// {
-//    array_push($ids_solicitudes,$row['consulta_id']);
-// }
+
 if (isset($USER)){
    $sqlQuerySolicitudes="SELECT solicitud.consulta_id AS consulta_id , persona.id AS persona_id , MAX(solicitud.id)
    FROM persona
@@ -49,11 +37,6 @@ if (isset($USER)){
       }
    }
 }
-
-
-
-// $sqlQuery="CALL queryConsulta($materiaSelected,$profesorSelected,$estadoSelected)";
-
 $sqlQuery=" SELECT
             consulta.id as 'id',
             materia.nombre as 'materia',

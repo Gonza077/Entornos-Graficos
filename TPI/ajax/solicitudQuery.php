@@ -51,7 +51,8 @@ if($registros = $db-> connect() ->query($query)){
       echo "<td>".($bloqueada ? "CANCELADA" : "CONFIRMADA")."</td>";
       echo "<td>".$row["materia_nombre"]."</td>";
       echo "<td>".$row["nombre"].", ".$row["apellido"]."</td>";
-      echo "<td>".$row["fecha"]."</td>";
+      echo "<td>".date("d-m-Y",strtotime($row["fecha"]))."</td>";
+      echo "<td>".date("H:i:s",strtotime($row["fecha"]))."</td>";
       echo "<td>";
       if(isset($USER)){
             echo "<button type='button' class='btn btn-danger' id='cancelar-$id' onclick='openCancelarConsultaModal($id)' title='Cancelar inscripcion a consulta'>
