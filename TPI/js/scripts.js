@@ -33,24 +33,13 @@ $(document).ready(function(){
 
     $("select#profesorFilter").change(function(){
       profesorSelected = $(this).children("option:selected").val();
-      docente = profesorSelected;
-      if (docente != undefined || docente != null){
-        $.ajax({
-          url:"consultaMateriaQuery.php",
-          type: "get",
-          dataType: 'html',
-          data:{docente:docente},
-          success:function(response){
-            $("#materiaFilter").empty();    
-            $("#materiaFilter").append('<option value="" label="Seleccione Materia" selected></option>');    
-            $("#materiaFilter").append(response);
-          }
-        })
-      };
+      materiaQuery(profesorSelected);
+      
     });
 
     $("select#materiaFilter").change(function(){
       materiaSelected = $(this).children("option:selected").val();
+      profesorQuery(materiaSelected);
     });
 
     $("select#horarioFilter").change(function(){
@@ -68,17 +57,8 @@ $(document).ready(function(){
       estadoSelected = profesorSelected = materiaSelected = horarioSelected =  null;
       $("select#estadoFilter")[0].selectedIndex = 0;
       $("select#profesorFilter")[0].selectedIndex = 0;
-      //Se vuelve a crear el selector, por que si no no funciona como antes
-      $.ajax({
-        url:"materiaQuery.php",    //the page containing php script
-        type: "get",    //request type,
-        dataType: 'html',
-        success:function(response){
-            $("#materiaFilter").empty();
-            $("#materiaFilter").append('<option value="" label="Seleccione Materia" selected></option>');
-            $("#materiaFilter").append(response);
-        }
-      });
+      profesorQuery();
+      materiaQuery();
       $("select#horarioFilter")[0].selectedIndex = 0;   
       $("#fechaHastaFilter").datepicker('setDate', date);
       $("#fechaDesdeFilter").datepicker('setDate',new Date());
@@ -87,30 +67,9 @@ $(document).ready(function(){
       buscar();
     });
 
-    $.ajax({
-        url:"profesorQuery.php",    //the page containing php script
-        type: "get",    //request type,
-        dataType: 'html'
-      }).
-        done(function(response){
-            $("#profesorFilter").append(response);
-            if (profesorId){
-              $("#profesorFilter").val(profesorId);
-              profesorSelected = profesorId;
-            }
-            buscar();
-        });
-
-    
-    $.ajax({
-        url:"materiaQuery.php",    //the page containing php script
-        type: "get",    //request type,
-        dataType: 'html',
-        success:function(response){
-            $("#materiaFilter").append(response);
-        }
-    });
-
+    profesorSelected=profesorId;
+    profesorQuery();
+    materiaQuery(profesorSelected);
 
     $.ajax({
       url:"horarioQuery.php",    //the page containing php script
@@ -120,6 +79,7 @@ $(document).ready(function(){
           $("#horarioFilter").append(response);
       }
   });
+  buscar();
 });
 
 function buscar () {
@@ -142,6 +102,37 @@ function buscar () {
     });
 }
 
+function profesorQuery(materiaSelected = undefined) {
+  var materiaSelected = materiaSelected == "" ||  materiaSelected == undefined ? undefined:materiaSelected;
+  $.ajax({
+    url:"profesorQuery.php",    //the page containing php script
+    type: "get",    //request type,
+    dataType: 'html',
+    data: {materiaSelected: materiaSelected},
+  }).
+    done(function(response){
+        $("#profesorFilter").html("<option value='' label='Seleccione Docente' selected></option>)");
+        $("#profesorFilter").append(response);
+        $("select#profesorFilter").val(profesorSelected);
+    });
+}
+
+function materiaQuery(profesorSelected = undefined) {
+  var profesorSelected = profesorSelected == "" || profesorSelected == undefined ? undefined:profesorSelected;
+  $.ajax({
+    url:"materiaQuery.php",    //the page containing php script
+    type: "get",    //request type,
+    dataType: 'html',
+    data: {profesorSelected: profesorSelected}
+  }).
+  done(function(response){
+    $("#materiaFilter").html("<option value='' label='Seleccione Materia' selected></option>")
+    $("#materiaFilter").append(response);
+    if (materiaSelected !=null ||materiaSelected !=undefined){
+      $("select#materiaFilter").val(materiaSelected);
+    }
+  });
+}
 
 function getConsulta(consultaId){
     return $.ajax({
@@ -492,3 +483,4 @@ function openDetalleConsultaModal(consultaId){
 $('#detalleConsultaModal').on('hidden.bs.modal', function (e) {
   $('#detalleBaja').prop('hidden', true);
 })
+
