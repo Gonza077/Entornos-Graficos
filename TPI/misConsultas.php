@@ -3,8 +3,8 @@
   include_once('includes/user.php');
   $user_session = new UserSession();
   $user = $user_session->getCurrentUser();
-  if(!isset($user)|| !$user->isDocente()){
-      header("Location: http://localhost/consultas.php");
+  if(!isset($_SESSION['user']) || !$user->isDocente() ){
+      header("Location: ./consultas.php");
   }
 ?> 
 <!DOCTYPE html>

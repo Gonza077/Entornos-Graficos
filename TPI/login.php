@@ -32,7 +32,7 @@
     <link rel="icon" href="./assets/Icono.ico">
   </head>
 <body>
-  <div class="container form-group">
+  <div class="container form-group" style="min-height:800px">
     <div class="row justify-content-center">
       <div class="col-6 col-sm-6">
         <form class="form-signin" action="login.php" method="POST">
