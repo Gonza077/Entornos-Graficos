@@ -67,7 +67,7 @@ $(document).ready(function(){
       buscar();
     });
 
-    profesorSelected=profesorId;
+    profesorSelected= profesorId != null || profesorId != undefined ? profesorId:null ;
     profesorQuery();
     materiaQuery(profesorSelected);
 
