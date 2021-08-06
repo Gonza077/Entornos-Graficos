@@ -20,6 +20,5 @@ $consultaRepo = New ConsultaRepository();
         echo json_encode("Solicitud Creada",200);
     }else{
         echo json_encode("Id de consulta inexistente",204);
-    }
-    
+    }  
 ?>

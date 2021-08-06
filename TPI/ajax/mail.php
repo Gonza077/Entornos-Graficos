@@ -45,5 +45,4 @@
                 //echo '<script type="text/javascript">','alert("El mensaje ha sido enviado con éxito, responderemos lo antes posible.");','</script>';
             
     } 
-
 ?>

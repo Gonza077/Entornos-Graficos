@@ -1,5 +1,4 @@
 <?php
-
 use Psr\Http\Message\RequestInterface;
 include_once('includes/user_session.php');
 include_once('includes/user.php');

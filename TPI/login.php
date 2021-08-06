@@ -20,7 +20,8 @@
       }else{
           $errorLogin = "Nombre de usuario y/o password incorrecto";
       }
-  }?>
+  }
+?>
 
 <!DOCTYPE html>
 <html lang="en">
