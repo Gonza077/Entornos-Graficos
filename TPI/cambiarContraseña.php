@@ -40,15 +40,9 @@
             }
         }
         else
-        $error= 'La contraseña actual es incorrecta.';
-            
+        $error= 'La contraseña actual es incorrecta.';         
     }
-    
-
 ?> 
-
-
-  
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -94,8 +88,6 @@
                 </div>
             </div>
         </div>
-
     </body>
     <?php require_once('footer.php'); ?>
-
 </html>

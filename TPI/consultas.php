@@ -19,7 +19,7 @@
 <body>
 <?php include_once('navbar.php'); ?>
   <div class="container-fluid" style="min-height:800px">
-    <div class="row form-group" style="margin-top: 10px;">
+    <div class="row form-group mt-2" >
       <div class="col-lg-2 col-md-6 col-sm-8 col-xs-12">
           <label for="estadoFilter">Estado</label>
           <select class="custom-select" id="estadoFilter">

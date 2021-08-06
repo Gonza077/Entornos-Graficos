@@ -9,24 +9,24 @@
       <div class="row">
         <div class=" col-md-4 col-lg-4 col-xl-2 mx-auto">
           <h6 class="text-uppercase font-weight-bold">Links de ayuda</h6>
-          <hr  style="border-top: 1px solid gray; margin:0px;">
-          <p style="margin-bottom:0px;">
+          <hr class="m-0" style="border-top: 1px solid gray;">
+          <p class="mb-0">
             <a style="color:white;" href="sitemap.php">Mapa de sitio</a>
           </p>
-          <p style="margin-bottom:0px;">
+          <p class="mb-0">
             <a style="color:white;" href="contacto.php">Contacto</a>
           </p>
-          <p style="margin-bottom:0px;">
+          <p class="mb-0">
             <a style="color:white;" href="preguntasFrecuentes.php">Preguntas Frecuentes</a>
           </p>
         </div>
         <div class=" col-md-4 col-lg-4 col-xl-2 mx-auto">
           <h6 class="text-uppercase font-weight-bold">Link Externos</h6>
-          <hr  style="border-top: 1px solid gray; margin:0px;">
-          <p style="margin-bottom:0px;">
+          <hr class="m-0" style="border-top: 1px solid gray;">
+          <p class="mb-0">
             <a style="color:white;" target="_blank" href="https://www.alumnos.frro.utn.edu.ar/loginAlumno.asp">SYSACAD</a>
           </p>
-          <p style="margin-bottom:0px;">
+          <p class="mb-0">
             <a style="color:white;" target="_blank" href="https://www.frro.utn.edu.ar/">UTN FRRo</a>
           </p>
         </div>

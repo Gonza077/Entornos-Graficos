@@ -21,9 +21,7 @@
 </head>
 <body>
 <?php include_once('navbar.php'); ?>
-  <div class="container-fluid" style="min-height:800px">
-    <br>
-    <br>
+  <div class="container-fluid mt-3" style="min-height:800px">
     <table class="table table-hover" id="solicitudesTable"> 
       <thead>
         <tr>

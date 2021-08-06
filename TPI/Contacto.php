@@ -21,7 +21,7 @@
         <div class="container-fluid">
             <div class="row justify-content-center form-group">
                 <div class="col-12 col-sm-6">
-                    <form class="form-contact" action="contacto.php" method="post" style="margin-top: 20px;">
+                    <form class="form-contact mt-2" action="contacto.php" method="post" >
                         <img class="mb-4 d-block mx-auto" src="img/LogoUTN.png" alt="Logo de la Universidad Tecnológica Nacional" width="100" height="100">
                         <h1 class="d-flex justify-content-center">Contacto</h1>
                         <hr>
@@ -61,7 +61,6 @@
         <?php require_once('footer.php'); ?>
     </body>
 </html>
-
 
 <?php   
 include ('includes/mail.php');
