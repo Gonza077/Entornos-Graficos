@@ -64,9 +64,7 @@
 
 
 <?php   
-
 include ('includes/mail.php');
-
     if($_POST) 
     {
         $u_nombre = "";
@@ -95,12 +93,8 @@ include ('includes/mail.php');
         if(isset($_POST['mensaje'])) {
         $u_mensaje = htmlspecialchars($_POST['mensaje']);
         }
-        
-
-
         //Preparamos el mail y usamos la funcion del include mail.php
-        $cuerpo_html='<html> 
-        
+        $cuerpo_html='<html>     
         <body> 
         <h1>Correo enviado desde el Sistema de Consultas</h1>
         <h2>Mensaje enviado por el usuario de la web:</h2>

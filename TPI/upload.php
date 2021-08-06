@@ -1,6 +1,6 @@
-<?php include_once('includes/user_session.php');
-      include_once('includes/user.php');
-
+<?php 
+include_once('includes/user_session.php');
+include_once('includes/user.php');
 $user_session = new UserSession();
 $user = $user_session->getCurrentUser();
 ?>
@@ -27,8 +27,8 @@ $user = $user_session->getCurrentUser();
             </div>
         </form>
     </div>
-    <?php require('footer.php')?>
-    <?php require('./components/toast.php');?>
+    <?php require_once('footer.php')?>
+    <?php require_once('./components/toast.php');?>
     <script src="js/uploadConsulta.js"></script>
 </body>
 </html>

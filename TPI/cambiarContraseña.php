@@ -1,14 +1,11 @@
 <?php 
-    include_once ('./includes/db.php');
     include_once('includes/user_session.php');
     include_once('includes/user.php');
-
     $user_session = new UserSession();
-    $user = new User();
     $user = $user_session->getCurrentUser();
-    $error = "";
     $id = $user->getId();
-
+    include_once ('./includes/db.php');
+    $error = "";
     if (isset($_POST['password1']))
 
     {   

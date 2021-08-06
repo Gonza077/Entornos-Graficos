@@ -1,17 +1,14 @@
 <?php
-include_once ('../includes/db.php');
 include_once ('../includes/user_session.php');
 include_once ('../includes/user.php');
-include_once ('../includes/solicitud.php');
-
 $USER_SESSION = new UserSession();
 $USER = new User();
 $USER = $USER_SESSION->getCurrentUser();
 if(isset($USER)){
    $USER_ID = $USER->getId();
 }
-
-
+include_once ('../includes/db.php');
+include_once ('../includes/solicitud.php');
 $errorMessage='';
 $solicitudRepo = New SolicitudRepository();
 $suscripciones = [];
@@ -25,6 +22,5 @@ $suscripciones = [];
     }else{
         http_response_code(204);
         echo json_encode("Id de consulta inexistente");
-    }
-    
+    } 
 ?>

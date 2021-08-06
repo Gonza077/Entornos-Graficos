@@ -139,7 +139,5 @@
   } ?>
 <?php include_once('components/toast.php');?>
 </body>
-
-
 </html>
 

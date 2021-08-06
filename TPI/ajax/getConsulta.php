@@ -1,18 +1,14 @@
 <?php
-include_once ('../includes/db.php');
-include_once('../includes/user_session.php');
+include_once ('../includes/user_session.php');
 include_once ('../includes/user.php');
-include_once ('../includes/consulta.php');
-
-
 $USER_SESSION = new UserSession();
 $USER = new User();
 $USER = $USER_SESSION->getCurrentUser();
 if(isset($USER)){
    $USER_ID = $USER->getId();
 }
-
-
+include_once ('../includes/db.php');
+include_once ('../includes/consulta.php');
 $errorMessage='';
 $db = new DB();
     if(isset($_GET['consultaId'])){

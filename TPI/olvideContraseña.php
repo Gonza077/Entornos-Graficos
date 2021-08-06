@@ -23,7 +23,6 @@ if(isset($_POST['email']))
     else 
         $msgError="No existe usuario con el correo electronico ingresado.";
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="es">

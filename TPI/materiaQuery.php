@@ -1,10 +1,9 @@
 <?php
-
-include_once('./includes/db.php');
 include_once('includes/user_session.php');
 include_once('includes/user.php');
 $user_session = new UserSession();
 $user = $user_session->getCurrentUser();
+include_once('./includes/db.php');
 
 $query = "SELECT materia.id,materia.nombre FROM materia
          ORDER BY nombre ASC";
