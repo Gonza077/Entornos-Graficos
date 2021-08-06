@@ -1,6 +1,6 @@
 <?php 
 
-include ('includes/mail.php');
+include_once ('includes/mail.php');
 include_once('includes/user.php');
 include_once('includes/recuperarContraseña.php');
 $user = new User();
@@ -67,6 +67,6 @@ if(isset($_POST['email']))
                 </div>
             </div>
         </div>
-        <?php require('footer.php'); ?>
+        <?php require_once('footer.php'); ?>
     </body>
 </html>

@@ -17,7 +17,7 @@
     <title>Mis Consultas</title>
 </head>
 <body>
-<?php include('navbar.php'); ?>
+<?php include_once('navbar.php'); ?>
   <div class="container-fluid" style="min-height:800px">
     <div class="row form-group" style="margin-top: 10px;" >
       <div class="col-lg-2 col-md-6 col-sm-8 col-xs-12">
@@ -78,10 +78,10 @@
       </tbody>
     </table>
   </div>
-<?php $user != null && $user->isDocente() ? include('components/bloquearConsultaModal.php'):"";?>
-<?php $user != null && $user->isDocente() ? include('components/crearConsultaModal.php'):"";?>
-<?php $user != null && $user->isDocente() ? include('components/detalleConsultaModal.php'):"";?>
-<?php include('footer.php');?>
+<?php $user != null && $user->isDocente() ? include_once('components/bloquearConsultaModal.php'):"";?>
+<?php $user != null && $user->isDocente() ? include_once('components/crearConsultaModal.php'):"";?>
+<?php $user != null && $user->isDocente() ? include_once('components/detalleConsultaModal.php'):"";?>
+<?php include_once('footer.php');?>
 <script src="js/miConsultaScripts.js"> </script>
   <?php if ($user != null && $user->isDocente()){
     $userId= $user->getId();
@@ -89,7 +89,7 @@
   } else {
     echo "<script>var profesorId = undefined;</script>";
   } ?>
-<?php include('components/toast.php');?>
+<?php include_once('components/toast.php');?>
 </body>
 </html>
 

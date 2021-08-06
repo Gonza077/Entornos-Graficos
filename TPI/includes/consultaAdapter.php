@@ -1,7 +1,7 @@
 <?php
 include_once 'db.php';
-include ('./includes/user_session.php');
-include ('./includes/user.php');
+include_once ('./includes/user_session.php');
+include_once ('./includes/user.php');
 $USER_SESSION = new UserSession();
 $USER = new User();
 $USER = $USER_SESSION->getCurrentUser();

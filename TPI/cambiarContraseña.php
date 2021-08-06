@@ -1,5 +1,5 @@
 <?php 
-    include ('./includes/db.php');
+    include_once ('./includes/db.php');
     include_once('includes/user_session.php');
     include_once('includes/user.php');
 
@@ -60,7 +60,7 @@
         <link rel="stylesheet" href="./css/footerRelativo.css">
     </head>
     <body>
-    <?php require './navbar.php'; ?>   
+    <?php require_once './navbar.php'; ?>   
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-12 col-sm-6">
@@ -96,6 +96,6 @@
         </div>
 
     </body>
-    <?php require('footer.php'); ?>
+    <?php require_once('footer.php'); ?>
 
 </html>

@@ -10,7 +10,7 @@
     <title>Mapa del sitio</title>
 </head>
 <body>
-    <?php require 'navbar.php'?>
+    <?php require_once 'navbar.php'?>
     <div class="container-fluid" style="min-height:800px">
         <div class="offset-2">
             <h1>Mapa del sitio</h1>
@@ -42,6 +42,6 @@
             </div>
         </div>
     </div>
-    <?php require('footer.php'); ?>
+    <?php require_once('footer.php'); ?>
 </body>
 </html>

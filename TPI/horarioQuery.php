@@ -1,6 +1,6 @@
 <?php
 
-include ('./includes/db.php');
+include_once ('./includes/db.php');
 $query="SELECT id, nombre_turno, hora_inicio, hora_fin FROM consultas_db.horarios";
 $db = new DB();
 if($registros = $db-> connect() -> query($query)){

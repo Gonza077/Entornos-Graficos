@@ -1,8 +1,8 @@
 <?php
 
-include ('./includes/db.php');
-include ('./includes/user_session.php');
-include ('./includes/user.php');
+include_once ('./includes/db.php');
+include_once ('./includes/user_session.php');
+include_once ('./includes/user.php');
 $user_session = new UserSession();
 $user = $user_session->getCurrentUser();
 if ($user != null){

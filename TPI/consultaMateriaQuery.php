@@ -1,6 +1,6 @@
 <?php
 
-include ('./includes/db.php');
+include_once ('./includes/db.php');
 $query = "SELECT id,nombre FROM materia ORDER BY nombre ASC";
 
 if(isset($_GET['docente'])){

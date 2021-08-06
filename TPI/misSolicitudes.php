@@ -17,7 +17,7 @@
     <title>Mis Solicitudes</title>
 </head>
 <body>
-<?php include('navbar.php'); ?>
+<?php include_once('navbar.php'); ?>
   <div class="container-fluid" style="min-height:800px">
     <br>
     <br>
@@ -60,8 +60,8 @@
   </div>
 </div>
 </body>
-<?php include('footer.php');?>
+<?php include_once('footer.php');?>
 <script src="js/solicitudScript.js"></script>
-<?php include('components/toast.php');?>
+<?php include_once('components/toast.php');?>
 </html>
 

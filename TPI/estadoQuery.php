@@ -1,6 +1,6 @@
 <?php
 
-include ('./includes/db.php');
+include_once ('./includes/db.php');
 $sql="SELECT id,codigo FROM estado_consulta";
 $db = new DB();
 $registros = $db->connect()->query($sql);

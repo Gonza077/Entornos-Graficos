@@ -28,5 +28,5 @@
         </div>
 </div>
 </body>
-<?php require('footer.php'); ?>
+<?php require_once('footer.php'); ?>
 </html>

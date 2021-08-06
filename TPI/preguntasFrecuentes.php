@@ -16,7 +16,7 @@
         <link rel="stylesheet" href="./css/footerRelativo.css">
     </head>
     <body>
-    <?php require('navbar.php'); ?> 
+    <?php require_once('navbar.php'); ?> 
         <div class="container-fluid">
             <div class="row justify-content-center form-group">
                 <div class="col-12 col-sm-6">
@@ -45,6 +45,6 @@
                 </div>
             </div>
         </div>
-        <?php require('footer.php'); ?> 
+        <?php require_once('footer.php'); ?> 
     </body>
 </html>

@@ -1,8 +1,8 @@
 <?php
-include ('../includes/db.php');
-include ('../includes/user_session.php');
-include ('../includes/user.php');
-include ('../includes/consulta.php');
+include_once ('../includes/db.php');
+include_once('../includes/user_session.php');
+include_once ('../includes/user.php');
+include_once ('../includes/consulta.php');
 
 
 $USER_SESSION = new UserSession();

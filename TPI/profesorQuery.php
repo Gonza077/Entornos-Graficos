@@ -1,6 +1,6 @@
 <?php
 
-include ('./includes/db.php');
+include_once ('./includes/db.php');
 
 $sql="SELECT id,nombre,apellido FROM persona where docente is true";
 

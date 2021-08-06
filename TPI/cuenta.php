@@ -1,11 +1,10 @@
 <?php
 
 use Psr\Http\Message\RequestInterface;
-
 include_once('includes/user_session.php');
-  include_once('includes/user.php');
-  $user_session = new UserSession();
-  $user = $user_session->getCurrentUser();
+include_once('includes/user.php');
+$user_session = new UserSession();
+$user = $user_session->getCurrentUser();
 ?> 
 <!DOCTYPE html>
 <html lang="es">
@@ -18,7 +17,7 @@ include_once('includes/user_session.php');
         <link rel="icon" href="./assets/Icono.ico">
     </head>
     <body>
-        <?php  require './navbar.php' ?>
+        <?php  require_once './navbar.php' ?>
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-12 col-md-6">
@@ -76,6 +75,6 @@ include_once('includes/user_session.php');
                 </div>
             </div>
         </div>
-        <?php require('footer.php'); ?> 
+        <?php require_once('footer.php'); ?> 
     </body>   
 </html>

@@ -1,7 +1,7 @@
 <?php 
-include('../includes/db.php');
-include('../vendor/autoload.php');
-include('../includes/consulta.php');
+include_once('../includes/db.php');
+include_once('../vendor/autoload.php');
+include_once('../includes/consulta.php');
 try{
     $db =  new DB();
     $allowedFileType = ['application/vnd.ms-excel','text/xls','text/xlsx','application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'];
